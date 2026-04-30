@@ -1,10 +1,11 @@
 // Arnold South America - Performance Digital 2026
 // Identidade Visual: Rosa/Magenta + Azul Escuro + Ciano
+// OTIMIZAÇÕES: sem capas de secção, círculos padronizados, boxes consistentes, pie chart sem impostos
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, AreaChart, Area, Legend,
+  PieChart, Pie, Cell, Legend,
 } from "recharts";
 import {
   REPORT_TITLE, REPORT_SUBTITLE, PERIOD, kpis,
@@ -37,7 +38,6 @@ function NavBar() {
         <span className="text-white font-bold text-sm tracking-wider font-[Montserrat]">
           ARNOLD SA <span className="text-[#C71585]">|</span> PERFORMANCE 2026
         </span>
-        {/* Desktop nav */}
         <div className="hidden lg:flex gap-1">
           {sections.map((s) => (
             <a
@@ -49,7 +49,6 @@ function NavBar() {
             </a>
           ))}
         </div>
-        {/* Mobile toggle */}
         <button
           className="lg:hidden text-white p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -86,21 +85,6 @@ function SectionTitle({ children, pink }: { children: React.ReactNode; pink?: st
   );
 }
 
-function SectionDivider({ title, pink }: { title: string; pink: string }) {
-  return (
-    <div className="bg-watermark py-20 md:py-28 flex items-center justify-center">
-      <div className="text-center">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-[#1B1464] font-[Montserrat]">
-          {title}
-        </h2>
-        <p className="text-xl md:text-2xl font-bold text-[#C71585] font-[Montserrat] mt-1">
-          {pink}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function KPICard({ value, label, color }: { value: string; label: string; color: string }) {
   return (
     <motion.div
@@ -120,28 +104,27 @@ function KPICard({ value, label, color }: { value: string; label: string; color:
   );
 }
 
-function ChevronMetric({ items, colors }: { items: { value: string; label: string }[]; colors: string[] }) {
+// Metric cards consistentes (substituem o ChevronMetric)
+function MetricCards({ items, colors }: { items: { value: string; label: string }[]; colors: string[] }) {
   return (
-    <div className="flex flex-col md:flex-row gap-0 items-stretch justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
       {items.map((item, i) => (
-        <div
+        <motion.div
           key={i}
-          className="relative flex flex-col items-center justify-center px-8 py-10 md:py-12 text-white min-w-[200px] md:min-w-[260px]"
-          style={{
-            backgroundColor: colors[i],
-            clipPath: i < items.length - 1
-              ? "polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%)"
-              : "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-            marginLeft: i > 0 ? "-20px" : "0",
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1 }}
+          className="flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl text-white text-center"
+          style={{ backgroundColor: colors[i] }}
         >
-          <span className="text-2xl md:text-3xl font-extrabold font-[Montserrat]">
+          <span className="text-2xl md:text-3xl font-extrabold font-[Montserrat] leading-tight">
             {item.value}
           </span>
-          <span className="text-white/80 text-xs mt-2 text-center uppercase tracking-wide max-w-[180px]">
+          <span className="text-white/80 text-xs mt-3 uppercase tracking-wide max-w-[200px] leading-tight">
             {item.label}
           </span>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -173,11 +156,12 @@ export default function Home() {
     return obj;
   });
 
+  // Pie chart SEM impostos — apenas Google e Meta
   const pieData = [
     { name: "Meta Ads", value: distribuicaoAds.meta, color: "#1B1464" },
     { name: "Google Ads", value: distribuicaoAds.google, color: "#00BCD4" },
-    { name: "Impostos", value: impostosRetidos, color: "#C71585" },
   ];
+  const totalPie = distribuicaoAds.meta + distribuicaoAds.google;
 
   return (
     <div className="min-h-screen bg-white">
@@ -212,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RESUMO GERAL */}
+      {/* RESUMO GERAL — direto ao dado, sem capa */}
       <section id="resumo" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="Destaques">Resumo Geral |</SectionTitle>
@@ -226,7 +210,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECEITA POR CANAL */}
+      {/* RECEITA POR CANAL — direto */}
       <section id="receita" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="por Canal">Estimativa de Receita da Venda de Ingressos</SectionTitle>
@@ -310,12 +294,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INVESTIMENTO */}
-      <SectionDivider title="DETALHAMENTO DE INVESTIMENTO" pink="MÍDIA PAGA 2026" />
+      {/* INVESTIMENTO — direto, sem capa */}
       <section id="investimento" className="py-16 md:py-20">
         <div className="container">
-          <SectionTitle pink="Feira e Congressos">Investimento em Ads |</SectionTitle>
-          <p className="text-center text-gray-500 text-sm mb-10">{PERIOD}</p>
+          <SectionTitle pink="Mídia Paga 2026">Detalhamento de Investimento |</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-4">{PERIOD}</p>
+
+          <h3 className="text-lg font-bold text-[#1B1464] text-center mb-8 font-[Montserrat]">
+            Investimento em Ads | <span className="text-[#C71585]">Feira e Congressos</span>
+          </h3>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-10">
             {/* Feira */}
@@ -350,7 +337,7 @@ export default function Home() {
           </div>
 
           {/* Totais */}
-          <div className="max-w-md mx-auto bg-[#1B1464] rounded-xl p-6 text-white text-center">
+          <div className="max-w-md mx-auto bg-[#1B1464] rounded-xl p-6 text-white text-center mb-12">
             <div className="text-xs text-white/60 mb-1">Impostos Retidos pela Meta</div>
             <div className="font-bold mb-3">{formatBRL(impostosRetidos)}</div>
             <div className="border-t border-white/20 pt-3">
@@ -360,104 +347,104 @@ export default function Home() {
             <div className="text-xs text-white/40 mt-3">Saldo disponível na Meta: {formatBRL(saldoMeta)}</div>
           </div>
 
-          {/* Pie Chart distribuição */}
-          <div className="mt-12">
-            <h3 className="text-lg font-bold text-[#1B1464] text-center mb-6 font-[Montserrat]">
-              Distribuição do Investimento em Ads <span className="text-[#C71585]">(Google e Meta)</span>
-            </h3>
-            <div className="h-[300px] max-w-md mx-auto">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={110}
-                    dataKey="value"
-                    label={({ name, value }) => `${name}: ${formatBRL(value)}`}
-                    labelLine={false}
-                  >
-                    {pieData.map((entry, i) => (
-                      <Cell key={i} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip formatter={(v: number) => formatBRL(v)} />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+          {/* Pie Chart distribuição — SEM IMPOSTOS */}
+          <h3 className="text-lg font-bold text-[#1B1464] text-center mb-2 font-[Montserrat]">
+            Distribuição do Investimento em Ads <span className="text-[#C71585]">(Google e Meta)</span>
+          </h3>
+          <p className="text-center text-gray-500 text-sm mb-6">
+            Total investido nas plataformas: {formatBRL(totalPie)}
+          </p>
+          <div className="h-[320px] max-w-lg mx-auto">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={65}
+                  outerRadius={110}
+                  dataKey="value"
+                  paddingAngle={2}
+                >
+                  {pieData.map((entry, i) => (
+                    <Cell key={i} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(v: number) => formatBRL(v)} />
+                <Legend
+                  verticalAlign="bottom"
+                  formatter={(value: string, entry: any) => {
+                    const item = pieData.find(p => p.name === value);
+                    const pct = item ? ((item.value / totalPie) * 100).toFixed(1) : "0";
+                    return `${value}: ${item ? formatBRL(item.value) : ""} (${pct}%)`;
+                  }}
+                  wrapperStyle={{ fontSize: "13px", paddingTop: "16px" }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </section>
 
-      {/* GOOGLE ADS */}
-      <SectionDivider title="PERFORMANCE DAS CAMPANHAS" pink="GOOGLE ADS" />
+      {/* GOOGLE ADS — direto, sem capa */}
       <section id="google" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="e Faturamento com Ingressos">Google Ads</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-10">{PERIOD}</p>
-          <div className="overflow-x-auto">
-            <ChevronMetric
-              items={[
-                { value: formatBRL(googleAds.investido), label: "Investidos em Google para venda de ingressos" },
-                { value: formatBRL(googleAds.faturamento), label: "Faturamento identificado" },
-                { value: `${googleAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
-              ]}
-              colors={["#1a3a2a", "#2d6b4f", "#00BCD4"]}
-            />
-          </div>
+          <MetricCards
+            items={[
+              { value: formatBRL(googleAds.investido), label: "Investidos em Google para venda de ingressos" },
+              { value: formatBRL(googleAds.faturamento), label: "Faturamento identificado" },
+              { value: `${googleAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+            ]}
+            colors={["#1a3a2a", "#2d6b4f", "#00BCD4"]}
+          />
           <p className="text-gray-600 text-sm max-w-3xl mx-auto text-center mt-8 italic">
             {googleAds.nota}
           </p>
         </div>
       </section>
 
-      {/* META ADS */}
-      <SectionDivider title="PERFORMANCE DAS CAMPANHAS" pink="META ADS" />
-      <section id="meta" className="py-16 md:py-20 bg-watermark">
+      {/* META ADS — direto, sem capa */}
+      <section id="meta" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="e Faturamento com Ingressos">Meta Ads</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-10">{PERIOD}</p>
-          <div className="overflow-x-auto">
-            <ChevronMetric
-              items={[
-                { value: formatBRL(metaAds.investido), label: "Investidos em Meta Ads" },
-                { value: formatBRL(metaAds.faturamento), label: "Faturamento identificado" },
-                { value: `${metaAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
-              ]}
-              colors={["#1B1464", "#2B4FA3", "#00BCD4"]}
-            />
-          </div>
+          <MetricCards
+            items={[
+              { value: formatBRL(metaAds.investido), label: "Investidos em Meta Ads" },
+              { value: formatBRL(metaAds.faturamento), label: "Faturamento identificado" },
+              { value: `${metaAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+            ]}
+            colors={["#1B1464", "#2B4FA3", "#00BCD4"]}
+          />
           <p className="text-gray-600 text-sm max-w-3xl mx-auto text-center mt-8 italic">
             {metaAds.nota}
           </p>
         </div>
       </section>
 
-      {/* RESUMO ADS */}
-      <section id="resumo-ads" className="py-16 md:py-20">
+      {/* RESUMO ADS — direto, sem capa */}
+      <section id="resumo-ads" className="py-16 md:py-20 bg-gray-50">
         <div className="container">
           <SectionTitle>RESUMO GERAL ADS PARA VENDA DE INGRESSOS</SectionTitle>
           <p className="text-center text-[#C71585] font-bold font-[Montserrat] mb-2">(GOOGLE + META ADS)</p>
           <p className="text-center text-gray-500 text-sm mb-10">{PERIOD}</p>
-          <div className="overflow-x-auto">
-            <ChevronMetric
-              items={[
-                { value: formatBRL(resumoAds.investido), label: "Investidos em anúncios para venda de ingressos" },
-                { value: formatBRL(resumoAds.faturamento), label: "Faturamento identificado" },
-                { value: `${resumoAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
-              ]}
-              colors={["#8B4513", "#D2691E", "#F4A460"]}
-            />
-          </div>
+          <MetricCards
+            items={[
+              { value: formatBRL(resumoAds.investido), label: "Investidos em anúncios para venda de ingressos" },
+              { value: formatBRL(resumoAds.faturamento), label: "Faturamento identificado" },
+              { value: `${resumoAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+            ]}
+            colors={["#8B4513", "#D2691E", "#F4A460"]}
+          />
           <p className="text-gray-600 text-sm max-w-3xl mx-auto text-center mt-8 italic">
             {resumoAds.nota}
           </p>
         </div>
       </section>
 
-      {/* DIMENSÃO DE CAMPANHAS */}
-      <SectionDivider title="DETALHAMENTO DE CAMPANHAS" pink="META" />
+      {/* DIMENSÃO DE CAMPANHAS — direto, sem capa, círculos padronizados */}
       <section id="campanhas" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="Dimensão de Campanhas e Anúncios Gerenciados">Resumo Geral</SectionTitle>
@@ -465,43 +452,64 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
             {/* Feira */}
             <div className="text-center">
-              <h4 className="text-xl font-extrabold text-[#1B1464] font-[Montserrat] mb-6">FEIRA</h4>
-              <div className="flex justify-center gap-6">
-                <div className="w-32 h-32 rounded-full bg-[#1B1464] flex flex-col items-center justify-center text-white">
-                  <span className="text-3xl font-extrabold">{dimensaoCampanhas.feira.campanhas}</span>
-                  <span className="text-[10px] mt-1 text-white/70 text-center px-2">Grandes campanhas gerenciadas</span>
-                </div>
-                <div className="w-36 h-36 rounded-full bg-[#2B9FD4] flex flex-col items-center justify-center text-white self-end">
-                  <span className="text-3xl font-extrabold">{dimensaoCampanhas.feira.criativos}</span>
-                  <span className="text-[10px] mt-1 text-white/70 text-center px-3">Criativos gerenciados em combinação</span>
-                </div>
+              <h4 className="text-xl font-extrabold text-[#1B1464] font-[Montserrat] mb-8">FEIRA</h4>
+              <div className="flex justify-center gap-8">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="w-32 h-32 rounded-full bg-[#1B1464] flex flex-col items-center justify-center text-white"
+                >
+                  <span className="text-3xl font-extrabold font-[Montserrat]">{dimensaoCampanhas.feira.campanhas}</span>
+                  <span className="text-[10px] mt-1 text-white/70 text-center px-3 leading-tight">Grandes campanhas gerenciadas</span>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="w-32 h-32 rounded-full bg-[#2B9FD4] flex flex-col items-center justify-center text-white"
+                >
+                  <span className="text-3xl font-extrabold font-[Montserrat]">{dimensaoCampanhas.feira.criativos}</span>
+                  <span className="text-[10px] mt-1 text-white/70 text-center px-3 leading-tight">Criativos gerenciados em combinação</span>
+                </motion.div>
               </div>
             </div>
             {/* Congressos */}
             <div className="text-center">
-              <h4 className="text-xl font-extrabold text-[#1B1464] font-[Montserrat] mb-6">CONGRESSOS</h4>
-              <div className="flex justify-center gap-6">
-                <div className="w-28 h-28 rounded-full bg-[#00BCD4] flex flex-col items-center justify-center text-white">
-                  <span className="text-3xl font-extrabold">{dimensaoCampanhas.congressos.campanhas}</span>
-                  <span className="text-[10px] mt-1 text-white/70 text-center px-2">Grandes campanhas gerenciadas</span>
-                </div>
-                <div className="w-32 h-32 rounded-full bg-[#9B59B6] flex flex-col items-center justify-center text-white self-end">
-                  <span className="text-3xl font-extrabold">{dimensaoCampanhas.congressos.criativos}</span>
-                  <span className="text-[10px] mt-1 text-white/70 text-center px-3">Criativos gerenciados em combinação</span>
-                </div>
+              <h4 className="text-xl font-extrabold text-[#1B1464] font-[Montserrat] mb-8">CONGRESSOS</h4>
+              <div className="flex justify-center gap-8">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="w-32 h-32 rounded-full bg-[#00BCD4] flex flex-col items-center justify-center text-white"
+                >
+                  <span className="text-3xl font-extrabold font-[Montserrat]">{dimensaoCampanhas.congressos.campanhas}</span>
+                  <span className="text-[10px] mt-1 text-white/70 text-center px-3 leading-tight">Grandes campanhas gerenciadas</span>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="w-32 h-32 rounded-full bg-[#9B59B6] flex flex-col items-center justify-center text-white"
+                >
+                  <span className="text-3xl font-extrabold font-[Montserrat]">{dimensaoCampanhas.congressos.criativos}</span>
+                  <span className="text-[10px] mt-1 text-white/70 text-center px-3 leading-tight">Criativos gerenciados em combinação</span>
+                </motion.div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* LOTE ZERO */}
-      <SectionDivider title="LOTE ZERO" pink="2026" />
+      {/* LOTE ZERO — direto, sem capa, círculos padronizados */}
       <section id="lote-zero" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="2026">Lote Zero</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
             {[
               { value: formatNumber(loteZero.leads), label: "Leads gerados na Landing Page", color: "#1B1464" },
               { value: formatNumber(loteZero.ingressosVendidos), label: "Ingressos válidos vendidos", color: "#2B9FD4" },
@@ -515,19 +523,18 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="aspect-square rounded-full flex flex-col items-center justify-center text-white p-4"
+                className="w-36 h-36 rounded-full flex flex-col items-center justify-center text-white"
                 style={{ backgroundColor: item.color }}
               >
-                <span className="text-xl md:text-2xl font-extrabold font-[Montserrat]">{item.value}</span>
-                <span className="text-[10px] md:text-xs mt-2 text-white/70 text-center leading-tight">{item.label}</span>
+                <span className="text-xl font-extrabold font-[Montserrat]">{item.value}</span>
+                <span className="text-[10px] mt-2 text-white/70 text-center leading-tight px-3">{item.label}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CRIATIVOS */}
-      <SectionDivider title="DESTAQUES DE CAMPANHAS E CRIATIVOS" pink="ARNOLD" />
+      {/* CRIATIVOS — direto, sem capa */}
       <section id="criativos" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="Awareness Arnold">Destaques de Campanhas e Criativos em Ads</SectionTitle>
