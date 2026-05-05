@@ -113,34 +113,258 @@ export const loteZero = {
   tempoEsgotamento: "33 MIN",
 };
 
-// Criativos Awareness
-export const creativos = [
+// ============================================================
+// CRIATIVOS POR CATEGORIA
+// ============================================================
+
+export interface Criativo {
+  id: string;
+  titulo: string;
+  formato: string;
+  imagem: string;
+  link?: string;
+  metricas: { label: string; value: string }[];
+}
+
+export interface CategoriaCreativos {
+  categoria: string;
+  subtitulo: string;
+  criativos: Criativo[];
+}
+
+export const categoriasCreativos: CategoriaCreativos[] = [
   {
-    id: "AWARENESS_01_SAVE",
-    titulo: "Save The Date",
-    formato: "Estático",
-    impressoes: 3593117,
-    alcance: 2698743,
-    cpm: 1.20,
-    imagem: "/manus-storage/AWARENESS_01_SAVE_2f11c7ef.png",
+    categoria: "INSTITUCIONAL | AWARENESS ARNOLD",
+    subtitulo: "Campanhas de awareness para o Arnold South America",
+    criativos: [
+      {
+        id: "AWARENESS_01_SAVE",
+        titulo: "Save The Date",
+        formato: "Estático",
+        imagem: "/manus-storage/AWARENESS_01_SAVE_2f11c7ef.png",
+        metricas: [
+          { label: "Impressões", value: "3.593.117" },
+          { label: "Alcance", value: "2.698.743" },
+          { label: "CPM", value: "R$ 1,20" },
+        ],
+      },
+      {
+        id: "AWARENESS_02_PILARES",
+        titulo: "Pilares do Universo",
+        formato: "Carrossel",
+        imagem: "/manus-storage/AWARENESS_02_PILARES_38bb1424.png",
+        metricas: [
+          { label: "Impressões", value: "779.271" },
+          { label: "Alcance", value: "568.301" },
+          { label: "CPM", value: "R$ 1,62" },
+        ],
+      },
+      {
+        id: "AWARENESS_03_DORIAN",
+        titulo: "Dorian Yates",
+        formato: "Reels",
+        imagem: "/manus-storage/AWARENESS_03_DORIAN_9e51f077.png",
+        metricas: [
+          { label: "Impressões", value: "588.967" },
+          { label: "Alcance", value: "441.779" },
+          { label: "CPM", value: "R$ 1,59" },
+        ],
+      },
+    ],
   },
   {
-    id: "AWARENESS_02_PILARES",
-    titulo: "Pilares do Universo",
-    formato: "Carrossel",
-    impressoes: 779271,
-    alcance: 568301,
-    cpm: 1.62,
-    imagem: "/manus-storage/AWARENESS_02_PILARES_38bb1424.png",
+    categoria: "CREDENCIAMENTO | LOJISTAS",
+    subtitulo: "Campanhas para credenciamento de lojistas",
+    criativos: [
+      {
+        id: "LOJISTAS_01_ACESSO_GRATUITO",
+        titulo: "Acesso Gratuito",
+        formato: "Estático",
+        imagem: "/manus-storage/LOJISTAS_01_ACESSO_GRATUITO_dd8cf48a.png",
+        metricas: [
+          { label: "Impressões", value: "195.101" },
+          { label: "Leads Gerados", value: "1.605 cadastros" },
+          { label: "CPA", value: "R$ 1,49" },
+        ],
+      },
+      {
+        id: "LOJISTAS_02_DEPOIMENTO",
+        titulo: "Depoimento",
+        formato: "Reels",
+        imagem: "/manus-storage/LOJISTAS_02_DEPOIMENTO_b4470453.png",
+        metricas: [
+          { label: "Impressões", value: "273.687" },
+          { label: "Leads Gerados", value: "1.364 cadastros" },
+          { label: "CPA", value: "R$ 1,89" },
+        ],
+      },
+    ],
   },
   {
-    id: "AWARENESS_03_DORIAN",
-    titulo: "Dorian Yates",
-    formato: "Reels",
-    impressoes: 588967,
-    alcance: 441779,
-    cpm: 1.59,
-    imagem: "/manus-storage/AWARENESS_03_DORIAN_9e51f077.png",
+    categoria: "AWARENESS B2B | EXPOSITORES E PATROCINADORES",
+    subtitulo: "Campanhas para atração de expositores e patrocinadores",
+    criativos: [
+      {
+        id: "EXPOSITOR_01_SEJA",
+        titulo: "Seja Expositor",
+        formato: "Estático",
+        imagem: "/manus-storage/EXPOSITOR_01_SEJA_aa8ed077.png",
+        metricas: [
+          { label: "Impressões", value: "84.624" },
+          { label: "Conversas iniciadas", value: "296" },
+          { label: "CPA", value: "R$ 8,06" },
+        ],
+      },
+      {
+        id: "EXPOSITOR_02_DEPOIMENTO",
+        titulo: "Depoimento de Expositor",
+        formato: "Carrossel de Reels",
+        imagem: "/manus-storage/EXPOSITOR_02_DEPOIMENTO_719984e2.png",
+        metricas: [
+          { label: "Impressões", value: "15.322" },
+          { label: "Conversas iniciadas", value: "65" },
+          { label: "CPM", value: "R$ 7,37" },
+        ],
+      },
+      {
+        id: "EXPOSITOR_03_DEPOIMENTOCARIANI",
+        titulo: "Depoimento Cariani",
+        formato: "Reels",
+        imagem: "/manus-storage/EXPOSITOR_03_DEPOIMENTOCARIANI_d3249760.png",
+        metricas: [
+          { label: "Impressões", value: "10.349" },
+          { label: "Conversas iniciadas", value: "30" },
+          { label: "CPA", value: "R$ 11,27" },
+        ],
+      },
+      {
+        id: "EXPOSITOR_04_4_EXPOS",
+        titulo: "Carrossel 4 Expositores",
+        formato: "Carrossel",
+        imagem: "/manus-storage/EXPOSITOR_04_4_EXPOS_4e395d08.png",
+        metricas: [
+          { label: "Impressões", value: "6.331" },
+          { label: "Conversas iniciadas", value: "28" },
+          { label: "CPA", value: "R$ 7,58" },
+        ],
+      },
+    ],
+  },
+  {
+    categoria: "VENDA DE INGRESSOS | CAMPANHAS ATEMPORAIS",
+    subtitulo: "Campanhas contínuas para venda de ingressos da feira",
+    criativos: [
+      {
+        id: "INGRESSOS_ATEMPORAL_FILA_ATRACAO",
+        titulo: "Fila de Atração",
+        formato: "Reels",
+        imagem: "/manus-storage/INGRESSOS_ATEMPORAL_FILA_ATRAÇÃO_f994f9ff.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "283" },
+          { label: "ROAS", value: "11,48x" },
+          { label: "Faturamento", value: "R$ 62.468,00" },
+        ],
+      },
+      {
+        id: "INGRESSOS_ATEMPORAL_CORREDORES",
+        titulo: "Corredores",
+        formato: "Carrossel",
+        imagem: "/manus-storage/INGRESSOS_ATEMPORAL_CORREDORES_e3a96b65.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "283" },
+          { label: "ROAS", value: "13,39x" },
+          { label: "Faturamento", value: "R$ 60.678,50" },
+        ],
+      },
+      {
+        id: "INGRESSOS_ATEMPORAL_VACILAO",
+        titulo: "Vacilão",
+        formato: "Estático",
+        imagem: "/manus-storage/INGRESSOS_ATEMPORAL_VACILÃO_ec9a6d54.png",
+        metricas: [
+          { label: "ROAS", value: "29,19x" },
+          { label: "Faturamento", value: "R$ 36.356,50" },
+        ],
+      },
+    ],
+  },
+  {
+    categoria: "VENDA DE INGRESSOS | ESTRATÉGIAS DE LOTES",
+    subtitulo: "Campanhas por lote de ingressos — Lotes 1 a 3",
+    criativos: [
+      {
+        id: "LOTE1_ELE_CHEGOU",
+        titulo: "Lote 1 — Ele Chegou",
+        formato: "Estático",
+        imagem: "/manus-storage/LOTE1_ELE_CHEGOU_c37b8e4b.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "446" },
+          { label: "ROAS", value: "21,55x" },
+          { label: "Faturamento", value: "R$ 96.965,02" },
+        ],
+      },
+      {
+        id: "LOTE2_CHEGOU",
+        titulo: "Lote 2 — Chegou",
+        formato: "Estático",
+        imagem: "/manus-storage/LOTE2_CHEGOU_c6e87d0b.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "506" },
+          { label: "ROAS", value: "21,34x" },
+          { label: "Faturamento", value: "R$ 109.380,00" },
+        ],
+      },
+      {
+        id: "LOTE3_ATIVADO",
+        titulo: "Lote 3 — Ativado",
+        formato: "Estático",
+        imagem: "/manus-storage/LOTE3_ATIVADO_df88c5b2.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "420" },
+          { label: "ROAS", value: "11,34x" },
+          { label: "Faturamento", value: "R$ 102.763,50" },
+        ],
+      },
+    ],
+  },
+  {
+    categoria: "VENDA DE INGRESSOS | LOTES 4, 5 E BB PRO",
+    subtitulo: "Campanhas por lote de ingressos — Lotes 4, 5 e BB Pro",
+    criativos: [
+      {
+        id: "LOTE4_LIBERADO",
+        titulo: "Lote 4 — Liberado",
+        formato: "Estático",
+        imagem: "/manus-storage/LOTE4_LIBERADO_24e0785a.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "838" },
+          { label: "ROAS", value: "15,62x" },
+          { label: "Faturamento", value: "R$ 196.625,54" },
+        ],
+      },
+      {
+        id: "LOTE5_EVENTO",
+        titulo: "Lote 5 — Evento",
+        formato: "Estático",
+        imagem: "/manus-storage/LOTE5_EVENTO_626c3e12.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "682" },
+          { label: "ROAS", value: "74,96x" },
+          { label: "Faturamento", value: "R$ 149.032,20" },
+        ],
+      },
+      {
+        id: "SAVE_THE_DATE_BB_PRO",
+        titulo: "Save The Date BB Pro",
+        formato: "Estático",
+        imagem: "/manus-storage/SAVE_THE_DATE_BB_PRO_fb43c6da.png",
+        metricas: [
+          { label: "Vendas confirmadas", value: "129" },
+          { label: "ROAS", value: "11,29x" },
+          { label: "Faturamento", value: "R$ 28.404,00" },
+        ],
+      },
+    ],
   },
 ];
 

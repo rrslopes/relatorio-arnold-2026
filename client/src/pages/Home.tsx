@@ -12,10 +12,11 @@ import {
   MONTHS, MONTH_SHORT, revenueByChannel, monthlyTotals, grandTotal,
   investimentoFeira, investimentoCongressos, impostosRetidos, totalInvestidoAds, saldoMeta,
   distribuicaoAds, googleAds, metaAds, resumoAds,
-  dimensaoCampanhas, loteZero, creativos,
+  dimensaoCampanhas, loteZero, categoriasCreativos,
   analiseReceita, analisePerformanceCanais,
   formatBRL, formatNumber, CHANNEL_COLORS,
 } from "@/lib/data";
+import type { Criativo } from "@/lib/data";
 
 // Navigation sections
 const sections = [
@@ -534,51 +535,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CRIATIVOS — direto, sem capa */}
+      {/* CRIATIVOS — todas as categorias */}
       <section id="criativos" className="py-16 md:py-20 bg-watermark">
         <div className="container">
-          <SectionTitle pink="Awareness Arnold">Destaques de Campanhas e Criativos em Ads</SectionTitle>
-          <p className="text-center text-[#C71585] font-bold text-sm mb-10">INSTITUCIONAL | AWARENESS ARNOLD</p>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {creativos.map((c) => (
-              <motion.div
-                key={c.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100"
-              >
-                <div className="aspect-[9/16] max-h-[360px] overflow-hidden bg-gray-100">
-                  <img
-                    src={c.imagem}
-                    alt={c.titulo}
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                <div className="p-4">
-                  <h4 className="font-bold text-[#1B1464] text-sm mb-3">{c.titulo}</h4>
-                  <div className="space-y-1 text-xs text-gray-600">
-                    <div className="flex justify-between">
-                      <span>Formato:</span>
-                      <span className="font-semibold">{c.formato}</span>
+          <SectionTitle pink="em Ads">Destaques de Campanhas e Criativos</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
+
+          {categoriasCreativos.map((cat, catIdx) => (
+            <div key={cat.categoria} className={catIdx > 0 ? "mt-16 pt-12 border-t border-gray-200" : ""}>
+              <h3 className="text-center font-bold text-[#C71585] text-sm tracking-wider uppercase mb-2">
+                {cat.categoria}
+              </h3>
+              <p className="text-center text-gray-500 text-xs mb-8">{cat.subtitulo}</p>
+
+              <div className={`grid gap-6 max-w-5xl mx-auto ${
+                cat.criativos.length === 2 ? "md:grid-cols-2 max-w-3xl" :
+                cat.criativos.length === 4 ? "md:grid-cols-2 lg:grid-cols-4" :
+                "md:grid-cols-3"
+              }`}>
+                {cat.criativos.map((c: Criativo) => (
+                  <motion.div
+                    key={c.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col"
+                  >
+                    {/* Imagem padronizada */}
+                    <div className="h-[280px] overflow-hidden bg-gray-100">
+                      <img
+                        src={c.imagem}
+                        alt={c.titulo}
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
-                    <div className="flex justify-between">
-                      <span>Impressões:</span>
-                      <span className="font-semibold tabular-nums">{formatNumber(c.impressoes)}</span>
+                    {/* Info box padronizado */}
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h4 className="font-bold text-[#1B1464] text-sm mb-2">{c.titulo}</h4>
+                      <div className="flex justify-between text-xs text-gray-500 mb-2">
+                        <span>Formato:</span>
+                        <span className="font-semibold text-gray-700">{c.formato}</span>
+                      </div>
+                      <div className="space-y-1.5 mt-auto">
+                        {c.metricas.map((m) => (
+                          <div key={m.label} className="flex justify-between text-xs">
+                            <span className="text-gray-500">{m.label}:</span>
+                            <span className="font-semibold text-[#1B1464] tabular-nums">{m.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {c.link && (
+                        <a
+                          href={c.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 text-center text-xs text-[#C71585] hover:text-[#1B1464] font-semibold transition-colors"
+                        >
+                          Ver anúncio →
+                        </a>
+                      )}
                     </div>
-                    <div className="flex justify-between">
-                      <span>Alcance:</span>
-                      <span className="font-semibold tabular-nums">{formatNumber(c.alcance)} pessoas</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>CPM:</span>
-                      <span className="font-semibold tabular-nums">{formatBRL(c.cpm)}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
