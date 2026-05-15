@@ -978,7 +978,7 @@ export default function Home() {
           <h3 className="text-center font-bold text-[#C71585] text-sm tracking-wider uppercase mb-8">
             Campanhas de Email em Destaque
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto mb-16">
             {emailsDestaque.map((email, i) => (
               <motion.div
                 key={i}
@@ -986,22 +986,33 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm p-5"
+                className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden"
               >
-                <div className="flex items-start gap-3 mb-4">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1B1464] text-white flex items-center justify-center text-xs font-bold">
-                    {i + 1}
-                  </span>
-                  <p className="text-sm font-semibold text-[#1B1464] leading-tight">{email.assunto}</p>
+                {/* Imagem do email */}
+                <div className="w-full h-64 bg-gray-50 overflow-hidden">
+                  <img
+                    src={email.imagem}
+                    alt={email.assunto}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-500">Taxa de abertura:</span>
-                    <span className="font-bold text-[#00BCD4]">{email.taxaAbertura}</span>
+                <div className="p-5">
+                  <div className="flex items-start gap-3 mb-4">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1B1464] text-white flex items-center justify-center text-xs font-bold">
+                      {i + 1}
+                    </span>
+                    <p className="text-sm font-semibold text-[#1B1464] leading-tight">{email.assunto}</p>
                   </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-500">Taxa de cliques:</span>
-                    <span className="font-bold text-[#C71585]">{email.taxaCliques}</span>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-500">Taxa de abertura:</span>
+                      <span className="font-bold text-[#00BCD4]">{email.taxaAbertura}</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-500">Taxa de cliques:</span>
+                      <span className="font-bold text-[#C71585]">{email.taxaCliques}</span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -1020,61 +1031,79 @@ export default function Home() {
               {/* Taxa de Abertura */}
               <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                 <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Abertura (%)</h4>
-                <div className="flex items-end justify-center gap-8 h-48">
-                  <div className="flex flex-col items-center">
-                    <span className="text-sm font-bold text-gray-600 mb-2">{benchmarkEmail.mercadoAbertura}%</span>
-                    <motion.div
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${(benchmarkEmail.mercadoAbertura / 60) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8 }}
-                      className="w-20 bg-[#8B0000] rounded-t-lg"
-                      style={{ maxHeight: "100%" }}
-                    />
-                    <span className="text-xs text-gray-500 mt-2">Mercado</span>
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-gray-600 font-medium">Mercado de Eventos</span>
+                      <span className="font-bold text-gray-600">{benchmarkEmail.mercadoAbertura}%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(benchmarkEmail.mercadoAbertura / 60) * 100}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="h-full bg-gradient-to-r from-gray-400 to-gray-500 rounded-full"
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-sm font-bold text-[#1B1464] mb-2">{benchmarkEmail.arnoldAbertura}%</span>
-                    <motion.div
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${(benchmarkEmail.arnoldAbertura / 60) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                      className="w-20 bg-[#8B0000] rounded-t-lg"
-                      style={{ maxHeight: "100%" }}
-                    />
-                    <span className="text-xs text-gray-500 mt-2">Arnold</span>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-[#1B1464] font-medium">Arnold 2026</span>
+                      <span className="font-bold text-[#1B1464]">{benchmarkEmail.arnoldAbertura}%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(benchmarkEmail.arnoldAbertura / 60) * 100}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="h-full bg-gradient-to-r from-[#1B1464] to-[#C71585] rounded-full"
+                      />
+                    </div>
                   </div>
+                  <p className="text-center text-xs text-[#C71585] font-bold mt-2">
+                    +{benchmarkEmail.arnoldAbertura - benchmarkEmail.mercadoAbertura} p.p. acima do mercado
+                  </p>
                 </div>
               </div>
               {/* Taxa de Cliques */}
               <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
                 <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Cliques (%)</h4>
-                <div className="flex items-end justify-center gap-8 h-48">
-                  <div className="flex flex-col items-center">
-                    <span className="text-sm font-bold text-gray-600 mb-2">{benchmarkEmail.mercadoCliques}%</span>
-                    <motion.div
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${(benchmarkEmail.mercadoCliques / 3) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8 }}
-                      className="w-20 bg-[#7B2D8B] rounded-t-lg"
-                      style={{ maxHeight: "100%" }}
-                    />
-                    <span className="text-xs text-gray-500 mt-2">Mercado</span>
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-gray-600 font-medium">Mercado de Eventos</span>
+                      <span className="font-bold text-gray-600">{benchmarkEmail.mercadoCliques}%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(benchmarkEmail.mercadoCliques / 3) * 100}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="h-full bg-gradient-to-r from-gray-400 to-gray-500 rounded-full"
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <span className="text-sm font-bold text-[#1B1464] mb-2">{benchmarkEmail.arnoldCliques}%</span>
-                    <motion.div
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${(benchmarkEmail.arnoldCliques / 3) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                      className="w-20 bg-[#7B2D8B] rounded-t-lg"
-                      style={{ maxHeight: "100%" }}
-                    />
-                    <span className="text-xs text-gray-500 mt-2">Arnold</span>
+                  <div>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-[#1B1464] font-medium">Arnold 2026</span>
+                      <span className="font-bold text-[#1B1464]">{benchmarkEmail.arnoldCliques}%</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(benchmarkEmail.arnoldCliques / 3) * 100}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="h-full bg-gradient-to-r from-[#1B1464] to-[#C71585] rounded-full"
+                      />
+                    </div>
                   </div>
+                  <p className="text-center text-xs text-gray-500 font-medium mt-2">
+                    Desempenho próximo ao mercado
+                  </p>
                 </div>
               </div>
             </div>

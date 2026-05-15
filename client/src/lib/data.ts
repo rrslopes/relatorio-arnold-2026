@@ -258,7 +258,7 @@ export const categoriasCreativos: CategoriaCreativos[] = [
         id: "INGRESSOS_ATEMPORAL_FILA_ATRACAO",
         titulo: "Fila de Atração",
         formato: "Reels",
-        imagem: "/manus-storage/INGRESSOS_ATEMPORAL_FILA_ATRAÇÃO_f994f9ff.png",
+        imagem: "/manus-storage/FILA_ATRACAO_d08c5d8f.png",
         metricas: [
           { label: "Vendas confirmadas", value: "283" },
           { label: "ROAS", value: "11,48x" },
@@ -280,7 +280,7 @@ export const categoriasCreativos: CategoriaCreativos[] = [
         id: "INGRESSOS_ATEMPORAL_VACILAO",
         titulo: "Vacilão",
         formato: "Estático",
-        imagem: "/manus-storage/INGRESSOS_ATEMPORAL_VACILÃO_ec9a6d54.png",
+        imagem: "/manus-storage/VACILAO_d337a283.png",
         metricas: [
           { label: "ROAS", value: "29,19x" },
           { label: "Faturamento", value: "R$ 36.356,50" },
@@ -538,7 +538,7 @@ export const criativosGestaoAcademias: CategoriaCreativos = {
       id: "GESTAO_ACADEMIAS_1",
       titulo: "Gestão de Academias - Criativo 1",
       formato: "Reels",
-      imagem: "/manus-storage/GESTÃO_ACADEMIAS_1_b7c0205c.png",
+      imagem: "/manus-storage/GESTAO_ACADEMIAS_1_79a7e3a8.png",
       metricas: [
         { label: "Alcance", value: "125.582" },
         { label: "CPM", value: "R$ 15,40" },
@@ -548,7 +548,7 @@ export const criativosGestaoAcademias: CategoriaCreativos = {
       id: "GESTAO_ACADEMIAS_2",
       titulo: "Gestão de Academias - Criativo 2",
       formato: "Carrossel",
-      imagem: "/manus-storage/GESTÃO_ACADEMIAS_2_b7d32c11.png",
+      imagem: "/manus-storage/GESTAO_ACADEMIAS_2_65d5f54d.png",
       metricas: [
         { label: "Alcance", value: "54.426" },
         { label: "CPM", value: "R$ 12,99" },
@@ -558,7 +558,7 @@ export const criativosGestaoAcademias: CategoriaCreativos = {
       id: "GESTAO_ACADEMIAS_3",
       titulo: "Gestão de Academias - Criativo 3",
       formato: "Carrossel",
-      imagem: "/manus-storage/GESTÃO_ACADEMIAS_3_210d95c7.png",
+      imagem: "/manus-storage/GESTAO_ACADEMIAS_3_bc335fc9.png",
       metricas: [
         { label: "Alcance", value: "92.584" },
         { label: "CPM", value: "R$ 15,93" },
@@ -661,15 +661,16 @@ export interface EmailDestaque {
   assunto: string;
   taxaAbertura: string;
   taxaCliques: string;
+  imagem: string;
 }
 
 export const emailsDestaque: EmailDestaque[] = [
-  { assunto: "A maior experiência fitness está chegando: faltam 3 meses!", taxaAbertura: "55,45%", taxaCliques: "0,97%" },
-  { assunto: "O Lote Zero do Arnold já tem data para começar!", taxaAbertura: "51,67%", taxaCliques: "sem CTA" },
-  { assunto: "Esse email você não pode ignorar", taxaAbertura: "49,95%", taxaCliques: "0,54%" },
-  { assunto: "LIBEROU! QUEM CORRER, LEVA!", taxaAbertura: "46,67%", taxaCliques: "2,52%" },
-  { assunto: "Eles fazem nosso show acontecer!", taxaAbertura: "46,21%", taxaCliques: "0,33%" },
-  { assunto: "O Arnold pra sempre com você!", taxaAbertura: "45,07%", taxaCliques: "1,06%" },
+  { assunto: "A maior experiência fitness está chegando: faltam 3 meses!", taxaAbertura: "55,45%", taxaCliques: "0,97%", imagem: "/manus-storage/EMAIL_3MESES_1709b127.png" },
+  { assunto: "O Lote Zero do Arnold já tem data para começar!", taxaAbertura: "51,67%", taxaCliques: "sem CTA", imagem: "/manus-storage/EMAIL_LOTE_ZERO_DATA_0971772d.png" },
+  { assunto: "Esse email você não pode ignorar", taxaAbertura: "49,95%", taxaCliques: "0,54%", imagem: "/manus-storage/EMAIL_LOTE2_25a9a814.png" },
+  { assunto: "LIBEROU! QUEM CORRER, LEVA!", taxaAbertura: "46,67%", taxaCliques: "2,52%", imagem: "/manus-storage/EMAIL_LOTE_ZERO_6447424b.png" },
+  { assunto: "Eles fazem nosso show acontecer!", taxaAbertura: "46,21%", taxaCliques: "0,33%", imagem: "/manus-storage/EMAIL_PATROCINADORES_727d324a.png" },
+  { assunto: "O Arnold pra sempre com você!", taxaAbertura: "45,07%", taxaCliques: "1,06%", imagem: "/manus-storage/EMAIL_LOJA_881f0521.png" },
 ];
 
 export const benchmarkEmail = {
