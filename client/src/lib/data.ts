@@ -739,3 +739,28 @@ export function formatCompact(value: number): string {
 export function formatNumber(value: number): string {
   return value.toLocaleString("pt-BR");
 }
+
+// Logo URLs
+export const LOGO_ARNOLD = "/manus-storage/Logo-Arnold-Horizontal-Preta-1_cce40752.png";
+export const LOGO_EXTREMA_CLARO = "/manus-storage/extrema-visibilidade-horizontal-fundo-claro_1eb0da54.png";
+export const LOGO_EXTREMA_ESCURO = "/manus-storage/extrema-visibilidade-horizontal-fundo-escuro_fecda956.png";
+
+// Conclusão Geral 2026
+export const conclusaoGeral = [
+  {
+    color: "#1B1464",
+    text: "Em 2026, o Arnold Sports Festival South America alcançou o maior faturamento digital da sua história: R$ 3.334.828,00 em vendas de ingressos, com 21.869 ingressos vendidos. A mídia paga (Google + Meta Ads) foi responsável por mais de 67% desse resultado, consolidando a estratégia omnichannel como motor principal de receita. O ROAS geral de 16,69x demonstra uma eficiência excepcional na conversão do investimento em vendas."
+  },
+  {
+    color: "#00BCD4",
+    text: "A edição 2026 representou o melhor ano da operação de mídia paga. O Google Ads recuperou-se com força, atingindo R$ 826 mil — o maior faturamento histórico do canal. O Meta Ads ampliou sua liderança, saltando de R$ 1,28M para R$ 1,43M, um acréscimo de quase R$ 150 mil. Juntos, os dois canais somaram mais de R$ 2,2 milhões. O Social Media Orgânico praticamente dobrou sua contribuição em relação a 2025 (~R$ 450 mil vs ~R$ 230 mil), refletindo um trabalho consistente de conteúdo e comunidade."
+  },
+  {
+    color: "#1B1464",
+    text: "Os formatos de criativos seguiram o padrão esperado de performance: estáticos geraram os melhores resultados em conversão direta (ROAS de até 29x no criativo 'Vacilão'), enquanto Reels e carrosséis cumpriram papel fundamental no awareness e engajamento. A estratégia de lotes de ingressos provou-se altamente eficaz, com ROAS consistentemente acima de 11x em todos os lotes. O remarketing via Meta Ads recuperou R$ 148.649,75 com um ROAS de 9,29x, evidenciando a importância do funil completo."
+  },
+  {
+    color: "#C71585",
+    text: "Os congressos apresentaram crescimento expressivo: SONAFE (+75%), Gestão de Academias (+80%) e WTTC (+65%) em relação a 2025. A antecipação das campanhas e a construção de autoridade ao longo do funil mostraram resultados concretos. Para 2027, recomendamos manter a estratégia de investimento crescente em mídia paga, aprofundar o trabalho orgânico que demonstrou forte evolução, e expandir as ações de remarketing e WhatsApp que provaram alto potencial de conversão."
+  },
+];
