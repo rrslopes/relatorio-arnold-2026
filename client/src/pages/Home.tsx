@@ -13,10 +13,15 @@ import {
   investimentoFeira, investimentoCongressos, impostosRetidos, totalInvestidoAds, saldoMeta,
   distribuicaoAds, googleAds, metaAds, resumoAds,
   dimensaoCampanhas, loteZero, categoriasCreativos,
+  engajamentoEvento, funilRemarketing,
+  funilSonafe, funilGestaoAcademias, funilWttc,
+  criativosSonafe, criativosGestaoAcademias, criativosWttc,
+  whatsappCongressos, whatsappLojistas,
+  analiseLojistas, emailMarketing, emailsDestaque, benchmarkEmail,
   analiseReceita, analisePerformanceCanais,
   formatBRL, formatNumber, CHANNEL_COLORS,
 } from "@/lib/data";
-import type { Criativo } from "@/lib/data";
+import type { Criativo, FunilCongresso, FunilWhatsApp } from "@/lib/data";
 
 // Navigation sections
 const sections = [
@@ -29,6 +34,11 @@ const sections = [
   { id: "campanhas", label: "Campanhas" },
   { id: "lote-zero", label: "Lote Zero" },
   { id: "criativos", label: "Criativos" },
+  { id: "engajamento", label: "Engajamento" },
+  { id: "remarketing", label: "Remarketing" },
+  { id: "congressos", label: "Congressos" },
+  { id: "lojistas", label: "Lojistas" },
+  { id: "email", label: "Email Marketing" },
 ];
 
 function NavBar() {
@@ -142,6 +152,130 @@ function CustomTooltip({ active, payload, label }: any) {
           {p.name}: {formatBRL(p.value)}
         </p>
       ))}
+    </div>
+  );
+}
+
+// Componente reutilizável para Funil de Congresso
+function FunilCongressoCard({ funil }: { funil: FunilCongresso }) {
+  const steps = [
+    { label: "Acessos página de vendas (BCS)", value: formatNumber(funil.acessosPaginaVendas), color: "#1B1464" },
+    { label: "Acessos página institucional", value: formatNumber(funil.acessosPaginaInstitucional), color: "#2B4FA3" },
+    { label: "Adições ao carrinho", value: formatNumber(funil.adicoesCarrinho), color: "#00BCD4" },
+    { label: "Ingressos vendidos", value: `${formatNumber(funil.ingressosVendidos)} (${funil.ingressosAnuncios} via anúncios)`, color: "#7B2D8B" },
+  ];
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <h4 className="text-lg font-extrabold text-[#1B1464] font-[Montserrat] text-center mb-6">
+        {funil.nome}
+      </h4>
+      <div className="space-y-3 mb-6">
+        {steps.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="flex items-center gap-3"
+          >
+            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: s.color }} />
+            <div className="flex-1 flex justify-between items-center bg-gray-50 rounded-lg px-4 py-2.5">
+              <span className="text-xs text-gray-600">{s.label}</span>
+              <span className="text-sm font-bold text-[#1B1464] tabular-nums">{s.value}</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="bg-[#1B1464] rounded-xl p-5 text-center">
+        <span className="text-white/70 text-xs uppercase tracking-wide">Faturamento identificado</span>
+        <p className="text-2xl font-extrabold text-white font-[Montserrat] mt-1">{formatBRL(funil.faturamento)}</p>
+        <p className="text-[#00BCD4] text-xs mt-2 font-semibold">
+          {funil.crescimento} vs 2025 ({formatBRL(funil.faturamento2025)})
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// Componente reutilizável para Funil WhatsApp
+function WhatsAppFunnel({ data }: { data: FunilWhatsApp }) {
+  const steps = [
+    { label: "Mensagens enviadas", value: data.enviadas, pct: "100%", width: "100%" },
+    { label: "Mensagens entregues", value: data.entregues, pct: "100%", width: "100%" },
+    { label: "Mensagens lidas", value: data.lidas, pct: data.lidasPercent, width: data.lidasPercent },
+    { label: "Clicks", value: data.clicks, pct: data.clicksPercent, width: data.clicksPercent },
+  ];
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <h4 className="text-lg font-extrabold text-[#1B1464] font-[Montserrat] text-center mb-2">
+        {data.titulo}
+      </h4>
+      <p className="text-center text-[#C71585] text-sm font-semibold mb-6">por Mensagens de WhatsApp</p>
+      <div className="space-y-4">
+        {steps.map((s, i) => (
+          <div key={i}>
+            <div className="flex justify-between text-xs mb-1">
+              <span className="text-gray-600">{s.label}</span>
+              <span className="font-bold text-[#1B1464]">{s.value} <span className="text-gray-400">({s.pct})</span></span>
+            </div>
+            <div className="h-6 bg-gray-100 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: s.width }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+                className="h-full bg-[#87CEEB] rounded-full"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Componente para renderizar criativos (reutilizável)
+function CriativosGrid({ criativos, titulo, subtitulo }: { criativos: Criativo[]; titulo: string; subtitulo: string }) {
+  return (
+    <div className="mt-8">
+      <h4 className="text-center font-bold text-[#C71585] text-sm tracking-wider uppercase mb-2">{titulo}</h4>
+      <p className="text-center text-gray-500 text-xs mb-6">{subtitulo}</p>
+      <div className={`grid gap-6 max-w-5xl mx-auto ${
+        criativos.length === 2 ? "md:grid-cols-2 max-w-3xl" :
+        criativos.length >= 5 ? "md:grid-cols-3 lg:grid-cols-5" :
+        criativos.length === 4 ? "md:grid-cols-2 lg:grid-cols-4" :
+        "md:grid-cols-3"
+      }`}>
+        {criativos.map((c) => (
+          <motion.div
+            key={c.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col"
+          >
+            <div className="h-[280px] overflow-hidden bg-gray-100">
+              <img src={c.imagem} alt={c.titulo} className="w-full h-full object-cover object-top" />
+            </div>
+            <div className="p-4 flex-1 flex flex-col">
+              <h4 className="font-bold text-[#1B1464] text-sm mb-2">{c.titulo}</h4>
+              <div className="flex justify-between text-xs text-gray-500 mb-2">
+                <span>Formato:</span>
+                <span className="font-semibold text-gray-700">{c.formato}</span>
+              </div>
+              <div className="space-y-1.5 mt-auto">
+                {c.metricas.map((m) => (
+                  <div key={m.label} className="flex justify-between text-xs">
+                    <span className="text-gray-500">{m.label}:</span>
+                    <span className="font-semibold text-[#1B1464] tabular-nums">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -600,6 +734,269 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ENGAJAMENTO DURANTE O EVENTO */}
+      <section id="engajamento" className="py-16 md:py-20">
+        <div className="container">
+          <SectionTitle pink="Durante o Evento">Engajamento</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-12">Conteúdos orgânicos publicados durante o Arnold 2026</p>
+          {engajamentoEvento.map((cat) => (
+            <CriativosGrid
+              key={cat.categoria}
+              criativos={cat.criativos}
+              titulo={cat.categoria}
+              subtitulo={cat.subtitulo}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* FUNIL DE REMARKETING META ADS */}
+      <section id="remarketing" className="py-16 md:py-20 bg-watermark">
+        <div className="container">
+          <SectionTitle pink="em Meta Ads">Funil de Remarketing</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-4">Quanto recuperamos em ingressos com campanhas de remarketing</p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-10">
+            {[
+              { value: formatNumber(funilRemarketing.pessoasReimpactadas), label: "Pessoas reimpactadas", color: "#1B1464" },
+              { value: formatNumber(funilRemarketing.readicoesCarrinho), label: "Readições ao carrinho", color: "#2B4FA3" },
+              { value: formatNumber(funilRemarketing.comprasConcluidas), label: "Compras concluídas", color: "#00BCD4" },
+              { value: funilRemarketing.roasMedio, label: "ROAS médio", color: "#7B2D8B" },
+              { value: formatBRL(funilRemarketing.faturamentoEstimado), label: "Faturamento estimado", color: "#C71585" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center justify-center p-5 rounded-2xl text-white text-center min-h-[130px]"
+                style={{ backgroundColor: item.color }}
+              >
+                <span className="text-lg md:text-xl font-extrabold font-[Montserrat] leading-tight">{item.value}</span>
+                <span className="text-white/80 text-[10px] mt-2 uppercase tracking-wide leading-tight">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONGRESSOS ARNOLD */}
+      <section id="congressos" className="py-16 md:py-20">
+        <div className="container">
+          <SectionTitle pink="Arnold">Análise de Congressos</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
+
+          {/* Funis dos 3 congressos */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+            <FunilCongressoCard funil={funilSonafe} />
+            <FunilCongressoCard funil={funilGestaoAcademias} />
+            <FunilCongressoCard funil={funilWttc} />
+          </div>
+
+          {/* Criativos SONAFE */}
+          <div className="border-t border-gray-200 pt-12">
+            <CriativosGrid
+              criativos={criativosSonafe.criativos}
+              titulo={criativosSonafe.categoria}
+              subtitulo={criativosSonafe.subtitulo}
+            />
+          </div>
+
+          {/* Criativos Gestão de Academias */}
+          <div className="border-t border-gray-200 pt-12 mt-12">
+            <CriativosGrid
+              criativos={criativosGestaoAcademias.criativos}
+              titulo={criativosGestaoAcademias.categoria}
+              subtitulo={criativosGestaoAcademias.subtitulo}
+            />
+          </div>
+
+          {/* Criativos WTTC */}
+          <div className="border-t border-gray-200 pt-12 mt-12">
+            <CriativosGrid
+              criativos={criativosWttc.criativos}
+              titulo={criativosWttc.categoria}
+              subtitulo={criativosWttc.subtitulo}
+            />
+          </div>
+
+          {/* Recuperação de Carrinho Congressos - WhatsApp */}
+          <div className="border-t border-gray-200 pt-12 mt-12 max-w-xl mx-auto">
+            <WhatsAppFunnel data={whatsappCongressos} />
+          </div>
+        </div>
+      </section>
+
+      {/* ANÁLISE LOJISTAS */}
+      <section id="lojistas" className="py-16 md:py-20 bg-watermark">
+        <div className="container">
+          <SectionTitle pink="Lojistas">Análise</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto mb-12">
+            {[
+              { value: formatNumber(analiseLojistas.cadastrosVCS), label: "Cadastros pela VCS", color: "#1B1464" },
+              { value: formatBRL(analiseLojistas.investidoCampanha), label: "Investido em campanha", color: "#2B9FD4" },
+              { value: formatNumber(analiseLojistas.cadastrosAnuncios), label: "Cadastros oriundos de Anúncios", color: "#00BCD4" },
+              { value: formatNumber(analiseLojistas.pessoasAlcancadas), label: "Pessoas alcançadas", color: "#9B59B6" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="w-36 h-36 rounded-full flex flex-col items-center justify-center text-white"
+                style={{ backgroundColor: item.color }}
+              >
+                <span className="text-lg font-extrabold font-[Montserrat] leading-tight text-center px-2">{item.value}</span>
+                <span className="text-[9px] mt-2 text-white/70 text-center leading-tight px-3">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+          {/* Recuperação Lojistas - WhatsApp */}
+          <div className="max-w-xl mx-auto">
+            <WhatsAppFunnel data={whatsappLojistas} />
+          </div>
+        </div>
+      </section>
+
+      {/* EMAIL MARKETING */}
+      <section id="email" className="py-16 md:py-20">
+        <div className="container">
+          <SectionTitle pink="Arnold 2026">Análise de Email Marketing</SectionTitle>
+          <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
+
+          {/* Métricas gerais em círculos */}
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto mb-16">
+            {[
+              { value: String(emailMarketing.campanhas), label: "Campanhas de email", color: "#1B1464" },
+              { value: formatNumber(emailMarketing.leadsImpactados), label: "Leads impactados", color: "#2B9FD4" },
+              { value: emailMarketing.taxaAbertura, label: "Taxa média de abertura", color: "#00BCD4" },
+              { value: emailMarketing.taxaCliques, label: "Taxa média de cliques", color: "#9B59B6" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="w-36 h-36 rounded-full flex flex-col items-center justify-center text-white"
+                style={{ backgroundColor: item.color }}
+              >
+                <span className="text-xl font-extrabold font-[Montserrat]">{item.value}</span>
+                <span className="text-[9px] mt-2 text-white/70 text-center leading-tight px-3">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* TOP 6 Emails em Destaque */}
+          <h3 className="text-center font-bold text-[#C71585] text-sm tracking-wider uppercase mb-8">
+            Campanhas de Email em Destaque
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-16">
+            {emailsDestaque.map((email, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="bg-white rounded-xl border border-gray-100 shadow-sm p-5"
+              >
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1B1464] text-white flex items-center justify-center text-xs font-bold">
+                    {i + 1}
+                  </span>
+                  <p className="text-sm font-semibold text-[#1B1464] leading-tight">{email.assunto}</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-500">Taxa de abertura:</span>
+                    <span className="font-bold text-[#00BCD4]">{email.taxaAbertura}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-500">Taxa de cliques:</span>
+                    <span className="font-bold text-[#C71585]">{email.taxaCliques}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Benchmark */}
+          <div className="border-t border-gray-200 pt-12">
+            <h3 className="text-center font-bold text-[#1B1464] text-lg font-[Montserrat] mb-2">
+              Benchmark de Email Marketing
+            </h3>
+            <p className="text-center text-[#C71585] text-sm font-semibold mb-10">
+              Arnold 2026 vs Mercado de Eventos
+            </p>
+            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              {/* Taxa de Abertura */}
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+                <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Abertura (%)</h4>
+                <div className="flex items-end justify-center gap-8 h-48">
+                  <div className="flex flex-col items-center">
+                    <span className="text-sm font-bold text-gray-600 mb-2">{benchmarkEmail.mercadoAbertura}%</span>
+                    <motion.div
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${(benchmarkEmail.mercadoAbertura / 60) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      className="w-20 bg-[#8B0000] rounded-t-lg"
+                      style={{ maxHeight: "100%" }}
+                    />
+                    <span className="text-xs text-gray-500 mt-2">Mercado</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-sm font-bold text-[#1B1464] mb-2">{benchmarkEmail.arnoldAbertura}%</span>
+                    <motion.div
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${(benchmarkEmail.arnoldAbertura / 60) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="w-20 bg-[#8B0000] rounded-t-lg"
+                      style={{ maxHeight: "100%" }}
+                    />
+                    <span className="text-xs text-gray-500 mt-2">Arnold</span>
+                  </div>
+                </div>
+              </div>
+              {/* Taxa de Cliques */}
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+                <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Cliques (%)</h4>
+                <div className="flex items-end justify-center gap-8 h-48">
+                  <div className="flex flex-col items-center">
+                    <span className="text-sm font-bold text-gray-600 mb-2">{benchmarkEmail.mercadoCliques}%</span>
+                    <motion.div
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${(benchmarkEmail.mercadoCliques / 3) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      className="w-20 bg-[#7B2D8B] rounded-t-lg"
+                      style={{ maxHeight: "100%" }}
+                    />
+                    <span className="text-xs text-gray-500 mt-2">Mercado</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-sm font-bold text-[#1B1464] mb-2">{benchmarkEmail.arnoldCliques}%</span>
+                    <motion.div
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${(benchmarkEmail.arnoldCliques / 3) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="w-20 bg-[#7B2D8B] rounded-t-lg"
+                      style={{ maxHeight: "100%" }}
+                    />
+                    <span className="text-xs text-gray-500 mt-2">Arnold</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

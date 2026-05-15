@@ -368,6 +368,317 @@ export const categoriasCreativos: CategoriaCreativos[] = [
   },
 ];
 
+// ============================================================
+// ENGAJAMENTO DURANTE O EVENTO
+// ============================================================
+export const engajamentoEvento: CategoriaCreativos[] = [
+  {
+    categoria: "ENGAJAMENTO DURANTE O EVENTO",
+    subtitulo: "Conteúdos orgânicos publicados durante o Arnold 2026",
+    criativos: [
+      {
+        id: "RECADO_ARNOLD",
+        titulo: "Recado Arnold",
+        formato: "Reels",
+        imagem: "/manus-storage/RECADO_ARNOLD_c55151f9.png",
+        metricas: [
+          { label: "Alcance", value: "6.254 pessoas" },
+          { label: "Engajamento", value: "3.414" },
+        ],
+      },
+      {
+        id: "O_PRIMEIRO_DIA",
+        titulo: "O Primeiro Dia",
+        formato: "Reels",
+        imagem: "/manus-storage/O_PRIMEIRO_DIA_366c38b3.png",
+        metricas: [
+          { label: "Alcance", value: "2.915 pessoas" },
+          { label: "Engajamento", value: "814" },
+        ],
+      },
+      {
+        id: "O_SEGUNDO_DIA",
+        titulo: "O Segundo Dia",
+        formato: "Reels",
+        imagem: "/manus-storage/O_SEGUNDO_DIA_f21ac69c.png",
+        metricas: [
+          { label: "Alcance", value: "1.430 pessoas" },
+          { label: "Engajamento", value: "280" },
+        ],
+      },
+      {
+        id: "TALKS_LEO_STRONDA",
+        titulo: "Talks Leo Stronda",
+        formato: "Reels",
+        imagem: "/manus-storage/TALKS_LEO_STRONDA_b7b88834.png",
+        metricas: [
+          { label: "Alcance", value: "1.309 pessoas" },
+          { label: "Engajamento", value: "381" },
+        ],
+      },
+      {
+        id: "RESUMO_PRIMEIRO_DIA",
+        titulo: "Resumo Primeiro Dia",
+        formato: "Reels",
+        imagem: "/manus-storage/RESUMO_PRIMEIRO_DIA_cd937b3e.png",
+        metricas: [
+          { label: "Alcance", value: "2.397 pessoas" },
+          { label: "Engajamento", value: "436" },
+        ],
+      },
+    ],
+  },
+];
+
+// ============================================================
+// FUNIL DE REMARKETING META ADS
+// ============================================================
+export const funilRemarketing = {
+  pessoasReimpactadas: 44390,
+  readicoesCarrinho: 1693,
+  comprasConcluidas: 670,
+  roasMedio: "9,29x",
+  faturamentoEstimado: 148649.75,
+};
+
+// ============================================================
+// CONGRESSOS ARNOLD - FUNIS
+// ============================================================
+export interface FunilCongresso {
+  nome: string;
+  acessosPaginaVendas: number;
+  acessosPaginaInstitucional: number;
+  adicoesCarrinho: number;
+  ingressosVendidos: number;
+  ingressosAnuncios: number;
+  faturamento: number;
+  faturamento2025: number;
+  crescimento: string;
+}
+
+export const funilSonafe: FunilCongresso = {
+  nome: "SONAFE 2026",
+  acessosPaginaVendas: 15063,
+  acessosPaginaInstitucional: 2893,
+  adicoesCarrinho: 472,
+  ingressosVendidos: 217,
+  ingressosAnuncios: 52,
+  faturamento: 76623.00,
+  faturamento2025: 41612.00,
+  crescimento: "+75%",
+};
+
+export const funilGestaoAcademias: FunilCongresso = {
+  nome: "GESTÃO DE ACADEMIAS 2026",
+  acessosPaginaVendas: 18343,
+  acessosPaginaInstitucional: 5748,
+  adicoesCarrinho: 570,
+  ingressosVendidos: 296,
+  ingressosAnuncios: 52,
+  faturamento: 251179.50,
+  faturamento2025: 138171.50,
+  crescimento: "+80%",
+};
+
+export const funilWttc: FunilCongresso = {
+  nome: "WTTC 2026",
+  acessosPaginaVendas: 14234,
+  acessosPaginaInstitucional: 803,
+  adicoesCarrinho: 559,
+  ingressosVendidos: 251,
+  ingressosAnuncios: 60,
+  faturamento: 91387.00,
+  faturamento2025: 54731.10,
+  crescimento: "+65%",
+};
+
+// Criativos dos congressos
+export const criativosSonafe: CategoriaCreativos = {
+  categoria: "DESTAQUE DE CAMPANHAS | SONAFE",
+  subtitulo: "Melhores campanhas em Meta Ads para o SONAFE",
+  criativos: [
+    {
+      id: "SONAFE_1",
+      titulo: "SONAFE - Criativo 1",
+      formato: "Reels",
+      imagem: "/manus-storage/SONAFE_1_2cd0486c.png",
+      metricas: [
+        { label: "Alcance", value: "72.960" },
+        { label: "CPM", value: "R$ 8,58" },
+      ],
+    },
+    {
+      id: "SONAFE_2",
+      titulo: "SONAFE - Criativo 2",
+      formato: "Reels",
+      imagem: "/manus-storage/SONAFE_2_f6d73600.png",
+      metricas: [
+        { label: "Alcance", value: "38.881" },
+        { label: "CPM", value: "R$ 14,14" },
+      ],
+    },
+    {
+      id: "SONAFE_3",
+      titulo: "SONAFE - Criativo 3",
+      formato: "Estático",
+      imagem: "/manus-storage/SONAFE_3_3f371956.png",
+      metricas: [
+        { label: "Alcance", value: "55.309" },
+        { label: "CPM", value: "R$ 10,97" },
+      ],
+    },
+  ],
+};
+
+export const criativosGestaoAcademias: CategoriaCreativos = {
+  categoria: "DESTAQUE DE CAMPANHAS | GESTÃO DE ACADEMIAS",
+  subtitulo: "Melhores campanhas em Meta Ads para Gestão de Academias",
+  criativos: [
+    {
+      id: "GESTAO_ACADEMIAS_1",
+      titulo: "Gestão de Academias - Criativo 1",
+      formato: "Reels",
+      imagem: "/manus-storage/GESTÃO_ACADEMIAS_1_b7c0205c.png",
+      metricas: [
+        { label: "Alcance", value: "125.582" },
+        { label: "CPM", value: "R$ 15,40" },
+      ],
+    },
+    {
+      id: "GESTAO_ACADEMIAS_2",
+      titulo: "Gestão de Academias - Criativo 2",
+      formato: "Carrossel",
+      imagem: "/manus-storage/GESTÃO_ACADEMIAS_2_b7d32c11.png",
+      metricas: [
+        { label: "Alcance", value: "54.426" },
+        { label: "CPM", value: "R$ 12,99" },
+      ],
+    },
+    {
+      id: "GESTAO_ACADEMIAS_3",
+      titulo: "Gestão de Academias - Criativo 3",
+      formato: "Carrossel",
+      imagem: "/manus-storage/GESTÃO_ACADEMIAS_3_210d95c7.png",
+      metricas: [
+        { label: "Alcance", value: "92.584" },
+        { label: "CPM", value: "R$ 15,93" },
+      ],
+    },
+  ],
+};
+
+export const criativosWttc: CategoriaCreativos = {
+  categoria: "DESTAQUE DE CAMPANHAS | WTTC",
+  subtitulo: "Melhores campanhas em Meta Ads para o WTTC",
+  criativos: [
+    {
+      id: "WTTC_1",
+      titulo: "WTTC - Criativo 1",
+      formato: "Reels",
+      imagem: "/manus-storage/WTTC_1_78874f96.png",
+      metricas: [
+        { label: "Alcance", value: "58.855" },
+        { label: "CPM", value: "R$ 17,05" },
+      ],
+    },
+    {
+      id: "WTTC_2",
+      titulo: "WTTC - Criativo 2",
+      formato: "Estático",
+      imagem: "/manus-storage/WTTC_2_fff06fa6.png",
+      metricas: [
+        { label: "Alcance", value: "119.465" },
+        { label: "CPM", value: "R$ 13,22" },
+      ],
+    },
+    {
+      id: "WTTC_3",
+      titulo: "WTTC - Criativo 3",
+      formato: "Reels",
+      imagem: "/manus-storage/WTTC_3_52a9a9fc.png",
+      metricas: [
+        { label: "Alcance", value: "34.069" },
+        { label: "CPM", value: "R$ 17,77" },
+      ],
+    },
+  ],
+};
+
+// ============================================================
+// RECUPERAÇÃO DE CARRINHO POR WHATSAPP
+// ============================================================
+export interface FunilWhatsApp {
+  titulo: string;
+  enviadas: string;
+  entregues: string;
+  lidas: string;
+  lidasPercent: string;
+  clicks: string;
+  clicksPercent: string;
+}
+
+export const whatsappCongressos: FunilWhatsApp = {
+  titulo: "Recuperação de Carrinho de Congressos",
+  enviadas: "111",
+  entregues: "111",
+  lidas: "54",
+  lidasPercent: "49%",
+  clicks: "30",
+  clicksPercent: "28%",
+};
+
+export const whatsappLojistas: FunilWhatsApp = {
+  titulo: "Recuperação de Lojistas",
+  enviadas: "1.200",
+  entregues: "1.200",
+  lidas: "694",
+  lidasPercent: "57%",
+  clicks: "341",
+  clicksPercent: "28%",
+};
+
+// ============================================================
+// ANÁLISE LOJISTAS
+// ============================================================
+export const analiseLojistas = {
+  cadastrosVCS: 18998,
+  investidoCampanha: 5000.00,
+  cadastrosAnuncios: 2981,
+  pessoasAlcancadas: 115914,
+};
+
+// ============================================================
+// EMAIL MARKETING
+// ============================================================
+export const emailMarketing = {
+  campanhas: 96,
+  leadsImpactados: 98570,
+  taxaAbertura: "41,53%",
+  taxaCliques: "0,87%",
+};
+
+export interface EmailDestaque {
+  assunto: string;
+  taxaAbertura: string;
+  taxaCliques: string;
+}
+
+export const emailsDestaque: EmailDestaque[] = [
+  { assunto: "A maior experiência fitness está chegando: faltam 3 meses!", taxaAbertura: "55,45%", taxaCliques: "0,97%" },
+  { assunto: "O Lote Zero do Arnold já tem data para começar!", taxaAbertura: "51,67%", taxaCliques: "sem CTA" },
+  { assunto: "Esse email você não pode ignorar", taxaAbertura: "49,95%", taxaCliques: "0,54%" },
+  { assunto: "LIBEROU! QUEM CORRER, LEVA!", taxaAbertura: "46,67%", taxaCliques: "2,52%" },
+  { assunto: "Eles fazem nosso show acontecer!", taxaAbertura: "46,21%", taxaCliques: "0,33%" },
+  { assunto: "O Arnold pra sempre com você!", taxaAbertura: "45,07%", taxaCliques: "1,06%" },
+];
+
+export const benchmarkEmail = {
+  mercadoAbertura: 11,
+  arnoldAbertura: 41,
+  mercadoCliques: 1.0,
+  arnoldCliques: 0.9,
+};
+
 // Análises textuais
 export const analiseReceita = "A comunicação omnichannel, que integra múltiplos canais digitais, demonstrou ser fundamental para a maximização do faturamento. A estratégia de mídia paga (Google + Meta) consolidou-se como o principal motor de receita, enquanto o crescimento expressivo das redes sociais orgânicas evidencia o amadurecimento da presença digital do evento.";
 
