@@ -682,7 +682,42 @@ export const benchmarkEmail = {
 // Análises textuais
 export const analiseReceita = "A comunicação omnichannel, que integra múltiplos canais digitais, demonstrou ser fundamental para a maximização do faturamento. A estratégia de mídia paga (Google + Meta) consolidou-se como o principal motor de receita, enquanto o crescimento expressivo das redes sociais orgânicas evidencia o amadurecimento da presença digital do evento.";
 
-export const analisePerformanceCanais = "De forma geral, 2026 representou o melhor ano da operação de mídia paga, com crescimento expressivo nos dois principais canais de aquisição. O Google Ads recuperou-se com força após a queda de 2025, atingindo o maior faturamento histórico (~R$ 826 mil). O Meta Ads ampliou a vantagem, saindo de R$ 1.278.500 em 2025 para R$ 1.425.739 em 2026 — um acréscimo de quase R$ 150 mil que reforça a consolidação deste canal como o principal motor de receita do evento. Juntos, Google e Meta somaram mais de R$ 2,2 milhões, evidenciando que a estratégia de mídia paga está cada vez mais madura e escalável.";
+export const analisePerformanceCanais = "De forma geral, 2026 consolidou a trajetória de crescimento observada nos anos anteriores. A edição atual representou o melhor ano da operação de mídia paga, com crescimento expressivo nos dois principais canais de aquisição. O Google Ads recuperou-se com força após a queda de 2025, atingindo o maior faturamento histórico (~R$ 826 mil) — um salto de quase 20% em relação ao pico anterior. O Meta Ads, por sua vez, não apenas manteve a liderança como ampliou a vantagem, saindo de R$ 1.278.500 em 2025 para R$ 1.425.739 em 2026 — um acréscimo de quase R$ 150 mil que reforça a consolidação deste canal como o principal motor de receita do evento. Juntos, Google e Meta somaram mais de R$ 2,2 milhões, evidenciando que a estratégia de mídia paga está cada vez mais madura e escalável. O Social Media Orgânico também merece destaque, tendo praticamente dobrado sua contribuição em relação a 2025 (~R$ 450 mil vs ~R$ 230 mil), o que pode refletir um trabalho mais consistente de conteúdo e comunidade.";
+
+// Performance de Faturamento dos Canais 2023-2026
+export const performanceCanais2023_2026 = [
+  {
+    canal: "Google Ads",
+    anos: { 2023: 430000, 2024: 740000, 2025: 680000, 2026: 826457 },
+  },
+  {
+    canal: "Meta Ads",
+    anos: { 2023: 430000, 2024: 1030000, 2025: 1278500, 2026: 1425739 },
+  },
+  {
+    canal: "Social Media Orgânico",
+    anos: { 2023: 310000, 2024: 210000, 2025: 230000, 2026: 449601 },
+  },
+  {
+    canal: "Email Marketing",
+    anos: { 2023: 130000, 2024: 95000, 2025: 30000, 2026: 48437 },
+  },
+  {
+    canal: "Bilheteria",
+    anos: { 2023: 200000, 2024: 200000, 2025: 200000, 2026: 245678 },
+  },
+  {
+    canal: "Outros",
+    anos: { 2023: 230000, 2024: 210000, 2025: 220000, 2026: 338915 },
+  },
+];
+
+export const YEAR_COLORS: Record<number, string> = {
+  2023: "#F4B4C9",
+  2024: "#D4886E",
+  2025: "#C71585",
+  2026: "#1B1464",
+};
 
 // Formatação
 export function formatBRL(value: number): string {

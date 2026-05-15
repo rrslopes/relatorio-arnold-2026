@@ -1,6 +1,6 @@
 // Arnold South America - Performance Digital 2026
 // Identidade Visual: Rosa/Magenta + Azul Escuro + Ciano
-// OTIMIZAÇÕES: sem capas de secção, círculos padronizados, boxes consistentes, pie chart sem impostos
+// CORREÇÕES: fontes menores KPIs, remarketing 2 linhas, gráfico 2023-2026, funis congressos melhorados
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -19,6 +19,7 @@ import {
   whatsappCongressos, whatsappLojistas,
   analiseLojistas, emailMarketing, emailsDestaque, benchmarkEmail,
   analiseReceita, analisePerformanceCanais,
+  performanceCanais2023_2026, YEAR_COLORS,
   formatBRL, formatNumber, CHANNEL_COLORS,
 } from "@/lib/data";
 import type { Criativo, FunilCongresso, FunilWhatsApp } from "@/lib/data";
@@ -96,29 +97,30 @@ function SectionTitle({ children, pink }: { children: React.ReactNode; pink?: st
   );
 }
 
+// KPI Card com fonte reduzida para evitar cortes
 function KPICard({ value, label, color }: { value: string; label: string; color: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl min-h-[140px]"
+      className="flex flex-col items-center justify-center p-4 md:p-5 rounded-2xl min-h-[130px]"
       style={{ backgroundColor: color }}
     >
-      <span className="text-lg md:text-2xl font-extrabold text-white font-[Montserrat] text-center leading-tight">
+      <span className="text-sm md:text-lg font-extrabold text-white font-[Montserrat] text-center leading-tight break-words">
         {value}
       </span>
-      <span className="text-white/80 text-[10px] md:text-xs mt-2 text-center uppercase tracking-wide leading-tight">
+      <span className="text-white/80 text-[9px] md:text-[11px] mt-2 text-center uppercase tracking-wide leading-tight">
         {label}
       </span>
     </motion.div>
   );
 }
 
-// Metric cards consistentes (substituem o ChevronMetric)
+// MetricCards responsivos com fonte ajustada para valores grandes
 function MetricCards({ items, colors }: { items: { value: string; label: string }[]; colors: string[] }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
       {items.map((item, i) => (
         <motion.div
           key={i}
@@ -129,10 +131,10 @@ function MetricCards({ items, colors }: { items: { value: string; label: string 
           className="flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl text-white text-center"
           style={{ backgroundColor: colors[i] }}
         >
-          <span className="text-2xl md:text-3xl font-extrabold font-[Montserrat] leading-tight">
+          <span className="text-xl md:text-2xl font-extrabold font-[Montserrat] leading-tight break-words">
             {item.value}
           </span>
-          <span className="text-white/80 text-xs mt-3 uppercase tracking-wide max-w-[200px] leading-tight">
+          <span className="text-white/80 text-[10px] md:text-xs mt-3 uppercase tracking-wide max-w-[220px] leading-tight">
             {item.label}
           </span>
         </motion.div>
@@ -156,17 +158,17 @@ function CustomTooltip({ active, payload, label }: any) {
   );
 }
 
-// Componente reutilizável para Funil de Congresso
+// Funil de Congresso com layout de funil visual melhorado
 function FunilCongressoCard({ funil }: { funil: FunilCongresso }) {
   const steps = [
-    { label: "Acessos página de vendas (BCS)", value: formatNumber(funil.acessosPaginaVendas), color: "#1B1464" },
-    { label: "Acessos página institucional", value: formatNumber(funil.acessosPaginaInstitucional), color: "#2B4FA3" },
-    { label: "Adições ao carrinho", value: formatNumber(funil.adicoesCarrinho), color: "#00BCD4" },
-    { label: "Ingressos vendidos", value: `${formatNumber(funil.ingressosVendidos)} (${funil.ingressosAnuncios} via anúncios)`, color: "#7B2D8B" },
+    { label: "Acessos pág. vendas (BCS)", value: formatNumber(funil.acessosPaginaVendas), color: "#1B1464", width: "100%" },
+    { label: "Acessos pág. institucional", value: formatNumber(funil.acessosPaginaInstitucional), color: "#2B4FA3", width: "80%" },
+    { label: "Adições ao carrinho", value: formatNumber(funil.adicoesCarrinho), color: "#00BCD4", width: "55%" },
+    { label: "Ingressos vendidos", value: `${formatNumber(funil.ingressosVendidos)} (${funil.ingressosAnuncios} via ads)`, color: "#7B2D8B", width: "35%" },
   ];
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-      <h4 className="text-lg font-extrabold text-[#1B1464] font-[Montserrat] text-center mb-6">
+      <h4 className="text-base font-extrabold text-[#1B1464] font-[Montserrat] text-center mb-6">
         {funil.nome}
       </h4>
       <div className="space-y-3 mb-6">
@@ -177,19 +179,28 @@ function FunilCongressoCard({ funil }: { funil: FunilCongresso }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="flex items-center gap-3"
+            className="flex flex-col"
           >
-            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: s.color }} />
-            <div className="flex-1 flex justify-between items-center bg-gray-50 rounded-lg px-4 py-2.5">
-              <span className="text-xs text-gray-600">{s.label}</span>
-              <span className="text-sm font-bold text-[#1B1464] tabular-nums">{s.value}</span>
+            <div className="flex justify-between text-xs mb-1 px-1">
+              <span className="text-gray-600">{s.label}</span>
+              <span className="font-bold text-[#1B1464] tabular-nums">{s.value}</span>
+            </div>
+            <div className="h-8 bg-gray-100 rounded-lg overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: s.width }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+                className="h-full rounded-lg flex items-center justify-end pr-2"
+                style={{ backgroundColor: s.color }}
+              />
             </div>
           </motion.div>
         ))}
       </div>
       <div className="bg-[#1B1464] rounded-xl p-5 text-center">
         <span className="text-white/70 text-xs uppercase tracking-wide">Faturamento identificado</span>
-        <p className="text-2xl font-extrabold text-white font-[Montserrat] mt-1">{formatBRL(funil.faturamento)}</p>
+        <p className="text-xl font-extrabold text-white font-[Montserrat] mt-1">{formatBRL(funil.faturamento)}</p>
         <p className="text-[#00BCD4] text-xs mt-2 font-semibold">
           {funil.crescimento} vs 2025 ({formatBRL(funil.faturamento2025)})
         </p>
@@ -272,6 +283,16 @@ function CriativosGrid({ criativos, titulo, subtitulo }: { criativos: Criativo[]
                   </div>
                 ))}
               </div>
+              {c.link && (
+                <a
+                  href={c.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-center text-xs text-[#C71585] hover:text-[#1B1464] font-semibold transition-colors"
+                >
+                  Ver anúncio →
+                </a>
+              )}
             </div>
           </motion.div>
         ))}
@@ -290,6 +311,15 @@ export default function Home() {
     obj.total = monthlyTotals[i];
     return obj;
   });
+
+  // Prepare performance 2023-2026 grouped bar chart data
+  const perfChartData = performanceCanais2023_2026.map((ch) => ({
+    canal: ch.canal,
+    "2023": ch.anos[2023],
+    "2024": ch.anos[2024],
+    "2025": ch.anos[2025],
+    "2026": ch.anos[2026],
+  }));
 
   // Pie chart SEM impostos — apenas Google e Meta
   const pieData = [
@@ -331,12 +361,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RESUMO GERAL — direto ao dado, sem capa */}
+      {/* RESUMO GERAL — KPIs com fonte reduzida */}
       <section id="resumo" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="Destaques">Resumo Geral |</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-10">{PERIOD}</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
             <KPICard value={formatNumber(kpis.ingressosVendidos)} label="Ingressos vendidos" color="#1B1464" />
             <KPICard value={formatBRL(kpis.faturamentoIngressos)} label="Faturamento com ingressos" color="#2B4FA3" />
             <KPICard value={formatBRL(kpis.investidoAds)} label="Investido em ads" color="#00BCD4" />
@@ -345,7 +375,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECEITA POR CANAL — direto */}
+      {/* RECEITA POR CANAL */}
       <section id="receita" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="por Canal">Estimativa de Receita da Venda de Ingressos</SectionTitle>
@@ -420,16 +450,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Performance dos Canais - Análise */}
-      <section className="py-12 bg-gray-50">
-        <div className="container max-w-3xl">
-          <p className="text-gray-700 text-sm leading-relaxed text-center">
+      {/* PERFORMANCE DE FATURAMENTO DOS CANAIS 2023-2026 — NOVO */}
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container">
+          <h2 className="text-xl md:text-2xl font-extrabold text-[#C71585] tracking-tight font-[Montserrat] text-center mb-1">
+            PERFORMANCE DE FATURAMENTO DOS CANAIS
+          </h2>
+          <h3 className="text-lg md:text-xl font-extrabold text-[#1B1464] font-[Montserrat] text-center mb-2">
+            VENDA DE INGRESSOS DE 2023 A 2026
+          </h3>
+          <div className="flex justify-center gap-6 mb-8 mt-6">
+            {[2023, 2024, 2025, 2026].map((year) => (
+              <div key={year} className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: YEAR_COLORS[year] }} />
+                <span className="text-xs font-semibold text-gray-600">{year}</span>
+              </div>
+            ))}
+          </div>
+          <div className="h-[420px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={perfChartData} margin={{ top: 10, right: 30, left: 20, bottom: 30 }}>
+                <XAxis
+                  dataKey="canal"
+                  tick={{ fontSize: 10 }}
+                  angle={-15}
+                  textAnchor="end"
+                  height={60}
+                />
+                <YAxis
+                  tickFormatter={(v) => `${(v / 1000000).toFixed(1)}M`}
+                  tick={{ fontSize: 11 }}
+                />
+                <Tooltip
+                  formatter={(v: number, name: string) => [formatBRL(v), name]}
+                  contentStyle={{ fontSize: "12px" }}
+                />
+                <Bar dataKey="2023" fill={YEAR_COLORS[2023]} radius={[2, 2, 0, 0]} />
+                <Bar dataKey="2024" fill={YEAR_COLORS[2024]} radius={[2, 2, 0, 0]} />
+                <Bar dataKey="2025" fill={YEAR_COLORS[2025]} radius={[2, 2, 0, 0]} />
+                <Bar dataKey="2026" fill={YEAR_COLORS[2026]} radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-gray-700 text-sm leading-relaxed text-center max-w-4xl mx-auto mt-6">
             {analisePerformanceCanais}
           </p>
         </div>
       </section>
 
-      {/* INVESTIMENTO — direto, sem capa */}
+      {/* INVESTIMENTO */}
       <section id="investimento" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="Mídia Paga 2026">Detalhamento de Investimento |</SectionTitle>
@@ -508,7 +577,7 @@ export default function Home() {
                 <Tooltip formatter={(v: number) => formatBRL(v)} />
                 <Legend
                   verticalAlign="bottom"
-                  formatter={(value: string, entry: any) => {
+                  formatter={(value: string) => {
                     const item = pieData.find(p => p.name === value);
                     const pct = item ? ((item.value / totalPie) * 100).toFixed(1) : "0";
                     return `${value}: ${item ? formatBRL(item.value) : ""} (${pct}%)`;
@@ -521,7 +590,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GOOGLE ADS — direto, sem capa */}
+      {/* GOOGLE ADS */}
       <section id="google" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="e Faturamento com Ingressos">Google Ads</SectionTitle>
@@ -530,7 +599,7 @@ export default function Home() {
             items={[
               { value: formatBRL(googleAds.investido), label: "Investidos em Google para venda de ingressos" },
               { value: formatBRL(googleAds.faturamento), label: "Faturamento identificado" },
-              { value: `${googleAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+              { value: `${googleAds.roas}X`, label: "ROAS geral em ingresso" },
             ]}
             colors={["#1a3a2a", "#2d6b4f", "#00BCD4"]}
           />
@@ -540,7 +609,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* META ADS — direto, sem capa */}
+      {/* META ADS */}
       <section id="meta" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="e Faturamento com Ingressos">Meta Ads</SectionTitle>
@@ -549,7 +618,7 @@ export default function Home() {
             items={[
               { value: formatBRL(metaAds.investido), label: "Investidos em Meta Ads" },
               { value: formatBRL(metaAds.faturamento), label: "Faturamento identificado" },
-              { value: `${metaAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+              { value: `${metaAds.roas}X`, label: "ROAS geral em ingresso" },
             ]}
             colors={["#1B1464", "#2B4FA3", "#00BCD4"]}
           />
@@ -559,7 +628,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RESUMO ADS — direto, sem capa */}
+      {/* RESUMO ADS */}
       <section id="resumo-ads" className="py-16 md:py-20 bg-gray-50">
         <div className="container">
           <SectionTitle>RESUMO GERAL ADS PARA VENDA DE INGRESSOS</SectionTitle>
@@ -569,7 +638,7 @@ export default function Home() {
             items={[
               { value: formatBRL(resumoAds.investido), label: "Investidos em anúncios para venda de ingressos" },
               { value: formatBRL(resumoAds.faturamento), label: "Faturamento identificado" },
-              { value: `${resumoAds.roas}X`, label: "ROAS geral em ingresso (retorno sobre o investimento)" },
+              { value: `${resumoAds.roas}X`, label: "ROAS geral em ingresso" },
             ]}
             colors={["#8B4513", "#D2691E", "#F4A460"]}
           />
@@ -579,7 +648,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DIMENSÃO DE CAMPANHAS — direto, sem capa, círculos padronizados */}
+      {/* DIMENSÃO DE CAMPANHAS — círculos padronizados */}
       <section id="campanhas" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="Dimensão de Campanhas e Anúncios Gerenciados">Resumo Geral</SectionTitle>
@@ -639,7 +708,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LOTE ZERO — direto, sem capa, círculos padronizados */}
+      {/* LOTE ZERO — círculos padronizados */}
       <section id="lote-zero" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="2026">Lote Zero</SectionTitle>
@@ -695,15 +764,9 @@ export default function Home() {
                     viewport={{ once: true }}
                     className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col"
                   >
-                    {/* Imagem padronizada */}
                     <div className="h-[280px] overflow-hidden bg-gray-100">
-                      <img
-                        src={c.imagem}
-                        alt={c.titulo}
-                        className="w-full h-full object-cover object-top"
-                      />
+                      <img src={c.imagem} alt={c.titulo} className="w-full h-full object-cover object-top" />
                     </div>
-                    {/* Info box padronizado */}
                     <div className="p-4 flex-1 flex flex-col">
                       <h4 className="font-bold text-[#1B1464] text-sm mb-2">{c.titulo}</h4>
                       <div className="flex justify-between text-xs text-gray-500 mb-2">
@@ -753,16 +816,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FUNIL DE REMARKETING META ADS */}
+      {/* FUNIL DE REMARKETING META ADS — 2 linhas */}
       <section id="remarketing" className="py-16 md:py-20 bg-watermark">
         <div className="container">
           <SectionTitle pink="em Meta Ads">Funil de Remarketing</SectionTitle>
-          <p className="text-center text-gray-500 text-sm mb-4">Quanto recuperamos em ingressos com campanhas de remarketing</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-10">
+          <p className="text-center text-gray-500 text-sm mb-10">Quanto recuperamos em ingressos com campanhas de remarketing</p>
+          {/* Linha 1: 3 métricas */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto mb-5">
             {[
               { value: formatNumber(funilRemarketing.pessoasReimpactadas), label: "Pessoas reimpactadas", color: "#1B1464" },
               { value: formatNumber(funilRemarketing.readicoesCarrinho), label: "Readições ao carrinho", color: "#2B4FA3" },
               { value: formatNumber(funilRemarketing.comprasConcluidas), label: "Compras concluídas", color: "#00BCD4" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center justify-center p-6 rounded-2xl text-white text-center min-h-[140px]"
+                style={{ backgroundColor: item.color }}
+              >
+                <span className="text-2xl md:text-3xl font-extrabold font-[Montserrat] leading-tight">{item.value}</span>
+                <span className="text-white/80 text-[11px] mt-2 uppercase tracking-wide leading-tight">{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
+          {/* Linha 2: 2 métricas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+            {[
               { value: funilRemarketing.roasMedio, label: "ROAS médio", color: "#7B2D8B" },
               { value: formatBRL(funilRemarketing.faturamentoEstimado), label: "Faturamento estimado", color: "#C71585" },
             ].map((item, i) => (
@@ -771,25 +853,25 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl text-white text-center min-h-[130px]"
+                transition={{ delay: (i + 3) * 0.1 }}
+                className="flex flex-col items-center justify-center p-6 rounded-2xl text-white text-center min-h-[140px]"
                 style={{ backgroundColor: item.color }}
               >
-                <span className="text-lg md:text-xl font-extrabold font-[Montserrat] leading-tight">{item.value}</span>
-                <span className="text-white/80 text-[10px] mt-2 uppercase tracking-wide leading-tight">{item.label}</span>
+                <span className="text-2xl md:text-3xl font-extrabold font-[Montserrat] leading-tight">{item.value}</span>
+                <span className="text-white/80 text-[11px] mt-2 uppercase tracking-wide leading-tight">{item.label}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CONGRESSOS ARNOLD */}
+      {/* CONGRESSOS ARNOLD — funis visuais melhorados */}
       <section id="congressos" className="py-16 md:py-20">
         <div className="container">
           <SectionTitle pink="Arnold">Análise de Congressos</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
 
-          {/* Funis dos 3 congressos */}
+          {/* Funis dos 3 congressos — layout de funil visual */}
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
             <FunilCongressoCard funil={funilSonafe} />
             <FunilCongressoCard funil={funilGestaoAcademias} />
