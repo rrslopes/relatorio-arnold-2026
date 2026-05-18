@@ -71,7 +71,9 @@ export const saldoMeta = 392.82;
 export const distribuicaoAds = {
   meta: 142203.93,
   google: 40013.39,
-  total: 199607.18,
+  totalPlataformas: 182217.32,
+  impostos: 17389.86,
+  totalGeral: 199607.18,
 };
 
 // Performance Google Ads
@@ -282,6 +284,7 @@ export const categoriasCreativos: CategoriaCreativos[] = [
         formato: "Estático",
         imagem: "/manus-storage/VACILAO_d337a283.png",
         metricas: [
+          { label: "Vendas confirmadas", value: "180" },
           { label: "ROAS", value: "29,19x" },
           { label: "Faturamento", value: "R$ 36.356,50" },
         ],
@@ -641,7 +644,7 @@ export const whatsappLojistas: FunilWhatsApp = {
 // ANÁLISE LOJISTAS
 // ============================================================
 export const analiseLojistas = {
-  cadastrosVCS: 18998,
+  cadastrosBCS: 18998,
   investidoCampanha: 5000.00,
   cadastrosAnuncios: 2981,
   pessoasAlcancadas: 115914,
@@ -744,6 +747,30 @@ export function formatNumber(value: number): string {
 export const LOGO_ARNOLD = "/manus-storage/Logo-Arnold-Horizontal-Preta-1_cce40752.png";
 export const LOGO_EXTREMA_CLARO = "/manus-storage/extrema-visibilidade-horizontal-fundo-claro_1eb0da54.png";
 export const LOGO_EXTREMA_ESCURO = "/manus-storage/extrema-visibilidade-horizontal-fundo-escuro_fecda956.png";
+
+// Texto interpretativo Remarketing
+export const analiseRemarketing = "O funil de remarketing em Meta Ads demonstrou alta eficiência na recuperação de potenciais compradores. Das 44.390 pessoas reimpactadas, 1.693 retornaram ao carrinho e 670 concluíram a compra — uma taxa de conversão de 39,6% entre readições e compras efetivas. O ROAS de 9,29x e o faturamento estimado de R$ 148.649,75 comprovam que a estratégia de reimpactar usuários que já demonstraram interesse é fundamental para maximizar o retorno do investimento em mídia paga, funcionando como uma camada complementar às campanhas de aquisição.";
+
+// Tabela de Métricas dos Vídeos de Expositores
+export interface MetricaExpositor {
+  identificador: string;
+  conversas: number;
+  impressoes: number;
+  cpa: string;
+  link: string;
+}
+
+export const metricasExpositores: MetricaExpositor[] = [
+  { identificador: "Carrossel Nutri Esportiva", conversas: 296, impressoes: 84624, cpa: "R$ 8,06", link: "https://www.instagram.com/p/DUir3DlDFSF/#advertiser" },
+  { identificador: "Depoimento de Lojista", conversas: 65, impressoes: 15322, cpa: "R$ 7,37", link: "https://www.instagram.com/p/DUirtgWDMnl/#advertiser" },
+  { identificador: "Depoimento Colonia Bold", conversas: 36, impressoes: 14291, cpa: "R$ 12,32", link: "https://www.instagram.com/p/DUirtgWDMnl/#advertiser" },
+  { identificador: "Depoimento Cariani", conversas: 30, impressoes: 10349, cpa: "R$ 11,27", link: "https://www.instagram.com/p/DUir3wsjGk_/#advertiser" },
+  { identificador: "Carrossel 4 Expos", conversas: 28, impressoes: 6331, cpa: "R$ 7,58", link: "https://www.instagram.com/p/DUir2F_jLJU/#advertiser" },
+  { identificador: "Carrossel Vendas Iniciadas", conversas: 8, impressoes: 1462, cpa: "R$ 4,47", link: "https://www.instagram.com/p/DUirsH9DLRo/#advertiser" },
+  { identificador: "Depoimento Fit", conversas: 2, impressoes: 62603, cpa: "R$ 52,15", link: "https://www.instagram.com/p/DUiruCkDGJU/#advertiser" },
+];
+
+export const metricasExpositoresTotal = { conversas: 464, impressoes: 194982, cpa: "R$ 8,62" };
 
 // Conclusão Geral 2026
 export const conclusaoGeral = [

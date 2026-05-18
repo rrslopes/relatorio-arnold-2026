@@ -24,7 +24,8 @@ import {
   performanceCanais2023_2026, YEAR_COLORS,
   formatBRL, formatNumber, CHANNEL_COLORS,
   LOGO_ARNOLD, LOGO_EXTREMA_CLARO, LOGO_EXTREMA_ESCURO,
-  conclusaoGeral,
+  conclusaoGeral, analiseRemarketing,
+  metricasExpositores, metricasExpositoresTotal,
 } from "@/lib/data";
 import type { Criativo, FunilCongresso, FunilWhatsApp } from "@/lib/data";
 
@@ -597,8 +598,11 @@ export default function Home() {
           <h3 className="text-lg font-bold text-[#1B1464] text-center mb-2 font-[Montserrat]">
             Distribuição do Investimento em Ads <span className="text-[#C71585]">(Google e Meta)</span>
           </h3>
-          <p className="text-center text-gray-500 text-sm mb-6">
-            Total investido nas plataformas: {formatBRL(totalPie)}
+          <p className="text-center text-gray-500 text-sm mb-2">
+            Total investido nas plataformas: <span className="font-semibold text-[#1B1464]">{formatBRL(totalPie)}</span>
+          </p>
+          <p className="text-center text-gray-400 text-xs mb-6">
+            Investimento total em Ads: {formatBRL(distribuicaoAds.totalGeral)} (inclui R$ {distribuicaoAds.impostos.toLocaleString('pt-BR', {minimumFractionDigits: 2})} em impostos retidos pela Meta)
           </p>
           <div className="h-[320px] max-w-lg mx-auto">
             <ResponsiveContainer width="100%" height="100%">
@@ -743,12 +747,49 @@ export default function Home() {
           <SectionTitle pink="em Ads">Destaques de Campanhas e Criativos</SectionTitle>
           <p className="text-center text-gray-500 text-sm mb-4">{PERIOD}</p>
           {categoriasCreativos.map((cat) => (
-            <CriativosGrid
-              key={cat.categoria}
-              criativos={cat.criativos}
-              titulo={cat.categoria}
-              subtitulo={cat.subtitulo}
-            />
+            <div key={cat.categoria}>
+              <CriativosGrid
+                criativos={cat.criativos}
+                titulo={cat.categoria}
+                subtitulo={cat.subtitulo}
+              />
+              {cat.categoria === "AWARENESS B2B | EXPOSITORES E PATROCINADORES" && (
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-8 mb-12 max-w-5xl mx-auto">
+                  <h4 className="text-base font-bold text-[#1B1464] mb-4 font-[Montserrat] text-center">Métricas dos Vídeos de Expositores</h4>
+                  <div className="overflow-x-auto rounded-xl border border-gray-200">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-[#C71585] text-white">
+                          <th className="px-4 py-3 text-left font-semibold">Identificador</th>
+                          <th className="px-4 py-3 text-center font-semibold">Conversas com Comercial</th>
+                          <th className="px-4 py-3 text-center font-semibold">Impressões</th>
+                          <th className="px-4 py-3 text-center font-semibold">CPA</th>
+                          <th className="px-4 py-3 text-center font-semibold">Link</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {metricasExpositores.map((m, i) => (
+                          <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                            <td className="px-4 py-3 font-medium text-[#1B1464]">{m.identificador}</td>
+                            <td className="px-4 py-3 text-center">{m.conversas}</td>
+                            <td className="px-4 py-3 text-center">{m.impressoes.toLocaleString('pt-BR')}</td>
+                            <td className="px-4 py-3 text-center">{m.cpa}</td>
+                            <td className="px-4 py-3 text-center"><a href={m.link} target="_blank" rel="noopener noreferrer" className="text-[#C71585] hover:underline text-xs">Ver anúncio</a></td>
+                          </tr>
+                        ))}
+                        <tr className="bg-[#1B1464] text-white font-semibold">
+                          <td className="px-4 py-3">TOTAL</td>
+                          <td className="px-4 py-3 text-center">{metricasExpositoresTotal.conversas}</td>
+                          <td className="px-4 py-3 text-center">{metricasExpositoresTotal.impressoes.toLocaleString('pt-BR')}</td>
+                          <td className="px-4 py-3 text-center">{metricasExpositoresTotal.cpa}</td>
+                          <td className="px-4 py-3 text-center">—</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -799,6 +840,9 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-gray-600 text-sm leading-relaxed max-w-3xl mx-auto mt-8 text-center italic">
+            {analiseRemarketing}
+          </motion.p>
         </div>
       </section>
 
@@ -843,7 +887,7 @@ export default function Home() {
             {[
               { value: formatBRL(analiseLojistas.investidoCampanha), label: "Investimento em Ads", color: "#1B1464" },
               { value: formatNumber(analiseLojistas.cadastrosAnuncios), label: "Cadastros via anúncios", color: "#2B4FA3" },
-              { value: formatNumber(analiseLojistas.cadastrosVCS), label: "Cadastros VCS", color: "#00BCD4" },
+              { value: formatNumber(analiseLojistas.cadastrosBCS), label: "Cadastros BCS", color: "#00BCD4" },
               { value: formatNumber(analiseLojistas.pessoasAlcancadas), label: "Pessoas alcançadas", color: "#C71585" },
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
