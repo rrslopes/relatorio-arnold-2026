@@ -22,12 +22,12 @@ import {
 
 // Menu structure
 const menuGroups = [
-  { id: "resumo", label: "Resumo" },
-  { id: "performance", label: "Performance do Site" },
-  { id: "email", label: "Email Marketing" },
-  { id: "investimento", label: "Investimento" },
-  { id: "campanhas", label: "Campanhas de Mídia" },
-  { id: "conclusoes", label: "Conclusões" },
+  { id: "resumo", label: "Resumo e destaques" },
+  { id: "performance", label: "Performance do site" },
+  { id: "email", label: "Email marketing" },
+  { id: "investimento", label: "Investimento em ads" },
+  { id: "campanhas", label: "Campanhas de mídia" },
+  { id: "conclusoes", label: "Conclusões e insights" },
 ];
 
 function NavBar() {
@@ -537,10 +537,10 @@ export default function HomeRSS() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-white/40 text-[10px] uppercase tracking-wide">Powered by</span>
+              <span className="text-white/40 text-[10px] uppercase tracking-wide">Nós da</span>
               <img
-                src="/manus-storage/pasted_file_Jxo0CO_image_9d9f66d7.png"
-                alt="Fitness Bem-Estar"
+                src="/manus-storage/extrema-visibilidade-horizontal-fundo-escuro_2a9aa81c.png"
+                alt="Extrema Visibilidade"
                 className="h-8 opacity-90"
               />
             </div>
