@@ -34,7 +34,7 @@ function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#F64E02]/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-[#F64E02]/30">
       <div className="container flex items-center justify-between h-16">
         {/* Logo RSS */}
         <a href="#" className="flex items-center gap-3 shrink-0">
@@ -47,7 +47,7 @@ function NavBar() {
             <a
               key={group.id}
               href={`#${group.id}`}
-              className="text-black/70 hover:text-[#F64E02] text-xs px-3 py-2 rounded-md transition-colors hover:bg-[#F64E02]/10 font-medium"
+              className="text-white/70 hover:text-[#F64E02] text-xs px-3 py-2 rounded-md transition-colors hover:bg-[#F64E02]/10 font-medium"
             >
               {group.label}
             </a>
@@ -56,7 +56,7 @@ function NavBar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-black p-2"
+          className="lg:hidden text-white p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -67,13 +67,13 @@ function NavBar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-[#F64E02]/20 pb-3">
+        <div className="lg:hidden bg-black border-t border-[#F64E02]/20 pb-3">
           {menuGroups.map((group) => (
             <a
               key={group.id}
               href={`#${group.id}`}
               onClick={() => setMobileOpen(false)}
-              className="block text-black/70 hover:text-[#F64E02] text-sm px-6 py-2.5 font-medium"
+              className="block text-white/70 hover:text-[#F64E02] text-sm px-6 py-2.5 font-medium"
             >
               {group.label}
             </a>
