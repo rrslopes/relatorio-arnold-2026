@@ -147,7 +147,7 @@ export default function HomeRSS() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados segundo BCS" color="text-[#F64E02]" />
-            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Usuários Ativos no Site (Mar-Mai 2026)" color="text-[#000000]" />
+            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Usuários Engajados (Mar-Mai 2026)" color="text-[#000000]" />
             <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Usuários Interagiram com o Site através dos Anúncios" color="text-[#F64E02]" />
             <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#000000]" />
           </div>
