@@ -118,7 +118,7 @@ export const benchmarkEmail = {
 };
 
 // Comentário interpretativo de Email Marketing
-export const emailCommentary = "Em 2026, executamos 17 campanhas (vs. 31 em 2025), representando redução de 45% no volume. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%) e o desempenho de 2025 (35,93%), refletindo uma base altamente qualificada. Porém, a taxa de cliques de 0,90% foi inferior a 2025 (0,17% reportado, mas com volume maior de campanhas), influenciada por: (1) segmentação geográfica inadequada - evento no RJ com mailing concentrado em SP; (2) design de emails - alguns criativos entregam toda informação no corpo, sem CTA claro. Recomendação: validar fluxo de planejamento e aprovação para manter volume agressivo como em 2025, e revisar estratégia de CTAs e segmentação geográfica para 2027.";
+export const emailCommentary = "Em 2026, executamos 17 campanhas com 24.086 leads impactados. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%), refletindo uma base altamente qualificada. A taxa de cliques de 0,90% foi influenciada por dois fatores principais: (1) segmentação geográfica - evento no RJ com mailing concentrado em SP, reduzindo relevância regional; (2) estratégia de email - alguns criativos entregam toda informação no corpo do email, sem CTA obrigatório, o que naturalmente reduz a taxa de cliques. Recomendação: validar fluxo de planejamento e aprovação para manter volume agressivo como em 2025, e revisar estratégia de segmentação geográfica para 2027.";
 
 // INVESTIMENTO EM MÍDIA PAGA
 // ============================================================

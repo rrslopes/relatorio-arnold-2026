@@ -155,7 +155,7 @@ export default function HomeRSS() {
             <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#1B1464]" />
           </div>
 
-          <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 usuários ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico." />
+
         </div>
       </section>
 
@@ -282,6 +282,8 @@ export default function HomeRSS() {
               </table>
             </div>
           </motion.div>
+
+          <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. A qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico. Estes dados demonstram a efetividade das estratégias de aquisição implementadas durante o período de março a maio de 2026. O aumento de 11.138 usuários via anúncios (+37% vs 2025) e a expansão de 4.279 usuários via busca orgânica (+69% vs 2025) refletem investimentos bem direcionados em mídia paga e SEO." />
         </div>
       </section>
       <section id="performance" className="py-16">
@@ -460,7 +462,7 @@ export default function HomeRSS() {
                     <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
                     <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
                     <div><span className="text-gray-600">Cliques:</span> <span className="font-semibold">{formatNumber(criativo.cliques)}</span></div>
-                    <div><span className="text-gray-600">Conversas:</span> <span className="font-semibold text-[#1B1464]">{criativo.conversas}</span></div>
+                    <div><span className="text-gray-600">Conversas iniciadas por Whatsapp:</span> <span className="font-semibold text-[#1B1464]">{criativo.conversas}</span></div>
                   </div>
                 </motion.div>
               ))}
@@ -482,8 +484,8 @@ export default function HomeRSS() {
                   <div className="p-4 space-y-2 text-sm">
                     <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
                     <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
-                    <div><span className="text-gray-600">Intenções:</span> <span className="font-semibold">{formatNumber(criativo.intencoes)}</span></div>
-                    <div><span className="text-gray-600">CPL:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpl.toFixed(2)}</span></div>
+                    <div><span className="text-gray-600">Intenções de credenciamento:</span> <span className="font-semibold">{formatNumber(criativo.intencoes)}</span></div>
+                    <div><span className="text-gray-600">Custo por lead credenciado:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpl.toFixed(2)}</span></div>
                   </div>
                 </motion.div>
               ))}
