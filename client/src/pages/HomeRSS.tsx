@@ -34,14 +34,11 @@ function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1B1464]/95 backdrop-blur-sm border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#F64E02]/20">
       <div className="container flex items-center justify-between h-16">
         {/* Logo RSS */}
         <a href="#" className="flex items-center gap-3 shrink-0">
-          <div className="h-10 w-10 bg-[#FF6B35] rounded-lg flex items-center justify-center text-white font-bold text-sm">
-            RSS
-          </div>
-          <span className="text-white font-bold text-sm hidden sm:inline">Rio Sport Show</span>
+          <img src="/manus-storage/pasted_file_uM1mEb_image_03b3a27a.png" alt="Rio Sport Show" className="h-12 w-auto" />
         </a>
 
         {/* Desktop Menu */}
@@ -50,7 +47,7 @@ function NavBar() {
             <a
               key={group.id}
               href={`#${group.id}`}
-              className="text-white/80 hover:text-white text-xs px-3 py-2 rounded-md transition-colors hover:bg-white/10 font-medium"
+              className="text-black/70 hover:text-[#F64E02] text-xs px-3 py-2 rounded-md transition-colors hover:bg-[#F64E02]/10 font-medium"
             >
               {group.label}
             </a>
@@ -59,7 +56,7 @@ function NavBar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-white p-2"
+          className="lg:hidden text-black p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -70,13 +67,13 @@ function NavBar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#1B1464] border-t border-white/10 pb-3">
+        <div className="lg:hidden bg-white border-t border-[#F64E02]/20 pb-3">
           {menuGroups.map((group) => (
             <a
               key={group.id}
               href={`#${group.id}`}
               onClick={() => setMobileOpen(false)}
-              className="block text-white/80 hover:text-white text-sm px-6 py-2.5 font-medium"
+              className="block text-black/70 hover:text-[#F64E02] text-sm px-6 py-2.5 font-medium"
             >
               {group.label}
             </a>
@@ -89,9 +86,9 @@ function NavBar() {
 
 function SectionTitle({ children, orange }: { children: React.ReactNode; orange?: string }) {
   return (
-    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1B1464] tracking-tight font-[Montserrat] text-center mb-2">
+    <h2 className="text-2xl md:text-3xl font-extrabold text-[#000000] tracking-tight font-[Montserrat] text-center mb-2">
       {children}
-      {orange && <span className="text-[#FF6B35]"> {orange}</span>}
+      {orange && <span className="text-[#F64E02]"> {orange}</span>}
     </h2>
   );
 }
@@ -119,7 +116,7 @@ function CommentaryBox({ text }: { text: string }) {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-gradient-to-r from-[#FF6B35]/5 to-[#1B1464]/5 border border-[#FF6B35]/20 rounded-lg p-4 mb-8"
+      className="bg-gradient-to-r from-[#F64E02]/5 to-[#000000]/5 border border-[#F64E02]/20 rounded-lg p-4 mb-8"
     >
       <p className="text-sm text-gray-700 leading-relaxed">{text}</p>
     </motion.div>
@@ -132,11 +129,11 @@ export default function HomeRSS() {
       <NavBar />
 
       {/* HERO */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-[#1B1464] to-[#1B1464]/90 text-white">
+      <section className="pt-32 pb-16 bg-gradient-to-b from-[#000000] to-[#000000]/90 text-white">
         <div className="container text-center">
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-2 font-[Montserrat]">{REPORT_TITLE}</h1>
-            <p className="text-xl md:text-2xl text-[#FF6B35] font-bold mb-2">{REPORT_SUBTITLE}</p>
+            <p className="text-xl md:text-2xl text-[#F64E02] font-bold mb-2">{REPORT_SUBTITLE}</p>
             <p className="text-white/60 text-sm">{PERIOD}</p>
           </motion.div>
         </div>
@@ -149,10 +146,10 @@ export default function HomeRSS() {
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Destaques principais do período de março a maio de 2026</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados segundo BCS" color="text-[#FF6B35]" />
-            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Usuários Ativos no Site (Mar-Mai 2026)" color="text-[#1B1464]" />
-            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Usuários Interagiram com o Site através dos Anúncios" color="text-[#FF6B35]" />
-            <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#1B1464]" />
+            <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados segundo BCS" color="text-[#F64E02]" />
+            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Usuários Ativos no Site (Mar-Mai 2026)" color="text-[#000000]" />
+            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Usuários Interagiram com o Site através dos Anúncios" color="text-[#F64E02]" />
+            <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#000000]" />
           </div>
 
 
@@ -164,61 +161,61 @@ export default function HomeRSS() {
       {/* COMPARATIVO 2025 vs 2026 */}
       <section id="comparativo" className="py-16">
         <div className="container">
-          <SectionTitle>Comparativo <span className="text-[#FF6B35]">2025 vs 2026</span></SectionTitle>
+          <SectionTitle>Comparativo <span className="text-[#F64E02]">2025 vs 2026</span></SectionTitle>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Evolução dos destaques: 2025 (março a julho) vs 2026 (março a maio)</p>
 
           {/* Resumo Comparativo */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-              <h3 className="text-lg font-bold text-[#1B1464] mb-6">RSS 2025 (Mar-Jul)</h3>
+              <h3 className="text-lg font-bold text-[#000000] mb-6">RSS 2025 (Mar-Jul)</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Profissionais Cadastrados</span>
-                  <span className="font-bold text-[#FF6B35]">5.862</span>
+                  <span className="font-bold text-[#F64E02]">5.862</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários Visitantes do Site</span>
-                  <span className="font-bold text-[#1B1464]">25.835</span>
+                  <span className="font-bold text-[#000000]">25.835</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários via Anúncios</span>
-                  <span className="font-bold text-[#FF6B35]">8.128</span>
+                  <span className="font-bold text-[#F64E02]">8.128</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Investimento em Anúncios</span>
-                  <span className="font-bold text-[#1B1464]">R$ 10.000</span>
+                  <span className="font-bold text-[#000000]">R$ 10.000</span>
                 </div>
               </div>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-              <h3 className="text-lg font-bold text-[#1B1464] mb-6">RSS 2026 (Mar-Mai)</h3>
+              <h3 className="text-lg font-bold text-[#000000] mb-6">RSS 2026 (Mar-Mai)</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Profissionais Cadastrados</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#FF6B35]">3.899</span>
+                    <span className="font-bold text-[#F64E02]">3.899</span>
                     <span className="text-sm font-bold text-red-600">-33,5%</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários Visitantes do Site</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#1B1464]">31.028</span>
+                    <span className="font-bold text-[#000000]">31.028</span>
                     <span className="text-sm font-bold text-green-600">+20,1%</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários via Anúncios</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#FF6B35]">11.138</span>
+                    <span className="font-bold text-[#F64E02]">11.138</span>
                     <span className="text-sm font-bold text-green-600">+37,0%</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Investimento em Anúncios</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#1B1464]">R$ 16.250,46</span>
+                    <span className="font-bold text-[#000000]">R$ 16.250,46</span>
                     <span className="text-sm font-bold text-green-600">+62,5%</span>
                   </div>
                 </div>
@@ -228,66 +225,66 @@ export default function HomeRSS() {
 
           {/* Performance Comparativa */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-            <h3 className="text-lg font-bold text-[#1B1464] mb-6">Performance do Site - Origem dos Acessos (Comparativo)</h3>
+            <h3 className="text-lg font-bold text-[#000000] mb-6">Performance do Site - Origem dos Acessos (Comparativo)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b-2 border-[#FF6B35]">
-                    <th className="text-left py-3 px-4 font-bold text-[#1B1464]">Canal</th>
-                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">2025 (Mar-Jul)</th>
-                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">% 2025</th>
-                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">2026 (Mar-Mai)</th>
-                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">% 2026</th>
-                    <th className="text-center py-3 px-4 font-bold text-[#FF6B35]">Variação %</th>
+                  <tr className="border-b-2 border-[#F64E02]">
+                    <th className="text-left py-3 px-4 font-bold text-[#000000]">Canal</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#000000]">2025 (Mar-Jul)</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#000000]">% 2025</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#000000]">2026 (Mar-Mai)</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#000000]">% 2026</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#F64E02]">Variação %</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Anúncios</td>
                     <td className="text-center py-3 px-4">8.128</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#FF6B35]">31,4%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#F64E02]">31,4%</td>
                     <td className="text-center py-3 px-4">12.679</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#FF6B35]">40,9%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#F64E02]">40,9%</td>
                     <td className="text-center py-3 px-4 font-bold text-green-600">+9,5pp</td>
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Acessos Diretos</td>
                     <td className="text-center py-3 px-4">9.285</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">35,9%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">35,9%</td>
                     <td className="text-center py-3 px-4">4.967</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">16,0%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">16,0%</td>
                     <td className="text-center py-3 px-4 font-bold text-red-600">-19,9pp</td>
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Outros Sites</td>
                     <td className="text-center py-3 px-4">4.477</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">17,3%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">17,3%</td>
                     <td className="text-center py-3 px-4">6.364</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">20,5%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">20,5%</td>
                     <td className="text-center py-3 px-4 font-bold text-green-600">+3,2pp</td>
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Busca Orgânica</td>
                     <td className="text-center py-3 px-4">2.527</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">9,8%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">9,8%</td>
                     <td className="text-center py-3 px-4">4.279</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">13,8%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">13,8%</td>
                     <td className="text-center py-3 px-4 font-bold text-green-600">+4,0pp</td>
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Redes Sociais Orgânicas</td>
                     <td className="text-center py-3 px-4">967</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">3,7%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">3,7%</td>
                     <td className="text-center py-3 px-4">2.500</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">8,1%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">8,1%</td>
                     <td className="text-center py-3 px-4 font-bold text-green-600">+4,4pp</td>
                   </tr>
                   <tr className="hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-700">Email Marketing</td>
                     <td className="text-center py-3 px-4">554</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">2,1%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">2,1%</td>
                     <td className="text-center py-3 px-4">239</td>
-                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">0,8%</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#000000]">0,8%</td>
                     <td className="text-center py-3 px-4 font-bold text-red-600">-1,3pp</td>
                   </tr>
                 </tbody>
@@ -300,7 +297,7 @@ export default function HomeRSS() {
       </section>
       <section id="performance" className="py-16">
         <div className="container">
-          <SectionTitle>Performance <span className="text-[#FF6B35]">do Site</span></SectionTitle>
+          <SectionTitle>Performance <span className="text-[#F64E02]">do Site</span></SectionTitle>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Origem dos {formatNumber(totalSessions)} acessos ao site</p>
 
           <div className="w-full mb-12">
@@ -313,7 +310,7 @@ export default function HomeRSS() {
                   
                   <YAxis type="number" />
                   <Tooltip formatter={(value) => formatNumber(value as number)} />
-                  <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
+                  <Bar dataKey="sessions" fill="#F64E02" radius={[0, 8, 8, 0]}>
                     {performanceSite.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={CHANNEL_COLORS[entry.origin] || "#999"} />
                     ))}
@@ -331,7 +328,7 @@ export default function HomeRSS() {
                     <span className="font-medium text-gray-700">{item.origin}</span>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-[#1B1464]">{item.percentage}%</div>
+                    <div className="font-bold text-[#000000]">{item.percentage}%</div>
                     <div className="text-xs text-gray-500">{formatNumber(item.sessions)}</div>
                   </div>
                 </div>
@@ -347,15 +344,15 @@ export default function HomeRSS() {
       {/* EMAIL MARKETING */}
       <section id="email" className="py-16 bg-gray-50">
         <div className="container">
-          <SectionTitle>Email <span className="text-[#FF6B35]">Marketing</span></SectionTitle>
+          <SectionTitle>Email <span className="text-[#F64E02]">Marketing</span></SectionTitle>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">{emailMarketing.campanhas} campanhas com {formatNumber(emailMarketing.leadsImpactados)} leads impactados</p>
 
           {/* KPIs */}
           <div className="grid md:grid-cols-4 gap-4 mb-12">
-            <KPICard value={emailMarketing.campanhas.toString()} label="Campanhas" color="text-[#FF6B35]" />
-            <KPICard value={formatNumber(emailMarketing.leadsImpactados)} label="Leads Impactados" color="text-[#1B1464]" />
-            <KPICard value={emailMarketing.taxaAbertura} label="Taxa de Abertura" color="text-[#FF6B35]" />
-            <KPICard value={emailMarketing.taxaCliques} label="Taxa de Cliques" color="text-[#1B1464]" />
+            <KPICard value={emailMarketing.campanhas.toString()} label="Campanhas" color="text-[#F64E02]" />
+            <KPICard value={formatNumber(emailMarketing.leadsImpactados)} label="Leads Impactados" color="text-[#000000]" />
+            <KPICard value={emailMarketing.taxaAbertura} label="Taxa de Abertura" color="text-[#F64E02]" />
+            <KPICard value={emailMarketing.taxaCliques} label="Taxa de Cliques" color="text-[#000000]" />
           </div>
 
           {/* Emails Destaque */}
@@ -369,9 +366,9 @@ export default function HomeRSS() {
                   </div>
                 )}
                 <div className="p-4">
-                  <h5 className="font-bold text-[#1B1464] text-xs mb-3 leading-tight line-clamp-2">{email.assunto}</h5>
+                  <h5 className="font-bold text-[#000000] text-xs mb-3 leading-tight line-clamp-2">{email.assunto}</h5>
                   <div className="space-y-1.5 text-xs">
-                    <div className="flex justify-between"><span className="text-gray-500">Abertura:</span><span className="font-semibold text-[#FF6B35]">{email.taxaAbertura}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Abertura:</span><span className="font-semibold text-[#F64E02]">{email.taxaAbertura}</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Cliques:</span><span className="font-semibold">{email.taxaCliques}</span></div>
                   </div>
                 </div>
@@ -386,34 +383,34 @@ export default function HomeRSS() {
       {/* INVESTIMENTO */}
       <section id="investimento" className="py-16">
         <div className="container">
-          <SectionTitle>Investimento <span className="text-[#FF6B35]">em Mídia Paga</span></SectionTitle>
+          <SectionTitle>Investimento <span className="text-[#F64E02]">em Mídia Paga</span></SectionTitle>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Distribuição de {formatBRL(investimentoTotal)} em Meta Ads</p>
 
           <div className="w-full mb-12">
             {/* Bar Chart - Vertical por Categoria */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-              <h3 className="text-lg font-bold text-[#1B1464] mb-6">Distribuição de Investimento por Categoria</h3>
+              <h3 className="text-lg font-bold text-[#000000] mb-6">Distribuição de Investimento por Categoria</h3>
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart data={investimentoPorCategoria} margin={{ top: 5, right: 30, left: 0, bottom: 100 }}>
                   <XAxis dataKey="categoria" angle={-45} textAnchor="end" height={120} tick={{ fontSize: 12 }} />
                   <YAxis type="number" />
                   <Tooltip formatter={(value) => formatBRL(value as number)} />
-                  <Bar dataKey="valor" fill="#FF6B35" radius={[0, 8, 8, 0]} />
+                  <Bar dataKey="valor" fill="#F64E02" radius={[0, 8, 8, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </motion.div>
 
             {/* Dimensão de Campanhas */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mt-6">
-              <h3 className="text-lg font-bold text-[#1B1464] mb-6">Dimensão de Campanhas Meta Ads</h3>
+              <h3 className="text-lg font-bold text-[#000000] mb-6">Dimensão de Campanhas Meta Ads</h3>
               <div className="grid md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-[#FF6B35]/10 to-[#FF6B35]/5 rounded-lg p-4 border border-[#FF6B35]/20">
+                <div className="bg-gradient-to-br from-[#F64E02]/10 to-[#F64E02]/5 rounded-lg p-4 border border-[#F64E02]/20">
                   <div className="text-sm text-gray-600 mb-1">Campanhas</div>
-                  <div className="text-3xl font-bold text-[#FF6B35]">4</div>
+                  <div className="text-3xl font-bold text-[#F64E02]">4</div>
                 </div>
-                <div className="bg-gradient-to-br from-[#1B1464]/10 to-[#1B1464]/5 rounded-lg p-4 border border-[#1B1464]/20">
+                <div className="bg-gradient-to-br from-[#000000]/10 to-[#000000]/5 rounded-lg p-4 border border-[#000000]/20">
                   <div className="text-sm text-gray-600 mb-1">Criativos</div>
-                  <div className="text-3xl font-bold text-[#1B1464]">19</div>
+                  <div className="text-3xl font-bold text-[#000000]">19</div>
                 </div>
                 <div className="bg-gradient-to-br from-[#00BCD4]/10 to-[#00BCD4]/5 rounded-lg p-4 border border-[#00BCD4]/20">
                   <div className="text-sm text-gray-600 mb-1">Impressões</div>
@@ -435,12 +432,12 @@ export default function HomeRSS() {
       {/* CAMPANHAS DE MÍDIA */}
       <section id="campanhas" className="py-16 bg-gray-50">
         <div className="container">
-          <SectionTitle>Campanhas <span className="text-[#FF6B35]">de Mídia</span></SectionTitle>
+          <SectionTitle>Campanhas <span className="text-[#F64E02]">de Mídia</span></SectionTitle>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Análise detalhada dos criativos por objetivo de campanha</p>
 
           {/* AWARENESS */}
           <div className="mb-16">
-            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🎯 Awareness</h3>
+            <h3 className="text-xl font-bold text-[#000000] mb-2 font-[Montserrat]">🎯 Awareness</h3>
             <p className="text-gray-600 text-sm mb-6">Campanhas de topo de funil focadas em escala e reconhecimento de marca</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               {criativosAwareness.map((criativo) => (
@@ -451,9 +448,9 @@ export default function HomeRSS() {
                   </div>
                   <div className="p-4 space-y-2 text-sm">
                     <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
-                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#F64E02]">{formatNumber(criativo.alcance)}</span></div>
                     <div><span className="text-gray-600">Impressões:</span> <span className="font-semibold">{formatNumber(criativo.impressoes)}</span></div>
-                    <div><span className="text-gray-600">CPM:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpm.toFixed(2)}</span></div>
+                    <div><span className="text-gray-600">CPM:</span> <span className="font-semibold text-[#000000]">R$ {criativo.cpm.toFixed(2)}</span></div>
                   </div>
                 </motion.div>
               ))}
@@ -463,7 +460,7 @@ export default function HomeRSS() {
 
           {/* EXPOSITORES */}
           <div className="mb-16">
-            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🏢 Seja um Expositor</h3>
+            <h3 className="text-xl font-bold text-[#000000] mb-2 font-[Montserrat]">🏢 Seja um Expositor</h3>
             <p className="text-gray-600 text-sm mb-6">Campanhas B2B focadas em geração de leads qualificados para expositores</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               {criativosExpositores.map((criativo) => (
@@ -474,9 +471,9 @@ export default function HomeRSS() {
                   </div>
                   <div className="p-4 space-y-2 text-sm">
                     <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
-                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#F64E02]">{formatNumber(criativo.alcance)}</span></div>
                     <div><span className="text-gray-600">Cliques:</span> <span className="font-semibold">{formatNumber(criativo.cliques)}</span></div>
-                    <div><span className="text-gray-600">Conversas iniciadas por Whatsapp:</span> <span className="font-semibold text-[#1B1464]">{criativo.conversas}</span></div>
+                    <div><span className="text-gray-600">Conversas iniciadas por Whatsapp:</span> <span className="font-semibold text-[#000000]">{criativo.conversas}</span></div>
                   </div>
                 </motion.div>
               ))}
@@ -486,7 +483,7 @@ export default function HomeRSS() {
 
           {/* CREDENCIAMENTO */}
           <div>
-            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🎟️ Credenciamento</h3>
+            <h3 className="text-xl font-bold text-[#000000] mb-2 font-[Montserrat]">🎟️ Credenciamento</h3>
             <p className="text-gray-600 text-sm mb-6">Campanhas de fundo de funil focadas em conversão de cadastros</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
               {criativosCredenciamento.map((criativo) => (
@@ -497,9 +494,9 @@ export default function HomeRSS() {
                   </div>
                   <div className="p-4 space-y-2 text-sm">
                     <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
-                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#F64E02]">{formatNumber(criativo.alcance)}</span></div>
                     <div><span className="text-gray-600">Intenções de credenciamento:</span> <span className="font-semibold">{formatNumber(criativo.intencoes)}</span></div>
-                    <div><span className="text-gray-600">Custo por lead credenciado:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpl.toFixed(2)}</span></div>
+                    <div><span className="text-gray-600">Custo por lead credenciado:</span> <span className="font-semibold text-[#000000]">R$ {criativo.cpl.toFixed(2)}</span></div>
                   </div>
                 </motion.div>
               ))}
@@ -512,13 +509,13 @@ export default function HomeRSS() {
       {/* CONCLUSÕES */}
       <section id="conclusoes" className="py-16">
         <div className="container">
-          <SectionTitle>Conclusões <span className="text-[#FF6B35]">e Destaques</span></SectionTitle>
+          <SectionTitle>Conclusões <span className="text-[#F64E02]">e Destaques</span></SectionTitle>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Síntese executiva da performance digital 2026</p>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[conclusoes.bloco1, conclusoes.bloco2, conclusoes.bloco3, conclusoes.bloco4].map((bloco, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className={`rounded-xl p-6 text-white ${i % 2 === 0 ? 'bg-[#1B1464]' : 'bg-[#FF6B35]'}`}>
+                className={`rounded-xl p-6 text-white ${i % 2 === 0 ? 'bg-black' : 'bg-[#F64E02]'}`}>
                 <h3 className="text-lg font-bold mb-3 font-[Montserrat]">{bloco.titulo}</h3>
                 <p className="text-sm leading-relaxed opacity-95">{bloco.texto}</p>
               </motion.div>
@@ -528,14 +525,11 @@ export default function HomeRSS() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#1B1464] py-10">
+      <footer className="bg-black py-10">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="h-8 w-8 bg-[#FF6B35] rounded-lg flex items-center justify-center text-white font-bold text-xs">
-                RSS
-              </div>
-              <span className="text-white/60 text-xs">Rio Sport Show 2026</span>
+              <span className="text-white/80 text-xs font-medium">Rio Sport Show 2026</span>
             </div>
             <div className="text-center">
               <p className="text-white/40 text-xs tracking-widest uppercase">
@@ -543,11 +537,11 @@ export default function HomeRSS() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-white/40 text-[10px] uppercase tracking-wide">Elaborado por</span>
+              <span className="text-white/40 text-[10px] uppercase tracking-wide">Powered by</span>
               <img
-                src={LOGO_EXTREMA_ESCURO}
-                alt="Extrema Visibilidade - Marketing Digital"
-                className="h-8 opacity-80"
+                src="/manus-storage/pasted_file_Jxo0CO_image_9d9f66d7.png"
+                alt="Fitness Bem-Estar"
+                className="h-8 opacity-90"
               />
             </div>
           </div>

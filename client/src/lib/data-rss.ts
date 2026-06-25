@@ -1,5 +1,5 @@
 // Rio Sport Show 2026 - Performance Digital
-// Identidade Visual: Laranja (#FF6B35) + Preto (#1B1464) + Branco
+// Identidade Visual: Laranja (#F64E02) + Preto (#000000) + Branco
 // Typography: Montserrat (headings) + Inter (body)
 // ============================================================
 
@@ -21,7 +21,7 @@ export const kpis2025 = {
   usuariosInteragiram: 8000,
   investidoAds: 12500,
   sessionsSite: 25835,
-  emailCampanhas: 22,
+  emailCampanhas: 31,
 };
 
 // Performance do Site - Origem dos Acessos
@@ -29,8 +29,8 @@ export const MONTHS = ["MAR 2026", "ABR 2026", "MAI 2026"] as const;
 export const MONTH_SHORT = ["Mar", "Abr", "Mai"] as const;
 
 export const CHANNEL_COLORS: Record<string, string> = {
-  "Anúncios": "#FF6B35",
-  "Outros sites": "#1B1464",
+  "Anúncios": "#F64E02",
+  "Outros sites": "#000000",
   "Acessos diretos": "#00BCD4",
   "Busca orgânica": "#2B4FA3",
   "Redes Sociais Orgânicas": "#C71585",
@@ -55,7 +55,7 @@ export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 us
 // ============================================================
 export const emailMarketing = {
   campanhas: 17,
-  campanhas2025: 22,
+  campanhas2025: 31,
   leadsImpactados: 24086,
   taxaAbertura: "45,51%",
   taxaCliques: "0,90%",
@@ -118,7 +118,7 @@ export const benchmarkEmail = {
 };
 
 // Comentário interpretativo de Email Marketing
-export const emailCommentary = "Em 2026, executamos 17 campanhas com 24.086 leads impactados. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%), refletindo uma base altamente qualificada. A taxa de cliques de 0,90% foi influenciada por dois fatores principais: (1) segmentação geográfica - evento no RJ com mailing concentrado em SP, reduzindo relevância regional; (2) estratégia de email - alguns criativos entregam toda informação no corpo do email, sem CTA obrigatório, o que naturalmente reduz a taxa de cliques. Recomendação: validar fluxo de planejamento e aprovação para manter volume agressivo como em 2025, e revisar estratégia de segmentação geográfica para 2027.";
+export const emailCommentary = "Em 2026, executamos 17 campanhas com 24.086 leads impactados, uma redução de 45% em relação às 31 campanhas de 2025. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%), demonstrando que a base está altamente qualificada e engajada. No entanto, a taxa de cliques de 0,90% não se converteu em acessos relevantes ao site (apenas 239 usuários via email, 0,8% do tráfego total). Isso indica que o email marketing funciona como canal de retenção e nutrição, não de aquisição. A estratégia de alguns criativos entregarem informação completa no corpo do email, sem CTA obrigatório, naturalmente reduz cliques mas mantém o engajamento qualificado. Recomendação: manter email como canal de retenção, validar frequência e segmentação para 2027, e considerar testes de CTA para aumentar cliques quando necessário."
 
 // INVESTIMENTO EM MÍDIA PAGA
 // ============================================================
@@ -314,7 +314,7 @@ export const credenciamentoCommentary = "A campanha de Credenciamento foi a mais
 // ============================================================
 export const analisePerformance = "A performance do site em 2026 consolidou a estratégia de mídia paga iniciada em 2025. Com 31.028 sessões no período de março a maio, o crescimento foi de 20% em relação ao mesmo período de 2025 (25.835 sessões). A qualidade do tráfego melhorou: 40,9% via anúncios (vs. 31,4% em 2025) e crescimento de tráfego orgânico (28,6% vs. 20,7% em 2025), indicando que a marca ganhou autoridade no setor.";
 
-export const analiseEmail = "O email marketing de 2026 superou expectativas com 45,51% de taxa de abertura, 27 pontos percentuais acima do benchmark de mercado. Com 17 campanhas e 24.086 leads impactados, a base se mostrou altamente engajada. O desafio de cliques baixos (0,90%) é contextual: a base é geograficamente concentrada fora do eixo Rio-São Paulo e o público é predominantemente B2B, o que reduz cliques médios mas aumenta qualidade de conversão.";
+export const analiseEmail = "O email marketing de 2026 superou expectativas com 45,51% de taxa de abertura, 27 pontos percentuais acima do benchmark de mercado (21,5%). Com 17 campanhas (redução de 45% em relação a 31 em 2025) e 24.086 leads impactados, a base se mostrou altamente engajada. Porém, a taxa de cliques de 0,90% não gerou acessos relevantes ao site (239 usuários, 0,8% do tráfego). Email consolidou-se como canal de retenção e nutrição, não de aquisição, com alguns criativos entregando informação completa no corpo sem CTA obrigatório. Recomendação: manter email como estratégia de retenção, testar segmentação geográfica e frequência para 2027.";
 
 export const analiseInvestimento = "O investimento de R$ 16.250,46 em Meta Ads foi distribuído de forma estratégica entre objetivos de funil. O Credenciamento recebeu 49,2% do orçamento e gerou o melhor ROI, com CPL de R$ 2,43 a R$ 3,26. Awareness recebeu 21,5% e gerou 1,5 milhão de pessoas alcançadas. A eficiência geral foi superior a 2025, com CPM reduzido em 15% e CPL em 12%.";
 
@@ -333,11 +333,11 @@ export const conclusoes = {
   },
   bloco2: {
     titulo: "Crescimento de Tráfego vs. Redução de Credenciados: Contexto Estratégico",
-    texto: "Apesar do crescimento de 20% em usuários visitantes (31.028 vs. 25.835 em 2025), houve redução de 33,5% em profissionais cadastrados (3.899 vs. 5.862). Este cenário reflete a proximidade do Arnold Sports Festival South America 2026, que dividiu as ações das equipes e reduziu o foco em marketing. A redução de campanhas de email (de 22 para 17) exemplifica esse impacto. Recomendação: ampliar budget e campanhas estratégicas para atrair profissionais de SP, considerando custos de passagens e hospedagens.",
+    texto: "Apesar do crescimento de 20% em usuários visitantes (31.028 vs. 25.835 em 2025), houve redução de 33,5% em profissionais cadastrados (3.899 vs. 5.862). Este cenário reflete a proximidade do Arnold Sports Festival South America 2026, que dividiu as ações das equipes e reduziu o foco em marketing. A redução de campanhas de email (de 31 para 17, queda de 45%) exemplifica esse impacto. Recomendação: ampliar budget e campanhas estratégicas para atrair profissionais de SP, considerando custos de passagens e hospedagens.",
   },
   bloco3: {
-    titulo: "Email Marketing: Engajamento Acima do Mercado",
-    texto: "A taxa de abertura de 45,51% superou em 27 pontos percentuais o benchmark de mercado (21,5%), refletindo uma base altamente qualificada e engajada. Com 17 campanhas e 24.086 leads impactados, o email marketing se consolidou como canal de retenção e nutrição. O potencial de crescimento é elevado: sem aumento de investimento específico, é possível ampliar leads através de segmentação e timing otimizado.",
+    titulo: "Email Marketing: Engajamento Acima do Mercado, Mas Sem Conversão em Cliques",
+    texto: "A taxa de abertura de 45,51% superou em 27 pontos percentuais o benchmark de mercado (21,5%), refletindo uma base altamente qualificada e engajada. Com 17 campanhas e 24.086 leads impactados, o email marketing se consolidou como canal de retenção e nutrição. Porém, a taxa de cliques de 0,90% não gerou acessos relevantes ao site (apenas 239 usuários, 0,8% do tráfego total). Isso demonstra que o email funciona como canal de retenção, não de aquisição. A estratégia de alguns criativos entregarem informação completa no corpo do email, sem CTA obrigatório, mantém o engajamento qualificado mas reduz cliques. Recomendação: manter email como estratégia de retenção e validar segmentação geográfica para 2027.",
   },
   bloco4: {
     titulo: "Recomendações para 2027: Ampliar Investimento em Mídia",
