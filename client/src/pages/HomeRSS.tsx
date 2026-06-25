@@ -196,19 +196,31 @@ export default function HomeRSS() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Profissionais Cadastrados</span>
-                  <span className="font-bold text-[#FF6B35]">3.899</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-[#FF6B35]">3.899</span>
+                    <span className="text-sm font-bold text-red-600">-33,5%</span>
+                  </div>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários Visitantes do Site</span>
-                  <span className="font-bold text-[#1B1464]">31.028</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-[#1B1464]">31.028</span>
+                    <span className="text-sm font-bold text-green-600">+20,1%</span>
+                  </div>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-600">Usuários via Anúncios</span>
-                  <span className="font-bold text-[#FF6B35]">11.138</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-[#FF6B35]">11.138</span>
+                    <span className="text-sm font-bold text-green-600">+37,0%</span>
+                  </div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Investimento em Anúncios</span>
-                  <span className="font-bold text-[#1B1464]">R$ 16.250,46</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-[#1B1464]">R$ 16.250,46</span>
+                    <span className="text-sm font-bold text-green-600">+62,5%</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -216,7 +228,7 @@ export default function HomeRSS() {
 
           {/* Performance Comparativa */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
-            <h3 className="text-lg font-bold text-[#1B1464] mb-6">Performance do Site - Origem dos Acessos</h3>
+            <h3 className="text-lg font-bold text-[#1B1464] mb-6">Performance do Site - Origem dos Acessos (Comparativo)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -378,38 +390,40 @@ export default function HomeRSS() {
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Distribuição de {formatBRL(investimentoTotal)} em Meta Ads</p>
 
           <div className="w-full mb-12">
-            {/* Bar Chart - Vertical */}
+            {/* Bar Chart - Vertical por Categoria */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+              <h3 className="text-lg font-bold text-[#1B1464] mb-6">Distribuição de Investimento por Categoria</h3>
               <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={performanceSite} margin={{ top: 5, right: 30, left: 0, bottom: 80 }}>
-                  
-                  <XAxis dataKey="origin" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 12 }} />
-                  
+                <BarChart data={investimentoPorCategoria} margin={{ top: 5, right: 30, left: 0, bottom: 100 }}>
+                  <XAxis dataKey="categoria" angle={-45} textAnchor="end" height={120} tick={{ fontSize: 12 }} />
                   <YAxis type="number" />
-                  <Tooltip formatter={(value) => formatNumber(value as number)} />
-                  <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
-                    {performanceSite.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={CHANNEL_COLORS[entry.origin] || "#999"} />
-                    ))}
-                  </Bar>
+                  <Tooltip formatter={(value) => formatBRL(value as number)} />
+                  <Bar dataKey="valor" fill="#FF6B35" radius={[0, 8, 8, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </motion.div>
 
-            {/* List */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3 mt-6">
-              {performanceSite.map((item, i) => (
-                <div key={i} className="bg-white rounded-lg border border-gray-100 p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: CHANNEL_COLORS[item.origin] }} />
-                    <span className="font-medium text-gray-700">{item.origin}</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold text-[#1B1464]">{item.percentage}%</div>
-                    <div className="text-xs text-gray-500">{formatNumber(item.sessions)}</div>
-                  </div>
+            {/* Dimensão de Campanhas */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 mt-6">
+              <h3 className="text-lg font-bold text-[#1B1464] mb-6">Dimensão de Campanhas Meta Ads</h3>
+              <div className="grid md:grid-cols-4 gap-4">
+                <div className="bg-gradient-to-br from-[#FF6B35]/10 to-[#FF6B35]/5 rounded-lg p-4 border border-[#FF6B35]/20">
+                  <div className="text-sm text-gray-600 mb-1">Campanhas</div>
+                  <div className="text-3xl font-bold text-[#FF6B35]">4</div>
                 </div>
-              ))}
+                <div className="bg-gradient-to-br from-[#1B1464]/10 to-[#1B1464]/5 rounded-lg p-4 border border-[#1B1464]/20">
+                  <div className="text-sm text-gray-600 mb-1">Criativos</div>
+                  <div className="text-3xl font-bold text-[#1B1464]">19</div>
+                </div>
+                <div className="bg-gradient-to-br from-[#00BCD4]/10 to-[#00BCD4]/5 rounded-lg p-4 border border-[#00BCD4]/20">
+                  <div className="text-sm text-gray-600 mb-1">Impressões</div>
+                  <div className="text-2xl font-bold text-[#00BCD4]">{formatNumber(3200000)}</div>
+                </div>
+                <div className="bg-gradient-to-br from-[#2B4FA3]/10 to-[#2B4FA3]/5 rounded-lg p-4 border border-[#2B4FA3]/20">
+                  <div className="text-sm text-gray-600 mb-1">Alcance</div>
+                  <div className="text-2xl font-bold text-[#2B4FA3]">{formatNumber(1700000)}</div>
+                </div>
+              </div>
             </motion.div>
           </div>
 

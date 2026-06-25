@@ -329,11 +329,11 @@ export const analiseExpositores = "A campanha 'Seja um Expositor' gerou 185 conv
 export const conclusoes = {
   bloco1: {
     titulo: "Crescimento Estratégico em Tráfego Qualificado",
-    texto: "A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 utilizadores ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos (vs. 31,4% em 2025) e crescimento de 38% em tráfego orgânico. Isso indica que a marca ganhou autoridade e reconhecimento no mercado.",
+    texto: "A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 31.028 usuários visitantes do site no período de março a maio, houve crescimento de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos (vs. 31,4% em 2025) e crescimento de 38% em tráfego orgânico. Isso indica que a marca ganhou autoridade e reconhecimento no mercado.",
   },
   bloco2: {
-    titulo: "Credenciamento: Funil de Conversão Eficiente",
-    texto: "O funil de credenciamento se mostrou altamente eficiente, com 3.408 intenções de cadastro geradas a um CPL de R$ 2,43 a R$ 3,26. Comparado a 2025 (2.262 cadastros a R$ 2,21), houve crescimento de 51% em volume com manutenção de eficiência de custo. A estratégia de mensagens diretas ao público B2B funcionou bem, consolidando o potencial de crescimento para próximas edições.",
+    titulo: "Crescimento de Tráfego vs. Redução de Credenciados: Contexto Estratégico",
+    texto: "Apesar do crescimento de 20% em usuários visitantes (31.028 vs. 25.835 em 2025), houve redução de 33,5% em profissionais cadastrados (3.899 vs. 5.862). Este cenário reflete a proximidade do Arnold Sports Festival South America 2026, que dividiu as ações das equipes e reduziu o foco em marketing. A redução de campanhas de email (de 22 para 17) exemplifica esse impacto. Recomendação: ampliar budget e campanhas estratégicas para atrair profissionais de SP, considerando custos de passagens e hospedagens.",
   },
   bloco3: {
     titulo: "Email Marketing: Engajamento Acima do Mercado",
@@ -341,7 +341,7 @@ export const conclusoes = {
   },
   bloco4: {
     titulo: "Recomendações para 2027: Ampliar Investimento em Mídia",
-    texto: "Com base na performance de 2026, recomenda-se aumentar o investimento em Meta Ads para 2027, focando em: (1) Awareness com budget 30% maior para consolidar marca; (2) Credenciamento com segmentação geográfica expandida para RJ/SP; (3) Email marketing com testes de frequência e segmentação para aumentar cliques; (4) Remarketing com budget 50% maior para capturar abandono de carrinho. O ROI de 2026 valida a estratégia digital como prioritária.",
+    texto: "Com base na performance de 2026, recomenda-se aumentar o investimento em Meta Ads para 2027, focando em: (1) Awareness com budget 30% maior para consolidar marca; (2) Credenciamento com segmentação geográfica expandida para SP, considerando custos de deslocamento; (3) Email marketing com testes de frequência e segmentação para aumentar cliques; (4) Validar proporção de investimento entre Credenciamento (49%), Awareness (21%) e Expositores (12%) considerando prioridades estratégicas e impacto de impostos Meta. O ROI de 2026 valida a estratégia digital como prioritária.",
   },
 };
 
