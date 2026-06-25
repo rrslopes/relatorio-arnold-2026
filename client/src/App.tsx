@@ -10,6 +10,7 @@ import HomeRSS from "./pages/HomeRSS";
 function Router() {
   return (
     <Switch>
+      <Route path="/" component={Home} />
       <Route path="/rss" component={HomeRSS} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
