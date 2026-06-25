@@ -160,6 +160,130 @@ export default function HomeRSS() {
       </section>
 
       {/* PERFORMANCE DO SITE */}
+
+      {/* COMPARATIVO 2025 vs 2026 */}
+      <section id="comparativo" className="py-16">
+        <div className="container">
+          <SectionTitle>Comparativo <span className="text-[#FF6B35]">2025 vs 2026</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Evolução dos destaques: 2025 (março a julho) vs 2026 (março a maio)</p>
+
+          {/* Resumo Comparativo */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+              <h3 className="text-lg font-bold text-[#1B1464] mb-6">RSS 2025 (Mar-Jul)</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Profissionais Cadastrados</span>
+                  <span className="font-bold text-[#FF6B35]">5.862</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Usuários Visitantes do Site</span>
+                  <span className="font-bold text-[#1B1464]">25.835</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Usuários via Anúncios</span>
+                  <span className="font-bold text-[#FF6B35]">8.128</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Investimento em Anúncios</span>
+                  <span className="font-bold text-[#1B1464]">R$ 10.000</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+              <h3 className="text-lg font-bold text-[#1B1464] mb-6">RSS 2026 (Mar-Mai)</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Profissionais Cadastrados</span>
+                  <span className="font-bold text-[#FF6B35]">3.899</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Usuários Visitantes do Site</span>
+                  <span className="font-bold text-[#1B1464]">31.028</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-600">Usuários via Anúncios</span>
+                  <span className="font-bold text-[#FF6B35]">11.138</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Investimento em Anúncios</span>
+                  <span className="font-bold text-[#1B1464]">R$ 16.250,46</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Performance Comparativa */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
+            <h3 className="text-lg font-bold text-[#1B1464] mb-6">Performance do Site - Origem dos Acessos</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-[#FF6B35]">
+                    <th className="text-left py-3 px-4 font-bold text-[#1B1464]">Canal</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">2025 (Mar-Jul)</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">% 2025</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">2026 (Mar-Mai)</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#1B1464]">% 2026</th>
+                    <th className="text-center py-3 px-4 font-bold text-[#FF6B35]">Variação %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Anúncios</td>
+                    <td className="text-center py-3 px-4">8.128</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#FF6B35]">31,4%</td>
+                    <td className="text-center py-3 px-4">12.679</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#FF6B35]">40,9%</td>
+                    <td className="text-center py-3 px-4 font-bold text-green-600">+9,5pp</td>
+                  </tr>
+                  <tr className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Acessos Diretos</td>
+                    <td className="text-center py-3 px-4">9.285</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">35,9%</td>
+                    <td className="text-center py-3 px-4">4.967</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">16,0%</td>
+                    <td className="text-center py-3 px-4 font-bold text-red-600">-19,9pp</td>
+                  </tr>
+                  <tr className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Outros Sites</td>
+                    <td className="text-center py-3 px-4">4.477</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">17,3%</td>
+                    <td className="text-center py-3 px-4">6.364</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">20,5%</td>
+                    <td className="text-center py-3 px-4 font-bold text-green-600">+3,2pp</td>
+                  </tr>
+                  <tr className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Busca Orgânica</td>
+                    <td className="text-center py-3 px-4">2.527</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">9,8%</td>
+                    <td className="text-center py-3 px-4">4.279</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">13,8%</td>
+                    <td className="text-center py-3 px-4 font-bold text-green-600">+4,0pp</td>
+                  </tr>
+                  <tr className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Redes Sociais Orgânicas</td>
+                    <td className="text-center py-3 px-4">967</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">3,7%</td>
+                    <td className="text-center py-3 px-4">2.500</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">8,1%</td>
+                    <td className="text-center py-3 px-4 font-bold text-green-600">+4,4pp</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium text-gray-700">Email Marketing</td>
+                    <td className="text-center py-3 px-4">554</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">2,1%</td>
+                    <td className="text-center py-3 px-4">239</td>
+                    <td className="text-center py-3 px-4 font-bold text-[#1B1464]">0,8%</td>
+                    <td className="text-center py-3 px-4 font-bold text-red-600">-1,3pp</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
+      </section>
       <section id="performance" className="py-16">
         <div className="container">
           <SectionTitle>Performance <span className="text-[#FF6B35]">do Site</span></SectionTitle>
@@ -169,9 +293,11 @@ export default function HomeRSS() {
             {/* Bar Chart - Vertical */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
               <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={performanceSite} layout="vertical" margin={{ top: 5, right: 30, left: 200, bottom: 5 }}>
-                  <XAxis type="number" />
-                  <YAxis type="category" dataKey="origin" width={190} tick={{ fontSize: 12 }} />
+                <BarChart data={performanceSite} margin={{ top: 5, right: 30, left: 0, bottom: 80 }}>
+                  
+                  <XAxis dataKey="origin" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 12 }} />
+                  
+                  <YAxis type="number" />
                   <Tooltip formatter={(value) => formatNumber(value as number)} />
                   <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
                     {performanceSite.map((entry, index) => (
@@ -253,9 +379,11 @@ export default function HomeRSS() {
             {/* Bar Chart - Vertical */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
               <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={performanceSite} layout="vertical" margin={{ top: 5, right: 30, left: 200, bottom: 5 }}>
-                  <XAxis type="number" />
-                  <YAxis type="category" dataKey="origin" width={190} tick={{ fontSize: 12 }} />
+                <BarChart data={performanceSite} margin={{ top: 5, right: 30, left: 0, bottom: 80 }}>
+                  
+                  <XAxis dataKey="origin" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 12 }} />
+                  
+                  <YAxis type="number" />
                   <Tooltip formatter={(value) => formatNumber(value as number)} />
                   <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
                     {performanceSite.map((entry, index) => (
