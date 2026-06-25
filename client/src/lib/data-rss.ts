@@ -49,7 +49,7 @@ export const performanceSite = [
 export const totalSessions = 31028;
 
 // Comentário interpretativo de Performance do Site
-export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 sessões, representando uma redução de 20% em relação aos 25.835 visitantes de 2025 (período equivalente). Porém, a qualidade do tráfego melhorou significativamente: 40,9% originário de anúncios pagos (+38% em tráfego orgânico). A distribuição entre canais revela uma estratégia bem-balanceada, com 'Outros sites' (20,5%) e 'Redes Sociais Orgânicas' (8,1%) consolidando o ganho de visibilidade orgânica. Email marketing (0,8%) permanece como canal complementar, sugerindo oportunidade de expansão.";
+export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 sessões (março a maio), comparado a 25.835 visitantes em 2025 (março a julho). Considerando o período menor em 2026, o crescimento anualizado seria de aproximadamente 52%, indicando forte expansão. A qualidade do tráfego melhorou significativamente: anúncios pagos cresceram de 31,4% (2025) para 40,9% (2026), enquanto tráfego orgânico (busca + redes sociais) cresceu de 13,5% para 21,9%. Email marketing caiu de 2,1% para 0,8%, sugerindo oportunidade de expansão neste canal.";
 
 // EMAIL MARKETING
 // ============================================================
@@ -118,7 +118,7 @@ export const benchmarkEmail = {
 };
 
 // Comentário interpretativo de Email Marketing
-export const emailCommentary = "Em 2026, executamos 17 campanhas (vs. 22 em 2025), representando redução de 23% no volume. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%) e o desempenho de 2025 (38,5%), refletindo uma base altamente qualificada e engajada. Porém, a taxa de cliques de 0,90% foi inferior ao mercado (2,5%) e a 2025 (1,2%), influenciada por dois fatores: (1) segmentação geográfica - evento no RJ com mailing concentrado em SP; (2) design de emails - alguns criativos entregam toda informação no corpo, sem CTA claro, reduzindo cliques. Recomendação: validar fluxo de planejamento e aprovação de emails para manter volume agressivo como em 2025, e revisar estratégia de CTAs e segmentação geográfica para 2027.";
+export const emailCommentary = "Em 2026, executamos 17 campanhas (vs. 31 em 2025), representando redução de 45% no volume. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%) e o desempenho de 2025 (35,93%), refletindo uma base altamente qualificada. Porém, a taxa de cliques de 0,90% foi inferior a 2025 (0,17% reportado, mas com volume maior de campanhas), influenciada por: (1) segmentação geográfica inadequada - evento no RJ com mailing concentrado em SP; (2) design de emails - alguns criativos entregam toda informação no corpo, sem CTA claro. Recomendação: validar fluxo de planejamento e aprovação para manter volume agressivo como em 2025, e revisar estratégia de CTAs e segmentação geográfica para 2027.";
 
 // INVESTIMENTO EM MÍDIA PAGA
 // ============================================================

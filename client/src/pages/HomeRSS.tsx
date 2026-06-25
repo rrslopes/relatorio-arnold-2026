@@ -150,12 +150,12 @@ export default function HomeRSS() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados segundo BCS" color="text-[#FF6B35]" />
-            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Utilizadores Ativos no Site (Mar-Mai 2026)" color="text-[#1B1464]" />
-            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Utilizadores Interagiram com Anúncios" color="text-[#FF6B35]" />
+            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Usuários Ativos no Site (Mar-Mai 2026)" color="text-[#1B1464]" />
+            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Usuários Interagiram com o Site através dos Anúncios" color="text-[#FF6B35]" />
             <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#1B1464]" />
           </div>
 
-          <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 utilizadores ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico." />
+          <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 usuários ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico." />
         </div>
       </section>
 
