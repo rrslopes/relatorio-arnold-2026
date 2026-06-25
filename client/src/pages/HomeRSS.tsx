@@ -1,7 +1,7 @@
 // Rio Sport Show 2026 - Performance Digital
 // Identidade Visual: Laranja + Preto + Branco
 // LOGOS: RSS no header, Extrema no footer
-// MENU: Navegação simplificada
+// MENU: Navegação com 6 seções principais
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -11,20 +11,25 @@ import {
 import {
   REPORT_TITLE, REPORT_SUBTITLE, PERIOD, kpis,
   emailMarketing, emailsDestaque, benchmarkEmail,
-  performanceSite, totalSessions,
+  performanceSite, totalSessions, performanceCommentary, emailCommentary,
+  investimentoPorCategoria, investimentoTotal, investimentoCommentary,
+  criativosAwareness, awarenessCommentary,
+  criativosExpositores, expositoresCommentary,
+  criativosCredenciamento, credenciamentoCommentary,
+  conclusoes,
   formatBRL, formatNumber, CHANNEL_COLORS,
   LOGO_RSS, LOGO_EXTREMA_ESCURO,
 } from "@/lib/data-rss";
 
 // Menu structure
 const menuGroups = [
-  { id: "resumo", label: "Resumo", items: null },
-  { id: "performance", label: "Performance do Site", items: null },
-  { id: "email", label: "Email Marketing", items: null },
+  { id: "resumo", label: "Resumo" },
+  { id: "performance", label: "Performance do Site" },
+  { id: "email", label: "Email Marketing" },
+  { id: "investimento", label: "Investimento" },
+  { id: "campanhas", label: "Campanhas de Mídia" },
+  { id: "conclusoes", label: "Conclusões" },
 ];
-
-// Flatten all section IDs for mobile menu
-const allSections = menuGroups.flatMap(g => g.items ? g.items : [{ id: g.id, label: g.label }]);
 
 function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -99,31 +104,26 @@ function KPICard({ value, label, color }: { value: string; label: string; color:
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="flex flex-col items-center justify-center p-4 md:p-5 rounded-2xl min-h-[130px]"
-      style={{ backgroundColor: color }}
+      transition={{ duration: 0.5 }}
+      className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center"
     >
-      <span className="text-sm md:text-lg font-extrabold text-white font-[Montserrat] text-center leading-tight break-words">
-        {value}
-      </span>
-      <span className="text-white/80 text-[9px] md:text-[11px] mt-2 text-center uppercase tracking-wide leading-tight">
-        {label}
-      </span>
+      <div className={`text-3xl md:text-4xl font-bold mb-2 ${color}`}>{value}</div>
+      <div className="text-gray-600 text-sm font-medium">{label}</div>
     </motion.div>
   );
 }
 
-// Custom tooltip for charts
-function CustomTooltip({ active, payload, label }: any) {
-  if (!active || !payload) return null;
+// Commentary Box
+function CommentaryBox({ text }: { text: string }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-sm">
-      <p className="font-semibold text-[#1B1464] mb-1">{label}</p>
-      {payload.map((p: any, i: number) => (
-        <p key={i} style={{ color: p.color }} className="text-xs">
-          {p.name}: {p.value}
-        </p>
-      ))}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-gradient-to-r from-[#FF6B35]/5 to-[#1B1464]/5 border border-[#FF6B35]/20 rounded-lg p-4 mb-8"
+    >
+      <p className="text-sm text-gray-700 leading-relaxed">{text}</p>
+    </motion.div>
   );
 }
 
@@ -132,152 +132,92 @@ export default function HomeRSS() {
     <div className="min-h-screen bg-white">
       <NavBar />
 
-      {/* HERO / CAPA */}
-      <section className="pt-32 pb-16 md:pb-24 bg-gradient-to-br from-[#1B1464] via-[#2B4FA3] to-[#FF6B35]/20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white font-[Montserrat] mb-4">
-              {REPORT_TITLE}
-            </h1>
-            <h2 className="text-xl md:text-2xl text-[#FF6B35] font-bold mb-2">
-              {REPORT_SUBTITLE}
-            </h2>
-            <p className="text-white/80 text-sm md:text-base">{PERIOD}</p>
+      {/* HERO */}
+      <section className="pt-32 pb-16 bg-gradient-to-b from-[#1B1464] to-[#1B1464]/90 text-white">
+        <div className="container text-center">
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-2 font-[Montserrat]">{REPORT_TITLE}</h1>
+            <p className="text-xl md:text-2xl text-[#FF6B35] font-bold mb-2">{REPORT_SUBTITLE}</p>
+            <p className="text-white/60 text-sm">{PERIOD}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* RESUMO GERAL */}
-      <section id="resumo" className="py-16 md:py-20 bg-white">
+      {/* RESUMO */}
+      <section id="resumo" className="py-16 bg-gray-50">
         <div className="container">
-          <SectionTitle orange="2026">Destaques da Plataforma</SectionTitle>
-          <p className="text-center text-gray-500 text-sm mb-12">{PERIOD}</p>
+          <SectionTitle>Resumo</SectionTitle>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Destaques principais do período de março a maio de 2026</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {[
-              { value: formatNumber(kpis.profissionaisCadastrados), label: "Profissionais cadastrados", color: "#1B1464" },
-              { value: formatNumber(kpis.usuariosAtivos), label: "Usuários ativos no site", color: "#2B4FA3" },
-              { value: formatNumber(kpis.usuariosInteragiram), label: "Usuários via anúncios", color: "#FF6B35" },
-              { value: formatBRL(kpis.investidoAds), label: "Investido em anúncios", color: "#00BCD4" },
-            ].map((item, i) => (
-              <KPICard key={i} value={item.value} label={item.label} color={item.color} />
-            ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados" color="text-[#FF6B35]" />
+            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Utilizadores Ativos" color="text-[#1B1464]" />
+            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Interagiram com Anúncios" color="text-[#FF6B35]" />
+            <KPICard value={formatBRL(kpis.investidoAds)} label="Investido em Anúncios" color="text-[#1B1464]" />
           </div>
+
+          <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 utilizadores ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico." />
         </div>
       </section>
 
       {/* PERFORMANCE DO SITE */}
-      <section id="performance" className="py-16 md:py-20 bg-gray-50">
+      <section id="performance" className="py-16">
         <div className="container">
-          <SectionTitle orange="do Site">Performance</SectionTitle>
-          <p className="text-center text-gray-500 text-sm mb-12">Origem dos acessos — Março a Maio 2026</p>
+          <SectionTitle>Performance <span className="text-[#FF6B35]">do Site</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Origem dos {formatNumber(totalSessions)} acessos ao site</p>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Gráfico de Pizza */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex items-center justify-center"
-            >
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Pie Chart */}
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
-                  <Pie
-                    data={performanceSite}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={({ origin, percentage }) => `${origin}: ${percentage}%`}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="sessions"
-                  >
+                  <Pie data={performanceSite} dataKey="sessions" nameKey="origin" cx="50%" cy="50%" outerRadius={80} label={({ origin, percentage }) => `${origin}: ${percentage}%`}>
                     {performanceSite.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={CHANNEL_COLORS[entry.origin] || "#999"} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value: any) => formatNumber(Number(value))} />
+                  <Tooltip formatter={(value) => formatNumber(value as number)} />
                 </PieChart>
               </ResponsiveContainer>
             </motion.div>
 
-            {/* Tabela de Dados */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6"
-            >
-              <h3 className="text-lg font-bold text-[#1B1464] mb-4 font-[Montserrat]">
-                Origem dos <span className="text-[#FF6B35]">Acessos</span>
-              </h3>
-              <div className="space-y-3">
-                {performanceSite.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex justify-between items-center pb-3 border-b border-gray-100 last:border-0"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: CHANNEL_COLORS[item.origin] || "#999" }}
-                      />
-                      <span className="text-sm text-gray-700">{item.origin}</span>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-[#1B1464]">{formatNumber(item.sessions)}</p>
-                      <p className="text-xs text-gray-500">{item.percentage}%</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="mt-6 pt-4 border-t border-gray-200">
-                <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Total de sessões</p>
-                <p className="text-2xl font-extrabold text-[#1B1464] font-[Montserrat]">
-                  {formatNumber(totalSessions)}
-                </p>
-              </div>
+            {/* List */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3">
+              {performanceSite.map((item, i) => (
+                <div key={i} className="bg-white rounded-lg border border-gray-100 p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: CHANNEL_COLORS[item.origin] }} />
+                    <span className="font-medium text-gray-700">{item.origin}</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-[#1B1464]">{item.percentage}%</div>
+                    <div className="text-xs text-gray-500">{formatNumber(item.sessions)}</div>
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
+
+          <CommentaryBox text={performanceCommentary} />
         </div>
       </section>
 
       {/* EMAIL MARKETING */}
-      <section id="email" className="py-16 md:py-20 bg-white">
+      <section id="email" className="py-16 bg-gray-50">
         <div className="container">
-          <SectionTitle orange="em Destaque">Campanhas de Email</SectionTitle>
-          <p className="text-center text-gray-500 text-sm mb-4">{PERIOD}</p>
+          <SectionTitle>Email <span className="text-[#FF6B35]">Marketing</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">{emailMarketing.campanhas} campanhas com {formatNumber(emailMarketing.leadsImpactados)} leads impactados</p>
 
           {/* KPIs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-            {[
-              { value: formatNumber(emailMarketing.leadsImpactados), label: "Leads impactados", color: "#1B1464" },
-              { value: emailMarketing.taxaAbertura, label: "Taxa de abertura média", color: "#2B4FA3" },
-              { value: emailMarketing.taxaCliques, label: "Taxa de cliques média", color: "#FF6B35" },
-              { value: formatNumber(emailMarketing.campanhas), label: "Campanhas enviadas", color: "#00BCD4" },
-            ].map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl text-white text-center min-h-[120px]" style={{ backgroundColor: item.color }}>
-                <span className="text-lg md:text-xl font-extrabold font-[Montserrat] leading-tight">{item.value}</span>
-                <span className="text-white/80 text-[9px] md:text-[10px] mt-2 uppercase tracking-wide leading-tight">{item.label}</span>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-4 gap-4 mb-12">
+            <KPICard value={emailMarketing.campanhas.toString()} label="Campanhas" color="text-[#FF6B35]" />
+            <KPICard value={formatNumber(emailMarketing.leadsImpactados)} label="Leads Impactados" color="text-[#1B1464]" />
+            <KPICard value={emailMarketing.taxaAbertura} label="Taxa de Abertura" color="text-[#FF6B35]" />
+            <KPICard value={emailMarketing.taxaCliques} label="Taxa de Cliques" color="text-[#1B1464]" />
           </div>
 
-          {/* TOP 6 emails */}
-          <h3 className="text-lg font-bold text-[#1B1464] text-center mb-8 font-[Montserrat]">
-            TOP 6 <span className="text-[#FF6B35]">Campanhas de Email</span>
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+          {/* Emails Destaque */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {emailsDestaque.map((email, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
                 className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
@@ -297,69 +237,146 @@ export default function HomeRSS() {
             ))}
           </div>
 
-          {/* Benchmark */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-lg font-bold text-[#1B1464] text-center mb-8 font-[Montserrat]">
-              Benchmark <span className="text-[#FF6B35]">vs Mercado de Eventos</span>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Abertura (%)</h4>
-                <div className="space-y-6">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-600 font-medium">Mercado de Eventos</span>
-                      <span className="font-bold text-gray-600">{benchmarkEmail.mercadoAbertura}%</span>
-                    </div>
-                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${(benchmarkEmail.mercadoAbertura / 60) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1 }}
-                        className="h-full bg-gradient-to-r from-gray-400 to-gray-500 rounded-full" />
-                    </div>
+          <CommentaryBox text={emailCommentary} />
+        </div>
+      </section>
+
+      {/* INVESTIMENTO */}
+      <section id="investimento" className="py-16">
+        <div className="container">
+          <SectionTitle>Investimento <span className="text-[#FF6B35]">em Mídia Paga</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Distribuição de {formatBRL(investimentoTotal)} em Meta Ads</p>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Chart */}
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={investimentoPorCategoria}>
+                  <XAxis dataKey="categoria" angle={-45} textAnchor="end" height={80} tick={{ fontSize: 12 }} />
+                  <YAxis />
+                  <Tooltip formatter={(value) => formatBRL(value as number)} />
+                  <Bar dataKey="valor" fill="#FF6B35" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </motion.div>
+
+            {/* List */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3">
+              {investimentoPorCategoria.map((item, i) => (
+                <div key={i} className="bg-white rounded-lg border border-gray-100 p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium text-gray-700">{item.categoria}</span>
+                    <span className="font-bold text-[#FF6B35]">{formatBRL(item.valor)}</span>
                   </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-[#1B1464] font-medium">RSS 2026</span>
-                      <span className="font-bold text-[#1B1464]">{benchmarkEmail.rssAbertura}%</span>
-                    </div>
-                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${(benchmarkEmail.rssAbertura / 60) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }}
-                        className="h-full bg-gradient-to-r from-[#FF6B35] to-[#1B1464] rounded-full" />
-                    </div>
+                  <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${(item.valor / investimentoTotal) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1 }}
+                      className="h-full bg-gradient-to-r from-[#FF6B35] to-[#1B1464]" />
                   </div>
-                  <p className="text-center text-xs text-[#FF6B35] font-bold mt-2">
-                    +{(benchmarkEmail.rssAbertura - benchmarkEmail.mercadoAbertura).toFixed(1)} p.p. acima do mercado
-                  </p>
+                  <div className="text-xs text-gray-500 mt-2">{((item.valor / investimentoTotal) * 100).toFixed(1)}% do total</div>
                 </div>
+              ))}
+              <div className="bg-[#1B1464] rounded-lg p-4 text-white mt-4">
+                <div className="text-xs text-white/60 mb-1">Total Investido</div>
+                <div className="text-2xl font-bold">{formatBRL(investimentoTotal)}</div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                <h4 className="text-center text-sm font-bold text-[#1B1464] mb-6">Taxa de Cliques (%)</h4>
-                <div className="space-y-6">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-600 font-medium">Mercado de Eventos</span>
-                      <span className="font-bold text-gray-600">{benchmarkEmail.mercadoCliques}%</span>
-                    </div>
-                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${(benchmarkEmail.mercadoCliques / 3) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1 }}
-                        className="h-full bg-gradient-to-r from-gray-400 to-gray-500 rounded-full" />
-                    </div>
+            </motion.div>
+          </div>
+
+          <CommentaryBox text={investimentoCommentary} />
+        </div>
+      </section>
+
+      {/* CAMPANHAS DE MÍDIA */}
+      <section id="campanhas" className="py-16 bg-gray-50">
+        <div className="container">
+          <SectionTitle>Campanhas <span className="text-[#FF6B35]">de Mídia</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Análise detalhada dos criativos por objetivo de campanha</p>
+
+          {/* AWARENESS */}
+          <div className="mb-16">
+            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🎯 Awareness</h3>
+            <p className="text-gray-600 text-sm mb-6">Campanhas de topo de funil focadas em escala e reconhecimento de marca</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              {criativosAwareness.map((criativo) => (
+                <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                    <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
                   </div>
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-[#1B1464] font-medium">RSS 2026</span>
-                      <span className="font-bold text-[#1B1464]">{benchmarkEmail.rssCliques}%</span>
-                    </div>
-                    <div className="w-full bg-gray-100 rounded-full h-8 overflow-hidden">
-                      <motion.div initial={{ width: 0 }} whileInView={{ width: `${(benchmarkEmail.rssCliques / 3) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }}
-                        className="h-full bg-gradient-to-r from-[#FF6B35] to-[#1B1464] rounded-full" />
-                    </div>
+                  <div className="p-4 space-y-2 text-sm">
+                    <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Impressões:</span> <span className="font-semibold">{formatNumber(criativo.impressoes)}</span></div>
+                    <div><span className="text-gray-600">CPM:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpm.toFixed(2)}</span></div>
                   </div>
-                  <p className="text-center text-xs text-gray-500 font-medium mt-2">
-                    Desempenho próximo ao mercado
-                  </p>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
+            <CommentaryBox text={awarenessCommentary} />
+          </div>
+
+          {/* EXPOSITORES */}
+          <div className="mb-16">
+            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🏢 Seja um Expositor</h3>
+            <p className="text-gray-600 text-sm mb-6">Campanhas B2B focadas em geração de leads qualificados para expositores</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              {criativosExpositores.map((criativo) => (
+                <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                    <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-4 space-y-2 text-sm">
+                    <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Cliques:</span> <span className="font-semibold">{formatNumber(criativo.cliques)}</span></div>
+                    <div><span className="text-gray-600">Conversas:</span> <span className="font-semibold text-[#1B1464]">{criativo.conversas}</span></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <CommentaryBox text={expositoresCommentary} />
+          </div>
+
+          {/* CREDENCIAMENTO */}
+          <div>
+            <h3 className="text-xl font-bold text-[#1B1464] mb-2 font-[Montserrat]">🎟️ Credenciamento</h3>
+            <p className="text-gray-600 text-sm mb-6">Campanhas de fundo de funil focadas em conversão de cadastros</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+              {criativosCredenciamento.map((criativo) => (
+                <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                    <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-4 space-y-2 text-sm">
+                    <div><span className="text-gray-600">Formato:</span> <span className="font-semibold">{criativo.formato}</span></div>
+                    <div><span className="text-gray-600">Alcance:</span> <span className="font-semibold text-[#FF6B35]">{formatNumber(criativo.alcance)}</span></div>
+                    <div><span className="text-gray-600">Intenções:</span> <span className="font-semibold">{formatNumber(criativo.intencoes)}</span></div>
+                    <div><span className="text-gray-600">CPL:</span> <span className="font-semibold text-[#1B1464]">R$ {criativo.cpl.toFixed(2)}</span></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <CommentaryBox text={credenciamentoCommentary} />
+          </div>
+        </div>
+      </section>
+
+      {/* CONCLUSÕES */}
+      <section id="conclusoes" className="py-16">
+        <div className="container">
+          <SectionTitle>Conclusões <span className="text-[#FF6B35]">e Destaques</span></SectionTitle>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Síntese executiva da performance digital 2026</p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[conclusoes.bloco1, conclusoes.bloco2, conclusoes.bloco3, conclusoes.bloco4].map((bloco, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className={`rounded-xl p-6 text-white ${i % 2 === 0 ? 'bg-[#1B1464]' : 'bg-[#FF6B35]'}`}>
+                <h3 className="text-lg font-bold mb-3 font-[Montserrat]">{bloco.titulo}</h3>
+                <p className="text-sm leading-relaxed opacity-95">{bloco.texto}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

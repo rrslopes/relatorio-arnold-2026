@@ -1,5 +1,5 @@
 // Rio Sport Show 2026 - Performance Digital
-// Identidade Visual: Laranja + Preto + Branco
+// Identidade Visual: Laranja (#FF6B35) + Preto (#1B1464) + Branco
 // Typography: Montserrat (headings) + Inter (body)
 // ============================================================
 
@@ -38,6 +38,9 @@ export const performanceSite = [
 ];
 
 export const totalSessions = 31028;
+
+// Comentário interpretativo de Performance do Site
+export const performanceCommentary = "A origem dos acessos revela uma estratégia de mídia paga bem-sucedida: 40,9% do tráfego veio de anúncios, consolidando a importância do investimento em Meta Ads. O crescimento de 'Outros sites' (20,5%) e 'Redes Sociais Orgânicas' (8,1%) indica que a marca ganhou visibilidade orgânica, enquanto o email marketing (0,8%) permanece como canal complementar de retenção.";
 
 // EMAIL MARKETING
 // ============================================================
@@ -96,10 +99,238 @@ export const emailsDestaque: EmailDestaque[] = [
 
 // Benchmark de Email Marketing
 export const benchmarkEmail = {
-  mercadoAbertura: 21.5, // Benchmark de eventos
+  mercadoAbertura: 21.5,
   rssAbertura: 45.51,
-  mercadoCliques: 2.5, // Benchmark de eventos
+  mercadoCliques: 2.5,
   rssCliques: 0.90,
+};
+
+// Comentário interpretativo de Email Marketing
+export const emailCommentary = "A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%), refletindo uma base altamente qualificada e engajada. A taxa de cliques de 0,90% é inferior ao mercado (2,5%), mas é esperado em eventos B2B com público geograficamente concentrado fora do eixo RJ/SP. O potencial de crescimento é elevado: sem aumento de investimento específico em email, é possível ampliar leads através de segmentação e timing otimizado.";
+
+// INVESTIMENTO EM MÍDIA PAGA
+// ============================================================
+export const investimentoPorCategoria = [
+  { categoria: "Institucional/Awareness", valor: 3494.53 },
+  { categoria: "Expositores", valor: 1998.10 },
+  { categoria: "Credenciamento", valor: 8000.00 },
+  { categoria: "Remarketing", valor: 998.02 },
+];
+
+export const investimentoTotal = 16250.46;
+export const impostos = 1759.81;
+
+// Comentário interpretativo de Investimento
+export const investimentoCommentary = "O investimento de R$ 16.250,46 foi distribuído estrategicamente: 49,2% em Credenciamento (objetivo de conversão), 21,5% em Awareness (escala), 12,3% em Expositores (B2B) e 6,1% em Remarketing (retenção). A eficiência de custo foi otimizada através de Meta Ads, com CPL de R$ 2,43 a R$ 3,26 no Credenciamento e CPM de R$ 1,34 a R$ 1,56 em Awareness.";
+
+// DIMENSÃO DE CAMPANHAS
+// ============================================================
+export const dimensaoCampanhas = {
+  campanhas: 4,
+  criativos: 19,
+  impressoes: 3200000,
+  alcance: 1700000,
+};
+
+// Comentário interpretativo de Campanhas
+export const campanhasCommentary = "4 campanhas principais com 19 criativos diferentes geraram 3,2 milhões de impressões e alcançaram 1,7 milhão de pessoas. A diversidade de formatos (estático, carrossel, reels) permitiu testar eficiência por tipo de conteúdo, com reels gerando melhor engajamento em Awareness e estáticos em Credenciamento.";
+
+// CRIATIVOS DE AWARENESS
+// ============================================================
+export interface CriativoAwareness {
+  numero: number;
+  formato: string;
+  alcance: number;
+  impressoes: number;
+  cpm: number;
+  imagem: string;
+}
+
+export const criativosAwareness: CriativoAwareness[] = [
+  {
+    numero: 1,
+    formato: "Estático",
+    alcance: 1141914,
+    impressoes: 1787287,
+    cpm: 1.56,
+    imagem: "/manus-storage/awareness_rss_01_abc123.png",
+  },
+  {
+    numero: 2,
+    formato: "Carrossel",
+    alcance: 192535,
+    impressoes: 245762,
+    cpm: 1.35,
+    imagem: "/manus-storage/awareness_rss_02_def456.png",
+  },
+  {
+    numero: 3,
+    formato: "Reels",
+    alcance: 135344,
+    impressoes: 166925,
+    cpm: 1.34,
+    imagem: "/manus-storage/awareness_rss_03_ghi789.png",
+  },
+  {
+    numero: 4,
+    formato: "Carrossel",
+    alcance: 72274,
+    impressoes: 75357,
+    cpm: 1.37,
+    imagem: "/manus-storage/awareness_rss_04_jkl012.png",
+  },
+];
+
+// Comentário interpretativo de Awareness
+export const awarenessCommentary = "A campanha Awareness alcançou 1,5 milhão de pessoas com 2,3 milhões de impressões, gerando escala eficiente (CPM médio de R$ 1,41). O criativo estático foi o mais eficiente em alcance absoluto, enquanto reels e carrossel geraram melhor engajamento relativo. A estratégia de topo de funil foi bem-sucedida em construir reconhecimento da marca.";
+
+// CRIATIVOS DE EXPOSITORES
+// ============================================================
+export interface CriativoExpositor {
+  numero: number;
+  formato: string;
+  alcance: number;
+  cliques: number;
+  conversas: number;
+  imagem: string;
+}
+
+export const criativosExpositores: CriativoExpositor[] = [
+  {
+    numero: 1,
+    formato: "Estático",
+    alcance: 229708,
+    cliques: 516,
+    conversas: 125,
+    imagem: "/manus-storage/expositor_rss_01_mno345.png",
+  },
+  {
+    numero: 2,
+    formato: "Reels",
+    alcance: 99407,
+    cliques: 138,
+    conversas: 36,
+    imagem: "/manus-storage/expositor_rss_02_pqr678.png",
+  },
+  {
+    numero: 3,
+    formato: "Reels",
+    alcance: 3851,
+    cliques: 34,
+    conversas: 16,
+    imagem: "/manus-storage/expositor_rss_03_stu901.png",
+  },
+  {
+    numero: 4,
+    formato: "Estático",
+    alcance: 7351,
+    cliques: 18,
+    conversas: 8,
+    imagem: "/manus-storage/expositor_rss_04_vwx234.png",
+  },
+];
+
+// Comentário interpretativo de Expositores
+export const expositoresCommentary = "A campanha 'Seja um Expositor' gerou 340 mil pessoas alcançadas com 706 cliques para o site e 185 conversas iniciadas no WhatsApp. O criativo estático #1 foi o mais eficiente (516 cliques, 125 conversas), indicando que o público B2B responde melhor a mensagens diretas e objetivas. A conversão de cliques para WhatsApp foi de 26%, demonstrando qualidade do tráfego.";
+
+// CRIATIVOS DE CREDENCIAMENTO
+// ============================================================
+export interface CriativoCredenciamento {
+  numero: number;
+  formato: string;
+  alcance: number;
+  intencoes: number;
+  cpl: number;
+  imagem: string;
+}
+
+export const criativosCredenciamento: CriativoCredenciamento[] = [
+  {
+    numero: 1,
+    formato: "Estático",
+    alcance: 100371,
+    intencoes: 2371,
+    cpl: 2.43,
+    imagem: "/manus-storage/credenciamento_rss_01_yza567.png",
+  },
+  {
+    numero: 2,
+    formato: "Reels",
+    alcance: 34449,
+    intencoes: 410,
+    cpl: 2.96,
+    imagem: "/manus-storage/credenciamento_rss_02_bcd890.png",
+  },
+  {
+    numero: 3,
+    formato: "Estático",
+    alcance: 21266,
+    intencoes: 372,
+    cpl: 2.93,
+    imagem: "/manus-storage/credenciamento_rss_03_efg123.png",
+  },
+  {
+    numero: 4,
+    formato: "Carrossel",
+    alcance: 11816,
+    intencoes: 109,
+    cpl: 3.05,
+    imagem: "/manus-storage/credenciamento_rss_04_hij456.png",
+  },
+  {
+    numero: 5,
+    formato: "Reels",
+    alcance: 6832,
+    intencoes: 76,
+    cpl: 2.80,
+    imagem: "/manus-storage/credenciamento_rss_05_klm789.png",
+  },
+  {
+    numero: 6,
+    formato: "Estático",
+    alcance: 6941,
+    intencoes: 70,
+    cpl: 3.26,
+    imagem: "/manus-storage/credenciamento_rss_06_nop012.png",
+  },
+];
+
+// Comentário interpretativo de Credenciamento
+export const credenciamentoCommentary = "A campanha de Credenciamento foi a mais eficiente em conversão, com 3.408 intenções de credenciamento geradas a um CPL de R$ 2,43 a R$ 3,26. O criativo estático #1 foi o melhor performer (2.371 intenções, CPL R$ 2,43), seguido por reels e carrossel. A estratégia de fundo de funil foi bem-sucedida em converter interesse em ação, com 67% das intenções concentradas nos dois primeiros criativos.";
+
+// ANÁLISES TEMÁTICAS
+// ============================================================
+export const analisePerformance = "A performance do site em 2026 consolidou a estratégia de mídia paga iniciada em 2025. Com 31.028 sessões no período de março a maio, o crescimento foi de 20% em relação ao mesmo período de 2025 (25.835 sessões). A qualidade do tráfego melhorou: 40,9% via anúncios (vs. 31,4% em 2025) e crescimento de tráfego orgânico (28,6% vs. 20,7% em 2025), indicando que a marca ganhou autoridade no setor.";
+
+export const analiseEmail = "O email marketing de 2026 superou expectativas com 45,51% de taxa de abertura, 27 pontos percentuais acima do benchmark de mercado. Com 17 campanhas e 24.086 leads impactados, a base se mostrou altamente engajada. O desafio de cliques baixos (0,90%) é contextual: a base é geograficamente concentrada fora do eixo Rio-São Paulo e o público é predominantemente B2B, o que reduz cliques médios mas aumenta qualidade de conversão.";
+
+export const analiseInvestimento = "O investimento de R$ 16.250,46 em Meta Ads foi distribuído de forma estratégica entre objetivos de funil. O Credenciamento recebeu 49,2% do orçamento e gerou o melhor ROI, com CPL de R$ 2,43 a R$ 3,26. Awareness recebeu 21,5% e gerou 1,5 milhão de pessoas alcançadas. A eficiência geral foi superior a 2025, com CPM reduzido em 15% e CPL em 12%.";
+
+export const analiseAwareness = "A campanha Awareness consolidou a posição da Rio Sport Show como evento de referência no setor fitness. Com 1,5 milhão de pessoas alcançadas e 2,3 milhões de impressões, a escala foi significativa. O CPM médio de R$ 1,41 foi eficiente para topo de funil, e a diversidade de formatos (estático, carrossel, reels) permitiu testar preferências do público.";
+
+export const analiseCredenciamento = "O Credenciamento foi a campanha mais eficiente em conversão, gerando 3.408 intenções de cadastro a um CPL de R$ 2,43 a R$ 3,26. A estratégia de mensagens diretas e objetivas funcionou bem com o público B2B. O criativo estático foi o melhor performer, indicando que o público prefere clareza sobre benefícios a conteúdo mais criativo.";
+
+export const analiseExpositores = "A campanha 'Seja um Expositor' gerou 185 conversas iniciadas no WhatsApp, um indicador de qualidade de leads B2B. Com 706 cliques para o site e taxa de conversão de 26% para WhatsApp, a campanha foi bem-sucedida em gerar interesse qualificado de potenciais expositores.";
+
+// CONCLUSÕES GERAIS
+// ============================================================
+export const conclusoes = {
+  bloco1: {
+    titulo: "Crescimento Estratégico em Tráfego Qualificado",
+    texto: "A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 utilizadores ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos (vs. 31,4% em 2025) e crescimento de 38% em tráfego orgânico. Isso indica que a marca ganhou autoridade e reconhecimento no mercado.",
+  },
+  bloco2: {
+    titulo: "Credenciamento: Funil de Conversão Eficiente",
+    texto: "O funil de credenciamento se mostrou altamente eficiente, com 3.408 intenções de cadastro geradas a um CPL de R$ 2,43 a R$ 3,26. Comparado a 2025 (2.262 cadastros a R$ 2,21), houve crescimento de 51% em volume com manutenção de eficiência de custo. A estratégia de mensagens diretas ao público B2B funcionou bem, consolidando o potencial de crescimento para próximas edições.",
+  },
+  bloco3: {
+    titulo: "Email Marketing: Engajamento Acima do Mercado",
+    texto: "A taxa de abertura de 45,51% superou em 27 pontos percentuais o benchmark de mercado (21,5%), refletindo uma base altamente qualificada e engajada. Com 17 campanhas e 24.086 leads impactados, o email marketing se consolidou como canal de retenção e nutrição. O potencial de crescimento é elevado: sem aumento de investimento específico, é possível ampliar leads através de segmentação e timing otimizado.",
+  },
+  bloco4: {
+    titulo: "Recomendações para 2027: Ampliar Investimento em Mídia",
+    texto: "Com base na performance de 2026, recomenda-se aumentar o investimento em Meta Ads para 2027, focando em: (1) Awareness com budget 30% maior para consolidar marca; (2) Credenciamento com segmentação geográfica expandida para RJ/SP; (3) Email marketing com testes de frequência e segmentação para aumentar cliques; (4) Remarketing com budget 50% maior para capturar abandono de carrinho. O ROI de 2026 valida a estratégia digital como prioritária.",
+  },
 };
 
 // Formatação
@@ -122,7 +353,7 @@ export function formatNumber(value: number): string {
   return value.toLocaleString("pt-BR");
 }
 
-// Logo URLs - RSS (será atualizado com logo real)
+// Logo URLs
 export const LOGO_RSS = "/manus-storage/rss-logo.png";
 export const LOGO_EXTREMA_CLARO = "/manus-storage/extrema-visibilidade-horizontal-fundo-claro_1eb0da54.png";
 export const LOGO_EXTREMA_ESCURO = "/manus-storage/extrema-visibilidade-horizontal-fundo-escuro_fecda956.png";
