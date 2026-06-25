@@ -49,7 +49,7 @@ export const performanceSite = [
 export const totalSessions = 31028;
 
 // Comentário interpretativo de Performance do Site
-export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 sessões (março a maio), comparado a 25.835 visitantes em 2025 (março a julho). Considerando o período menor em 2026, o crescimento anualizado seria de aproximadamente 52%, indicando forte expansão. A qualidade do tráfego melhorou significativamente: anúncios pagos cresceram de 31,4% (2025) para 40,9% (2026), enquanto tráfego orgânico (busca + redes sociais) cresceu de 13,5% para 21,9%. Email marketing caiu de 2,1% para 0,8%, sugerindo oportunidade de expansão neste canal.";
+export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 usuários visitantes (março a maio), comparado a 25.835 usuários visitantes em 2025 (março a julho). Considerando o período menor em 2026, o crescimento anualizado seria de aproximadamente 52%, indicando forte expansão. A qualidade do tráfego melhorou significativamente: anúncios pagos cresceram de 31,4% (2025) para 40,9% (2026), enquanto tráfego orgânico (busca + redes sociais) cresceu de 13,5% para 21,9%. Email marketing caiu de 2,1% para 0,8%, sugerindo oportunidade de expansão neste canal.";
 
 // EMAIL MARKETING
 // ============================================================
@@ -194,7 +194,7 @@ export const criativosAwareness: CriativoAwareness[] = [
 ];
 
 // Comentário interpretativo de Awareness
-export const awarenessCommentary = "A campanha Awareness alcançou 1,5 milhão de pessoas com 2,3 milhões de impressões, gerando escala eficiente (CPM médio de R$ 1,41). O criativo estático foi o mais eficiente em alcance absoluto, enquanto reels e carrossel geraram melhor engajamento relativo. A estratégia de topo de funil foi bem-sucedida em construir reconhecimento da marca.";
+export const awarenessCommentary = "A campanha Awareness demonstrou eficácia em escala com CPM médio de R$ 1,41. O criativo estático foi o mais eficiente em alcance absoluto (1,1M pessoas), enquanto reels e carrossel geraram melhor eficiência de custo (CPM R$ 1,34-1,35). A diversidade de formatos permitiu testar eficácia de cada tipo de conteúdo, com estáticos liderando em escala e reels em eficiência de custo.";
 
 // CRIATIVOS DE EXPOSITORES
 // ============================================================
@@ -243,7 +243,7 @@ export const criativosExpositores: CriativoExpositor[] = [
 ];
 
 // Comentário interpretativo de Expositores
-export const expositoresCommentary = "A campanha 'Seja um Expositor' gerou 340 mil pessoas alcançadas com 706 cliques para o site e 185 conversas iniciadas no WhatsApp. O criativo estático #1 foi o mais eficiente (516 cliques, 125 conversas), indicando que o público B2B responde melhor a mensagens diretas e objetivas. A conversão de cliques para WhatsApp foi de 26%, demonstrando qualidade do tráfego.";
+export const expositoresCommentary = "A campanha 'Seja um Expositor' demonstrou eficácia B2B com o criativo estático #1 sendo o mais eficiente (516 cliques, 125 conversas iniciadas por WhatsApp). A taxa de conversão de cliques para WhatsApp foi de 26%, indicando qualidade do tráfego. O público B2B respondeu melhor a mensagens diretas e objetivas, com estáticos superando reels em performance.";
 
 // CRIATIVOS DE CREDENCIAMENTO
 // ============================================================
@@ -308,7 +308,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
 ];
 
 // Comentário interpretativo de Credenciamento
-export const credenciamentoCommentary = "A campanha de Credenciamento foi a mais eficiente em conversão, com 3.408 intenções de credenciamento geradas a um CPL de R$ 2,43 a R$ 3,26. O criativo estático #1 foi o melhor performer (2.371 intenções, CPL R$ 2,43), seguido por reels e carrossel. A estratégia de fundo de funil foi bem-sucedida em converter interesse em ação, com 67% das intenções concentradas nos dois primeiros criativos.";
+export const credenciamentoCommentary = "A campanha de Credenciamento foi a mais eficiente em conversão, com CPL de R$ 2,43 a R$ 3,26. O criativo estático #1 foi o melhor performer (CPL R$ 2,43), seguido por reels (CPL R$ 2,96) e carrossel (CPL R$ 3,05). A estratégia de fundo de funil foi bem-sucedida em converter interesse em ação, com estáticos demonstrando melhor eficiência de custo em relação aos demais formatos.";
 
 // ANÁLISES TEMÁTICAS
 // ============================================================
