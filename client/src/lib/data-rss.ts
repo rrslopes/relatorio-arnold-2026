@@ -75,37 +75,37 @@ export const emailsDestaque: EmailDestaque[] = [
     assunto: "🎟️ O credenciamento gratuito começou. Garanta sua vaga! 🎟️",
     taxaAbertura: "50,97%",
     taxaCliques: "0,52%",
-    imagem: "/manus-storage/email_marketing_credenciamento_liberado_e4dd08b2.png",
+    imagem: "/manus-storage/email_marketing_credenciamento_liberado_48306704.png",
   },
   {
     assunto: "📅 O reencontro do mercado fitness já tem data marcada",
     taxaAbertura: "54,59%",
     taxaCliques: "0,21%",
-    imagem: "/manus-storage/email_marketing_save_the_date_3c3c843c.png",
+    imagem: "/manus-storage/email_marketing_save_the_date_d053d5b9.png",
   },
   {
     assunto: "🚀 Gere negócios reais com quem decide: seja expositor!",
     taxaAbertura: "53,38%",
     taxaCliques: "0,07%",
-    imagem: "/manus-storage/email_marketing_seja_um_expositor_54882f3a.png",
+    imagem: "/manus-storage/email_marketing_seja_um_expositor_b0f92948.png",
   },
   {
     assunto: "🚀 Sua marca no centro do setor fitness em 2026",
     taxaAbertura: "50,54%",
     taxaCliques: "0,09%",
-    imagem: "/manus-storage/email_marketing_marcas_que_estiveram_2025_e612a414.png",
+    imagem: "/manus-storage/email_marketing_marcas_que_estiveram_2025_d7600559.png",
   },
   {
     assunto: "🚀 Quem compra de você vai estar lá. Garanta seu estande.",
     taxaAbertura: "51,21%",
     taxaCliques: "0,06%",
-    imagem: "/manus-storage/email_marketing_quem_visita_procuram_27ae939c.png",
+    imagem: "/manus-storage/email_marketing_quem_visita_procuram_b1b568e8.png",
   },
   {
     assunto: "👀 Será que você pode se credenciar? Descubra agora.",
     taxaAbertura: "46,88%",
     taxaCliques: "0,21%",
-    imagem: "/manus-storage/email_marketing_sera_que_pode_credenciar_14b092b3.png",
+    imagem: "/manus-storage/email_marketing_sera_que_pode_credenciar_0608f025.png",
   },
 ];
 
@@ -165,7 +165,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 1141914,
     impressoes: 1787287,
     cpm: 1.56,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-1-gBgB7jGZfEZNyWFRLxig7t.webp",
+    imagem: "/manus-storage/awareness_rss_01_f9c6824a.png",
   },
   {
     numero: 2,
@@ -173,7 +173,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 192535,
     impressoes: 245762,
     cpm: 1.35,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-2-QDVjHV5d2xPVmHgezJr9iH.webp",
+    imagem: "/manus-storage/awareness_rss_02_fb00ff74.png",
   },
   {
     numero: 3,
@@ -181,7 +181,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 135344,
     impressoes: 166925,
     cpm: 1.34,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-1-gBgB7jGZfEZNyWFRLxig7t.webp",
+    imagem: "/manus-storage/awareness_rss_03_eb2ef580.png",
   },
   {
     numero: 4,
@@ -189,7 +189,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 72274,
     impressoes: 75357,
     cpm: 1.37,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-2-QDVjHV5d2xPVmHgezJr9iH.webp",
+    imagem: "/manus-storage/awareness_rss_04_5477b84b.png",
   },
 ];
 
@@ -214,7 +214,7 @@ export const criativosExpositores: CriativoExpositor[] = [
     alcance: 229708,
     cliques: 516,
     conversas: 125,
-    imagem: "/manus-storage/expositor_rss_01_f7fb1161.png",
+    imagem: "/manus-storage/expositor_rss_01_97e94875.png",
   },
   {
     numero: 2,
@@ -222,7 +222,7 @@ export const criativosExpositores: CriativoExpositor[] = [
     alcance: 99407,
     cliques: 138,
     conversas: 36,
-    imagem: "/manus-storage/expositor_rss_02_f9922e8b.png",
+    imagem: "/manus-storage/expositor_rss_02_0258867c.png",
   },
   {
     numero: 3,
@@ -230,7 +230,7 @@ export const criativosExpositores: CriativoExpositor[] = [
     alcance: 3851,
     cliques: 34,
     conversas: 16,
-    imagem: "/manus-storage/expositor_rss_03_8d0f3841.png",
+    imagem: "/manus-storage/expositor_rss_03_b009c2f3.png",
   },
   {
     numero: 4,
@@ -238,7 +238,7 @@ export const criativosExpositores: CriativoExpositor[] = [
     alcance: 7351,
     cliques: 18,
     conversas: 8,
-    imagem: "/manus-storage/expositor_rss_04_7442ff49.png",
+    imagem: "/manus-storage/expositor_rss_04_0680ae41.png",
   },
 ];
 
@@ -263,7 +263,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 100371,
     intencoes: 2371,
     cpl: 2.43,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-credenciamento-Dhe6dQvJBHFEiFdJpoewQG.webp",
+    imagem: "/manus-storage/credenciamento_rss_01_396592a2.png",
   },
   {
     numero: 2,
@@ -271,7 +271,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 34449,
     intencoes: 410,
     cpl: 2.96,
-    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-credenciamento-Dhe6dQvJBHFEiFdJpoewQG.webp",
+    imagem: "/manus-storage/credenciamento_rss_02_6c558b03.png",
   },
   {
     numero: 3,
@@ -279,7 +279,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 21266,
     intencoes: 372,
     cpl: 2.93,
-    imagem: "/manus-storage/credenciamento_rss_03_d74f4248.png",
+    imagem: "/manus-storage/credenciamento_rss_03_5975df6c.png",
   },
   {
     numero: 4,
@@ -287,7 +287,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 11816,
     intencoes: 109,
     cpl: 3.05,
-    imagem: "/manus-storage/credenciamento_rss_04_a50684de.png",
+    imagem: "/manus-storage/credenciamento_rss_04_87934ddf.png",
   },
   {
     numero: 5,
@@ -295,7 +295,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 6832,
     intencoes: 76,
     cpl: 2.80,
-    imagem: "/manus-storage/credenciamento_rss_05_20ed28e4.png",
+    imagem: "/manus-storage/credenciamento_rss_05_ae1f857d.png",
   },
   {
     numero: 6,
@@ -303,7 +303,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 6941,
     intencoes: 70,
     cpl: 3.26,
-    imagem: "/manus-storage/credenciamento_rss_06_080fb4a4.png",
+    imagem: "/manus-storage/credenciamento_rss_06_fef83d88.png",
   },
 ];
 
