@@ -443,7 +443,7 @@ export default function HomeRSS() {
               {criativosAwareness.map((criativo) => (
                 <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                  <div className="bg-gray-100 overflow-hidden" style={{ aspectRatio: "4/5" }}>
                     <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-4 space-y-2 text-sm">
@@ -466,7 +466,7 @@ export default function HomeRSS() {
               {criativosExpositores.map((criativo) => (
                 <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                  <div className="bg-gray-100 overflow-hidden" style={{ aspectRatio: "4/5" }}>
                     <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-4 space-y-2 text-sm">
@@ -489,7 +489,7 @@ export default function HomeRSS() {
               {criativosCredenciamento.map((criativo) => (
                 <motion.div key={criativo.numero} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-                  <div className="h-[150px] bg-gray-100 overflow-hidden">
+                  <div className="bg-gray-100 overflow-hidden" style={{ aspectRatio: "4/5" }}>
                     <img src={criativo.imagem} alt={`Criativo ${criativo.numero}`} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-4 space-y-2 text-sm">

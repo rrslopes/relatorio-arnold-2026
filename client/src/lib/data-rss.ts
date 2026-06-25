@@ -165,7 +165,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 1141914,
     impressoes: 1787287,
     cpm: 1.56,
-    imagem: "/manus-storage/awareness_rss_01_98a9c86f.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-1-gBgB7jGZfEZNyWFRLxig7t.webp",
   },
   {
     numero: 2,
@@ -173,7 +173,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 192535,
     impressoes: 245762,
     cpm: 1.35,
-    imagem: "/manus-storage/awareness_rss_02_c2bf00a9.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-2-QDVjHV5d2xPVmHgezJr9iH.webp",
   },
   {
     numero: 3,
@@ -181,7 +181,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 135344,
     impressoes: 166925,
     cpm: 1.34,
-    imagem: "/manus-storage/awareness_rss_03_c12353a9.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-1-gBgB7jGZfEZNyWFRLxig7t.webp",
   },
   {
     numero: 4,
@@ -189,7 +189,7 @@ export const criativosAwareness: CriativoAwareness[] = [
     alcance: 72274,
     impressoes: 75357,
     cpm: 1.37,
-    imagem: "/manus-storage/awareness_rss_04_bfcc7f6e.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-awareness-2-QDVjHV5d2xPVmHgezJr9iH.webp",
   },
 ];
 
@@ -263,7 +263,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 100371,
     intencoes: 2371,
     cpl: 2.43,
-    imagem: "/manus-storage/credenciamento_rss_01_d80628c2.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-credenciamento-Dhe6dQvJBHFEiFdJpoewQG.webp",
   },
   {
     numero: 2,
@@ -271,7 +271,7 @@ export const criativosCredenciamento: CriativoCredenciamento[] = [
     alcance: 34449,
     intencoes: 410,
     cpl: 2.96,
-    imagem: "/manus-storage/credenciamento_rss_02_cfa679c6.png",
+    imagem: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030060322/YhLBB5iGk4xW6ni9f2TSHC/ad-credenciamento-Dhe6dQvJBHFEiFdJpoewQG.webp",
   },
   {
     numero: 3,
