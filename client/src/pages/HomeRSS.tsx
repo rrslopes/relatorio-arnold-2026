@@ -5,8 +5,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
-  PieChart, Pie, Legend,
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LineChart, Line,
 } from "recharts";
 import {
   REPORT_TITLE, REPORT_SUBTITLE, PERIOD, kpis,
@@ -150,10 +149,10 @@ export default function HomeRSS() {
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Destaques principais do período de março a maio de 2026</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados" color="text-[#FF6B35]" />
-            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Utilizadores Ativos" color="text-[#1B1464]" />
-            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Interagiram com Anúncios" color="text-[#FF6B35]" />
-            <KPICard value={formatBRL(kpis.investidoAds)} label="Investido em Anúncios" color="text-[#1B1464]" />
+            <KPICard value={formatNumber(kpis.profissionaisCadastrados)} label="Profissionais Cadastrados segundo BCS" color="text-[#FF6B35]" />
+            <KPICard value={formatNumber(kpis.usuariosAtivos)} label="Utilizadores Ativos no Site (Mar-Mai 2026)" color="text-[#1B1464]" />
+            <KPICard value={formatNumber(kpis.usuariosInteragiram)} label="Utilizadores Interagiram com Anúncios" color="text-[#FF6B35]" />
+            <KPICard value={formatBRL(kpis.investidoAds)} label="Investidos em Anúncios (Meta Ads)" color="text-[#1B1464]" />
           </div>
 
           <CommentaryBox text="A Rio Sport Show 2026 consolidou sua posição como evento digital de referência no setor fitness. Com 24.134 utilizadores ativos no período de março a maio, o crescimento foi de 20% em relação a 2025. Mais importante: a qualidade do tráfego melhorou significativamente, com 40,9% originário de anúncios pagos e crescimento de 38% em tráfego orgânico." />
@@ -166,23 +165,25 @@ export default function HomeRSS() {
           <SectionTitle>Performance <span className="text-[#FF6B35]">do Site</span></SectionTitle>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Origem dos {formatNumber(totalSessions)} acessos ao site</p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Pie Chart */}
+          <div className="w-full mb-12">
+            {/* Bar Chart - Vertical */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie data={performanceSite} dataKey="sessions" nameKey="origin" cx="50%" cy="50%" outerRadius={80} label={({ origin, percentage }) => `${origin}: ${percentage}%`}>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={performanceSite} layout="vertical" margin={{ top: 5, right: 30, left: 200, bottom: 5 }}>
+                  <XAxis type="number" />
+                  <YAxis type="category" dataKey="origin" width={190} tick={{ fontSize: 12 }} />
+                  <Tooltip formatter={(value) => formatNumber(value as number)} />
+                  <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
                     {performanceSite.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={CHANNEL_COLORS[entry.origin] || "#999"} />
                     ))}
-                  </Pie>
-                  <Tooltip formatter={(value) => formatNumber(value as number)} />
-                </PieChart>
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </motion.div>
 
             {/* List */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3">
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3 mt-6">
               {performanceSite.map((item, i) => (
                 <div key={i} className="bg-white rounded-lg border border-gray-100 p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -197,6 +198,7 @@ export default function HomeRSS() {
               ))}
             </motion.div>
           </div>
+
 
           <CommentaryBox text={performanceCommentary} />
         </div>
@@ -247,40 +249,40 @@ export default function HomeRSS() {
           <SectionTitle>Investimento <span className="text-[#FF6B35]">em Mídia Paga</span></SectionTitle>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Distribuição de {formatBRL(investimentoTotal)} em Meta Ads</p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Chart */}
+          <div className="w-full mb-12">
+            {/* Bar Chart - Vertical */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={investimentoPorCategoria}>
-                  <XAxis dataKey="categoria" angle={-45} textAnchor="end" height={80} tick={{ fontSize: 12 }} />
-                  <YAxis />
-                  <Tooltip formatter={(value) => formatBRL(value as number)} />
-                  <Bar dataKey="valor" fill="#FF6B35" radius={[8, 8, 0, 0]} />
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={performanceSite} layout="vertical" margin={{ top: 5, right: 30, left: 200, bottom: 5 }}>
+                  <XAxis type="number" />
+                  <YAxis type="category" dataKey="origin" width={190} tick={{ fontSize: 12 }} />
+                  <Tooltip formatter={(value) => formatNumber(value as number)} />
+                  <Bar dataKey="sessions" fill="#FF6B35" radius={[0, 8, 8, 0]}>
+                    {performanceSite.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={CHANNEL_COLORS[entry.origin] || "#999"} />
+                    ))}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </motion.div>
 
             {/* List */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3">
-              {investimentoPorCategoria.map((item, i) => (
-                <div key={i} className="bg-white rounded-lg border border-gray-100 p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium text-gray-700">{item.categoria}</span>
-                    <span className="font-bold text-[#FF6B35]">{formatBRL(item.valor)}</span>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-3 mt-6">
+              {performanceSite.map((item, i) => (
+                <div key={i} className="bg-white rounded-lg border border-gray-100 p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: CHANNEL_COLORS[item.origin] }} />
+                    <span className="font-medium text-gray-700">{item.origin}</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${(item.valor / investimentoTotal) * 100}%` }} viewport={{ once: true }} transition={{ duration: 1 }}
-                      className="h-full bg-gradient-to-r from-[#FF6B35] to-[#1B1464]" />
+                  <div className="text-right">
+                    <div className="font-bold text-[#1B1464]">{item.percentage}%</div>
+                    <div className="text-xs text-gray-500">{formatNumber(item.sessions)}</div>
                   </div>
-                  <div className="text-xs text-gray-500 mt-2">{((item.valor / investimentoTotal) * 100).toFixed(1)}% do total</div>
                 </div>
               ))}
-              <div className="bg-[#1B1464] rounded-lg p-4 text-white mt-4">
-                <div className="text-xs text-white/60 mb-1">Total Investido</div>
-                <div className="text-2xl font-bold">{formatBRL(investimentoTotal)}</div>
-              </div>
             </motion.div>
           </div>
+
 
           <CommentaryBox text={investimentoCommentary} />
         </div>

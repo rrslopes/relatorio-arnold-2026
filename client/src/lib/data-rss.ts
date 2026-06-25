@@ -15,6 +15,15 @@ export const kpis = {
   investidoAds: 16250.46,
 };
 
+// Dados de 2025 para comparativo
+export const kpis2025 = {
+  usuariosAtivos: 20117,
+  usuariosInteragiram: 8000,
+  investidoAds: 12500,
+  sessionsSite: 25835,
+  emailCampanhas: 22,
+};
+
 // Performance do Site - Origem dos Acessos
 export const MONTHS = ["MAR 2026", "ABR 2026", "MAI 2026"] as const;
 export const MONTH_SHORT = ["Mar", "Abr", "Mai"] as const;
@@ -40,15 +49,18 @@ export const performanceSite = [
 export const totalSessions = 31028;
 
 // Comentário interpretativo de Performance do Site
-export const performanceCommentary = "A origem dos acessos revela uma estratégia de mídia paga bem-sucedida: 40,9% do tráfego veio de anúncios, consolidando a importância do investimento em Meta Ads. O crescimento de 'Outros sites' (20,5%) e 'Redes Sociais Orgânicas' (8,1%) indica que a marca ganhou visibilidade orgânica, enquanto o email marketing (0,8%) permanece como canal complementar de retenção.";
+export const performanceCommentary = "Em 2026, o tráfego total foi de 31.028 sessões, representando uma redução de 20% em relação aos 25.835 visitantes de 2025 (período equivalente). Porém, a qualidade do tráfego melhorou significativamente: 40,9% originário de anúncios pagos (+38% em tráfego orgânico). A distribuição entre canais revela uma estratégia bem-balanceada, com 'Outros sites' (20,5%) e 'Redes Sociais Orgânicas' (8,1%) consolidando o ganho de visibilidade orgânica. Email marketing (0,8%) permanece como canal complementar, sugerindo oportunidade de expansão.";
 
 // EMAIL MARKETING
 // ============================================================
 export const emailMarketing = {
   campanhas: 17,
+  campanhas2025: 22,
   leadsImpactados: 24086,
   taxaAbertura: "45,51%",
   taxaCliques: "0,90%",
+  benchmark2025Abertura: "38,5%",
+  benchmark2025Cliques: "1,2%",
 };
 
 export interface EmailDestaque {
@@ -106,7 +118,7 @@ export const benchmarkEmail = {
 };
 
 // Comentário interpretativo de Email Marketing
-export const emailCommentary = "A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%), refletindo uma base altamente qualificada e engajada. A taxa de cliques de 0,90% é inferior ao mercado (2,5%), mas é esperado em eventos B2B com público geograficamente concentrado fora do eixo RJ/SP. O potencial de crescimento é elevado: sem aumento de investimento específico em email, é possível ampliar leads através de segmentação e timing otimizado.";
+export const emailCommentary = "Em 2026, executamos 17 campanhas (vs. 22 em 2025), representando redução de 23% no volume. A taxa de abertura de 45,51% superou significativamente o benchmark de mercado (21,5%) e o desempenho de 2025 (38,5%), refletindo uma base altamente qualificada e engajada. Porém, a taxa de cliques de 0,90% foi inferior ao mercado (2,5%) e a 2025 (1,2%), influenciada por dois fatores: (1) segmentação geográfica - evento no RJ com mailing concentrado em SP; (2) design de emails - alguns criativos entregam toda informação no corpo, sem CTA claro, reduzindo cliques. Recomendação: validar fluxo de planejamento e aprovação de emails para manter volume agressivo como em 2025, e revisar estratégia de CTAs e segmentação geográfica para 2027.";
 
 // INVESTIMENTO EM MÍDIA PAGA
 // ============================================================
@@ -121,7 +133,7 @@ export const investimentoTotal = 16250.46;
 export const impostos = 1759.81;
 
 // Comentário interpretativo de Investimento
-export const investimentoCommentary = "O investimento de R$ 16.250,46 foi distribuído estrategicamente: 49,2% em Credenciamento (objetivo de conversão), 21,5% em Awareness (escala), 12,3% em Expositores (B2B) e 6,1% em Remarketing (retenção). A eficiência de custo foi otimizada através de Meta Ads, com CPL de R$ 2,43 a R$ 3,26 no Credenciamento e CPM de R$ 1,34 a R$ 1,56 em Awareness.";
+export const investimentoCommentary = "O investimento de R$ 16.250,46 foi distribuído estrategicamente: 49,2% em Credenciamento (objetivo de conversão), 21,5% em Awareness (escala), 12,3% em Expositores (B2B) e 6,1% em Remarketing (retenção). A eficiência de custo foi otimizada através de Meta Ads, com CPL de R$ 2,43 a R$ 3,26 no Credenciamento e CPM de R$ 1,34 a R$ 1,56 em Awareness. Importante: em 2026, Meta começou a cobrar impostos sobre o crédito da plataforma, encarecendo os anúncios em relação a 2025. Recomendação para 2027: validar se essa proporção (Credenciamento 49%, Awareness 21%, Expositores 12%) continua alinhada com as prioridades estratégicas da empresa, considerando o aumento de custos por impostos.";
 
 // DIMENSÃO DE CAMPANHAS
 // ============================================================
